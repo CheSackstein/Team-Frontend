@@ -48,7 +48,7 @@ function NavBar(props) {
           <SignUp />
           <NavLink href="/ProfileSettings">
             {" "}
-            <FaUser style={{ color: "white", right: "0%" }} />
+           <FaUser style={{ color: "white", right: "0%" }} />
           </NavLink>
 
           <NavbarText> Che Sackstein</NavbarText>
