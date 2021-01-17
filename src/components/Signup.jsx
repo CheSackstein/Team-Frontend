@@ -12,20 +12,6 @@ import {
   Form,
   Input,
   Label,
-  FormText,
-  Collapse,
-  Container,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
   FormGroup,
 } from "reactstrap";
 import NavBar from "./NavBar";
@@ -119,8 +105,7 @@ function SignUp(props) {
             width: "130px",
             borderRadius: "20px",
             fontSize: "20px",
-            left: "20px",
-            backgroundColor: "#41B3A3",
+            left: "20px"
           }}
         >
           Sign up

@@ -22,34 +22,31 @@ function NavBar(props) {
   return (
     <div>
       <Navbar
-        style={{ color: "#C38D9E", backgroundColor: "#41B3A3" }}
-        dark
+        style={{fontFamily:'Cormorant Garamond Light', fontSize:'20px', borderColor:'Black', borderRadius:'5px' }}
+        light
         expand="md"
-      >
-        <NavbarBrand href="/Home">MyNextPet</NavbarBrand>
-        <NavbarToggler />
-        <Collapse navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="/SearchPage">Search</NavLink>
-            </NavItem>
         
-          </Nav>
-          {isAdmin && (
-            <div>
-              <NavLink style={{ color: "white" }} href="/Apply">
-                Register as a Service
+      >
+        <NavbarBrand href="/Home" style={{fontSize:'34px'}}>BookIt</NavbarBrand>
+        <NavbarToggler />
+        <div>
+              <NavLink style={{ color: "grey" }} href="/Apply">
+                Register
               </NavLink>
             </div>
-          )}
+        <Collapse navbar>
+          <Nav className="mr-auto" navbar>
+          </Nav>
+           
+          
           <Login />
           <SignUp />
           <NavLink href="/ProfileSettings">
             {" "}
-           <FaUser style={{ color: "white", right: "0%" }} />
+           <FaUser style={{ color: "grey", right: "0%" }} />
           </NavLink>
 
-          <NavbarText> Che Sackstein</NavbarText>
+          <NavbarText>Profile</NavbarText>
         </Collapse>
       </Navbar>
     </div>

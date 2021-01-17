@@ -118,7 +118,6 @@ function Login(props) {
             borderRadius: "20px",
             fontSize: "20px",
             left: "20px",
-            backgroundColor: "#41B3A3",
           }}
         >
           Login
