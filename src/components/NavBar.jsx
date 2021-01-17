@@ -13,7 +13,8 @@ import {
   NavbarText,
   FormGroup,
 } from "reactstrap";
-
+import { FontAwesome } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 function NavBar(props) {
   const [isAdmin, setIsAdmin] = useState(false);
   if (localStorage.getItem("admin") === false) {
@@ -36,11 +37,8 @@ function NavBar(props) {
           </Nav>
           {isAdmin && (
             <div>
-              <NavLink style={{ color: "white" }} href="/AddPet">
-                AddPet
-              </NavLink>
-              <NavLink style={{ color: "white" }} href="/AdminPet">
-                Admin
+              <NavLink style={{ color: "white" }} href="/Apply">
+                Register as a Service
               </NavLink>
             </div>
           )}
