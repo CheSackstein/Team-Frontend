@@ -10,16 +10,33 @@ const handleResponse = (res) => {
 };
 
 const catchError = () => {
-  window.alert("A problem ocurred. Please try again later.");
+  window.alert("Cannot connect to server at this time, pleaser try again later.");
 };
 
 const retrieveAndSetUser = (res, setUser) => {
   if (res.ok) {
     res.json().then((data) => setUser(data));
   } else {
-    window.alert("A problem ocurred. Please try again later.");
+    window.alert("Please sign in");
   }
 };
+
+
+const PostToGetUser = (setUser, data) => {
+  fetch(`${BaseURL}/api/users/`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: data,
+  }
+    .then((res) => retrieveAndSetUser(res, setUser))
+    .catch(catchError())
+
+  )
+
+}
 
 const GETFromUsers = (endpoint, setUser) => {
   fetch(`${BaseURL}/api/users/${endpoint}`)
@@ -92,4 +109,5 @@ module.exports = {
   GETFromProviders,
   PUTtoProviders,
   POSTtoProviders,
+  PostToGetUser
 };

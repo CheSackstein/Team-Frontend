@@ -1,0 +1,17 @@
+.container {
+    width: 70vw;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: white;
+    margin: 2rem;
+    padding: 1rem;
+    display: flex;
+
+}
+
+.img {
+    max-width: 280px;
+    border-radius: 6px;
+    max-height: 220px;
+}
+

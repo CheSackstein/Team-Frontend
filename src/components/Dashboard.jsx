@@ -31,8 +31,6 @@ function Dashboard(props) {
         alt="Background image"
       
       ></img>
-      <Login />
-      <SignUp />
     </div>
   );
 }
