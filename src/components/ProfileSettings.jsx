@@ -1,17 +1,11 @@
 import React from "react";
 import App from "../App";
 import { useState } from "react";
-import NavBar from './NavBar'
+import NavBar from "./NavBar";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import {
-  Button,
-  Form,
-  Input,
-  Label,
-  Row,
-  Col,
-  FormGroup,
-} from "reactstrap";
+import { Button, Form, Input, Label, Row, Col, FormGroup } from "reactstrap";
+import HomeImage from "./bOOKit.png";
+import "./ProfileSettings.css";
 
 function ProfileSettings(props) {
   const [user, setUser] = useState("");
@@ -42,20 +36,18 @@ function ProfileSettings(props) {
     console.log(JSON.stringify(formData));
     console.log(formData);
     const requestOptions = {
-        method: 'POST',
-        body: formData
-    }
-    fetch("http://localhost:5000/api/users", requestOptions)
-    .then(res => {
-            console.log(formData);
-            console.log(res.status);
-        })
+      method: "POST",
+      body: formData,
+    };
+    fetch("http://localhost:5000/api/users", requestOptions).then((res) => {
+      console.log(formData);
+      console.log(res.status);
+    });
   }
 
   function onAddUser(event) {
     const newUser = user;
     console.log(newUser);
-  
   }
 
   const submitValueSignUp = () => {
@@ -84,7 +76,12 @@ function ProfileSettings(props) {
   return (
     <div>
       <NavBar />
-      <div className="Login">
+
+      <div
+        className="profileSettings"
+        id="profileSettings"
+        style={{ backgroundImage: HomeImage }}
+      >
         <Form onSubmit={(event) => onLogin(event)}>
           <FormGroup>
             <Row form>
@@ -155,7 +152,7 @@ function ProfileSettings(props) {
 
             <Button
               type="Primary"
-              color="primary"
+              color="secondary"
               onSubmit={(event) => onLogin(event)}
             >
               Save Changes

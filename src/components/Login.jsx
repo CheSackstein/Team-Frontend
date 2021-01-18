@@ -1,4 +1,3 @@
-
 import App from "../App";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -29,7 +28,6 @@ import {
 } from "reactstrap";
 import NavBar from "./NavBar";
 import { Link, useHistory } from "react-router-dom";
-
 
 function Login(props) {
   const [user, setUser] = useState("");
@@ -103,7 +101,6 @@ function Login(props) {
     history.push("/Home");
     const reload = window.location.reload();
   }
-
 
   return (
     <div>

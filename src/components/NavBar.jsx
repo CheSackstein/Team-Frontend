@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Login from './Login'
-import SignUp from './Signup'
+import Login from "./Login";
+import SignUp from "./Signup";
 import {
   Collapse,
   Container,
@@ -22,31 +22,34 @@ function NavBar(props) {
   return (
     <div>
       <Navbar
-        style={{fontFamily:'Cormorant Garamond Light', fontSize:'20px', borderColor:'Black', borderRadius:'5px' }}
-        light
+        style={{
+          fontFamily: "Cormorant Garamond Light",
+          fontSize: "20px",
+          borderColor: "Black",
+          borderRadius: "5px",
+        }}
         expand="md"
-        
+        light
+        faded
       >
-        <NavbarBrand href="/Home" style={{fontSize:'34px'}}>BookIt</NavbarBrand>
+        <NavbarBrand href="/Home" style={{ fontSize: "34px" }}>
+          BookIt
+        </NavbarBrand>
         <NavbarToggler />
         <div>
-              <NavLink style={{ color: "grey" }} href="/Apply">
-                Register
-              </NavLink>
-            </div>
+          <NavLink style={{ color: "grey" }} href="/Apply">
+            Register
+          </NavLink>
+        </div>
         <Collapse navbar>
-          <Nav className="mr-auto" navbar>
-          </Nav>
-           
-          
+          <Nav className="mr-auto" navbar></Nav>
+
           <Login />
           <SignUp />
-          <NavLink href="/ProfileSettings">
+          <NavLink href="/ProfileSettings" style={{ color: "grey" }}>
             {" "}
-           <FaUser style={{ color: "grey", right: "0%" }} />
+            <FaUser style={{ color: "grey", right: "0%" }} /> Profile
           </NavLink>
-
-          <NavbarText>Profile</NavbarText>
         </Collapse>
       </Navbar>
     </div>
