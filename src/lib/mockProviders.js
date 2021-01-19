@@ -1,11 +1,12 @@
 const BeautyProviders = [
   {
+    _id: '1',
     phone: '12354546',
     address: 'fake st. 1234',
     email: '222@22',
     category: 'beauty',
     type: 'Salon',
-    description: 'we cut hair and do nails',
+    description: 'We cut hair and do nails',
     appointments: [],
     daysOff: 'Friday',
     workingHours: '9to5',
@@ -15,35 +16,37 @@ const BeautyProviders = [
       { name: 'hair cut', price: 150, duration: 30 }
     ],
     banner: 'URL',
-    profilePicture: 'URL',
+    profilePicture: '/hairsalon1.jpg',
     staffAvailable: 1,
     OwnerID: 1,
-    companyName: 'el nail salon'
+    companyName: 'El hair salon'
   },
   {
+    _id: '2',
     phone: '12354546',
     address: 'fake st. 1234',
     email: '222@22',
     category: 'beauty',
     type: 'Nails',
-    description: 'vanonoawniowrnv av wavakawvnawoi',
+    description: 'get your nails done with style',
     appointments: [],
     daysOff: 'Friday',
     workingHours: '9to5',
     availableServices: [
-      { name: manicure, price: 100, duration: 45 },
-      { name: pedicure, price: 100, duration: 45 }
+      { name: 'manicure', price: 100, duration: 45 },
+      { name: 'pedicure', price: 100, duration: 45 }
     ],
     banner: 'URL',
-    profilePicture: 'URL',
+    profilePicture: '/hairsalon1.jpg',
     staffAvailable: 1,
     OwnerID: 1,
-    companyName: 'el nail salon'
-    }
-]
+    companyName: 'El nail salon'
+  }
+];
 
 const HealthProviders = [
   {
+    _id: '3',
     phone: '12354546',
     address: 'fake st. 1234',
     email: '222@22',
@@ -55,15 +58,16 @@ const HealthProviders = [
     workingHours: '9to5',
     availableServices: [
       { name: 'regular visit', price: 100, duration: 45 },
-      { name: 'root canal', price: 100, duration: 45 },
+      { name: 'root canal', price: 100, duration: 45 }
     ],
     banner: 'URL',
-    profilePicture: 'URL',
+    profilePicture: '/public/doctor1.jpg',
     staffAvailable: 1,
     OwnerID: 1,
     companyName: 'Dr. happy Teeth'
   },
   {
+    _id: '4',
     phone: '12354546',
     address: 'fake st. 1234',
     email: '222@22',
@@ -74,11 +78,11 @@ const HealthProviders = [
     daysOff: 'Friday',
     workingHours: '9to5',
     availableServices: [
-      { name: manicure, price: 100, duration: 45 },
-      { name: pedicure, price: 100, duration: 45 }
+      { name: 'manicure', price: 100, duration: 45 },
+      { name: 'pedicure', price: 100, duration: 45 }
     ],
     banner: 'URL',
-    profilePicture: 'URL',
+    profilePicture: '/public/doctor1.jpg',
     staffAvailable: 1,
     OwnerID: 1,
     companyName: 'Dr. Bone Cracker'

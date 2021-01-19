@@ -3,7 +3,7 @@ const BaseURL = "http://localhost:3000";
 
 const handleResponse = (res) => {
   if (res.ok) {
-    window.alert("Request saved. You will be contacted shortly.");
+    return res
   } else {
     window.alert("A problem ocurred. Please try again later.");
   }

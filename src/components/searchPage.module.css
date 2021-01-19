@@ -1,22 +1,27 @@
 .formWrapper {
+    width: 90%;
     padding: 1rem;
     text-align: left;
+    color: rgb(65, 179, 163);
+    font-size: large;
 }
 
 .formWrapper input, .formWrapper select {
-    width: 170px;
-    margin-left: 1rem;
+    margin: 1rem;
     border-radius: 6px;
 }
 
 .formWrapper label {
-    width: 180px;
+    font-weight: 700;
 }
 
-.formWrapper Button {
-    width: 366px;
-    margin-top: .5rem;
+.formWrapper button {
+    color: white;
+    width: 220px;
+    border-radius: 6px;
+    margin-top: .8rem;
     font-weight: 700;
+    padding: .1rem 0;
     background-color: rgb(65, 179, 163);
     border: 1px solid black;
 }

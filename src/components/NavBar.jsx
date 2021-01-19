@@ -30,7 +30,7 @@ function NavBar(props) {
         <Collapse navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/SearchPage">Search</NavLink>
+              <NavLink href="/search">Search</NavLink>
             </NavItem>
         
           </Nav>

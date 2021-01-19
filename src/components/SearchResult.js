@@ -1,6 +1,7 @@
+import { Button } from 'react-bootstrap';
 import React from 'react'
 import searchResult from './searchResult.module.css';
-import PetProfile from './PetProfile';
+import { Link } from 'react-router-dom';
 
 export default function SearchResult(props) {
   
@@ -9,20 +10,19 @@ export default function SearchResult(props) {
       <div className={searchResult.container}>
         <img
           className={searchResult.img}
-          src={props && props.obj.picture}
-          alt={props ? props.obj.name : 'petPic'}
+          src={props && props.obj.profilePicture}
+          alt={props ? props.obj.name : 'profilePic'}
         />
-        <hr />
         <div className={searchResult.data}>
           <h4 className={searchResult.name}>
-            {' '}
-            Name: {props && props.obj.name}
+            <b>{props && props.obj.companyName}</b>
           </h4>
           <p className={searchResult.status}>
-            <b>Status: </b>
-            {props && props.obj.adoptionStatus}
+            {props && props.obj.description}
           </p>
-          <PetProfile obj={props.obj} />
+        </div>
+        <div className={searchResult.btnContainer}>
+          <Link className={ searchResult.link} to={`Provider/${props.obj._id}`}>See Full Profile</Link>
         </div>
       </div>
     </>
