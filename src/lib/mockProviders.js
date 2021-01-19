@@ -2,23 +2,24 @@ const BeautyProviders = [
   {
     _id: '1',
     phone: '12354546',
-    address: 'fake st. 1234',
+    address: 'fake st. 1234, Jerusalem.',
     email: '222@22',
     category: 'beauty',
     type: 'Salon',
-    description: 'We cut hair and do nails',
+    description: 'We cut hair and do nails with style, love and dedication since 2020.',
     appointments: [],
-    daysOff: 'Friday',
-    workingHours: '9to5',
+    weekends: 'Friday',
+    openingHrs: '09:00',
+    closingHrs: '17:00',
     availableServices: [
-      { name: 'manicure', price: 100, duration: 45 },
-      { name: 'pedicure', price: 100, duration: 45 },
-      { name: 'hair cut', price: 150, duration: 30 }
+      { name: 'Manicure', price: 100, duration: 45 },
+      { name: 'Pedicure', price: 100, duration: 45 },
+      { name: 'Hair cut', price: 150, duration: 30 }
     ],
-    banner: 'URL',
-    profilePicture: '/hairsalon1.jpg',
-    staffAvailable: 1,
-    OwnerID: 1,
+    bannerUrl: '/hairsalon1.jpg',
+    profilePictureUrl: '/hairsalon1.jpg',
+    numberOfStaff: 1,
+    ownerId: 1,
     companyName: 'El hair salon'
   },
   {
@@ -30,14 +31,14 @@ const BeautyProviders = [
     type: 'Nails',
     description: 'get your nails done with style',
     appointments: [],
-    daysOff: 'Friday',
+    weekends: 'Friday',
     workingHours: '9to5',
     availableServices: [
       { name: 'manicure', price: 100, duration: 45 },
       { name: 'pedicure', price: 100, duration: 45 }
     ],
-    banner: 'URL',
-    profilePicture: '/hairsalon1.jpg',
+    bannerUrl: 'URL',
+    profilePictureUrl: '/hairsalon1.jpg',
     staffAvailable: 1,
     OwnerID: 1,
     companyName: 'El nail salon'
@@ -54,16 +55,16 @@ const HealthProviders = [
     type: 'Dentist',
     description: 'we remove teeth',
     appointments: [],
-    daysOff: 'Friday',
+    weekends: 'Friday',
     workingHours: '9to5',
     availableServices: [
       { name: 'regular visit', price: 100, duration: 45 },
       { name: 'root canal', price: 100, duration: 45 }
     ],
-    banner: 'URL',
-    profilePicture: '/public/doctor1.jpg',
-    staffAvailable: 1,
-    OwnerID: 1,
+    bannerUrl: 'URL',
+    profilePictureUrl: '/public/doctor1.jpg',
+    numberOfStaff: 1,
+    ownerId: 1,
     companyName: 'Dr. happy Teeth'
   },
   {
@@ -75,16 +76,16 @@ const HealthProviders = [
     type: 'Nails',
     description: 'vanonoawniowrnv',
     appointments: [],
-    daysOff: 'Friday',
+    weekends: 'Friday',
     workingHours: '9to5',
     availableServices: [
       { name: 'manicure', price: 100, duration: 45 },
       { name: 'pedicure', price: 100, duration: 45 }
     ],
-    banner: 'URL',
-    profilePicture: '/public/doctor1.jpg',
-    staffAvailable: 1,
-    OwnerID: 1,
+    bannerUrl: 'URL',
+    profilePictureUrl: '/public/doctor1.jpg',
+    numberOfStaff: 1,
+    OwnerId: 1,
     companyName: 'Dr. Bone Cracker'
   }
 ];
