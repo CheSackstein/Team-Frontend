@@ -12,7 +12,7 @@ const BeautyProviders = [
     openingHrs: '09:00',
     closingHrs: '17:00',
     availableServices: [
-      { name: 'Manicure', price: 100, duration: 45 },
+      { name: 'Manicure', price: 100 },
       { name: 'Pedicure', price: 100, duration: 45 },
       { name: 'Hair cut', price: 150, duration: 30 }
     ],

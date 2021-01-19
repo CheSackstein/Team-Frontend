@@ -34,7 +34,7 @@ export default function ServiceProfile() {
       return (
         <>
           <div key={uuidv4()} className={serviceProfile.service}>
-            {name} at a cost of {price} shekels for {duration} minutes.
+            {name} at a cost of {price} shekels{duration && ` for ${duration} minutes`}.
           </div>
         </>
       );
