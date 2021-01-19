@@ -11,12 +11,20 @@ export default function ServiceProfile() {
         // for when we connect to backend
        // GETFromProviders(`getById`, JSON.stringify(id) )
         setProvider(BeautyProviders[0])
+        
     }, [])
 
+    
     return (
         <div>
-            
-            
+            <div className="banner">
+                <img src="/hairsalon1.jpg" alt="banner" />
+            </div>
+            <div className="data">
+             <h2>
+                {provider.companyName}
+            </h2>
+            </div>
         </div>
     )
 }
