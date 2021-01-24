@@ -14,8 +14,8 @@ function App() {
     }} id ="bg">
       <Router>
         <Switch>
-          <Route exact path="/" component={Dashboard}></Route>
-          <Route exact path="/Home" component={Home}></Route>
+          <Route exact path="/" component={Home}></Route>
+          <Route exact path="/Home" component={Dashboard}></Route>
           <Route exact path="/Apply" component={Apply}></Route>
           <Route exact path="/ProfileSettings" component={ProfileSettings}></Route>
           <Route>

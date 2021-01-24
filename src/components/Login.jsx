@@ -1,6 +1,12 @@
 import App from "../App";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { POSTtoUsers,
+  PUTtoUsers,
+  GETFromUsers,
+  GETFromProviders,
+  PUTtoProviders,
+  POSTtoProviders} from '../lib/FetchShortcuts'
 import {
   Button,
   Modal,
@@ -89,10 +95,7 @@ function Login(props) {
   async function sendUser(frmData) {
     console.log(frmData);
 
-    const response = await axios.post("http://localhost:5000/api/user/login", {
-      Email: email,
-      Password: password,
-    });
+    const response = await POSTtoUsers(frmData);
 
     if (response.status === 200) {
       localStorage.setItem("token", response);

@@ -7,6 +7,7 @@ import {} from "reactstrap";
 import NavBar from "./NavBar";
 import { Link, useHistory } from "react-router-dom";
 import HomeImage from "./bOOKit.png";
+import "./Dashboard.css";
 
 function Dashboard(props) {
   const [modalLog, setModalLog] = useState(false);
@@ -16,14 +17,7 @@ function Dashboard(props) {
   const toggleSign = () => setModalSign(!modalSign);
 
   return (
-    <div
-      style={{
-        backgroundImage: { HomeImage },
-        backgroundSize: "cover",
-        width: "100%",
-        height: "100%",
-      }}
-    >
+    <div className="Dashboard" id="Dashboard">
       <NavBar />
     </div>
   );

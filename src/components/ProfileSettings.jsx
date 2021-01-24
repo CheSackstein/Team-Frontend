@@ -3,7 +3,7 @@ import App from "../App";
 import { useState } from "react";
 import NavBar from "./NavBar";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Button, Form, Input, Label, Row, Col, FormGroup } from "reactstrap";
+import { Button, Form, Input, Label, Row, Col, FormGroup, Container } from "reactstrap";
 import HomeImage from "./bOOKit.png";
 import "./ProfileSettings.css";
 
@@ -80,12 +80,11 @@ function ProfileSettings(props) {
       <div
         className="profileSettings"
         id="profileSettings"
-        style={{ backgroundImage: HomeImage }}
       >
-        <Form onSubmit={(event) => onLogin(event)}>
-          <FormGroup>
-            <Row form>
-              <Col md={6}>
+        <Container className="Form" id="Form">
+        <Form onSubmit={(event) => onLogin(event)} >
+        <Row >
+        <Col md={3}> 
                 <FormGroup>
                   <Label for="firstName">First name:</Label>
                   <Input
@@ -96,8 +95,10 @@ function ProfileSettings(props) {
                     onChange={(e) => setfName(e.target.value)}
                   />
                 </FormGroup>
-              </Col>
-              <Col md={6}>
+                </Col>
+              </Row>
+              <Row>
+              <Col md={3}>
                 <FormGroup>
                   <Label for="lastName">Last name:</Label>
                   <Input
@@ -111,7 +112,7 @@ function ProfileSettings(props) {
               </Col>
             </Row>
             <Row form>
-              <Col md={4}>
+              <Col md={2}>
                 <FormGroup>
                   <Label for="phone">Cell:</Label>
                   <Input
@@ -123,7 +124,9 @@ function ProfileSettings(props) {
                   />
                 </FormGroup>
               </Col>
-              <Col md={4}>
+              </Row>
+              <Row >
+              <Col md={3}>
                 <FormGroup>
                   <Label for="exampleEmail">Email</Label>
                   <Input
@@ -135,8 +138,9 @@ function ProfileSettings(props) {
                   />
                 </FormGroup>
               </Col>
-
-              <Col md={4}>
+</Row>
+<Row>
+              <Col md={3}>
                 <FormGroup>
                   <Label for="examplePassword">Password</Label>
                   <Input
@@ -149,16 +153,19 @@ function ProfileSettings(props) {
                 </FormGroup>
               </Col>
             </Row>
-
+<Row>
             <Button
               type="Primary"
               color="secondary"
               onSubmit={(event) => onLogin(event)}
+              className="changeBtn"
+              id="changeBtn"
             >
               Save Changes
             </Button>
-          </FormGroup>
+            </Row>   
         </Form>
+        </Container>
       </div>
     </div>
   );
