@@ -1,8 +1,8 @@
-
 import App from "../App";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import HomeImage from './bOOKit.png'
+import HomeImage from "./bOOKit.png";
+import "./Home.css";
 import {
   Button,
   Modal,
@@ -30,8 +30,6 @@ import {
 } from "reactstrap";
 import NavBar from "./NavBar";
 import { Link, useHistory } from "react-router-dom";
-
-
 
 function Home(props) {
   const [user, setUser] = useState("");
@@ -91,7 +89,6 @@ function Home(props) {
       PasswordConfirm: passwordConfirm,
     };
     console.log(frmdetails);
- 
   };
   const submitValueLogin = () => {
     const frmdetails = {
@@ -107,10 +104,6 @@ function Home(props) {
   const [phone, setPhone] = useState("");
   const [data, setData] = useState("");
 
- 
-
-
-
   async function sendUser(frmData) {
     console.log(frmData);
 
@@ -123,25 +116,14 @@ function Home(props) {
       localStorage.setItem("token", response);
     }
     console.log(response.data);
-  // history.push("/");
+    // history.push("/");
     const reload = window.location.reload();
   }
 
-
-
-
-
   return (
-    <div style={{ backgroundColor: "#85DCB" }}>
+    <div id="Home" className="Home">
       <NavBar />
-      <h2 style={{ color: "white" }}>Welcome to BookIt, come here often?</h2>
-      <img
-        src={HomeImage}
-        alt="Home Page"
-     
-      ></img>
-    
-         </div>
+    </div>
   );
 }
 export default Home;

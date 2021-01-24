@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Login from './Login'
-import SignUp from './Signup'
+import Login from "./Login";
+import SignUp from "./Signup";
 import {
   Collapse,
   Container,
@@ -22,34 +22,34 @@ function NavBar(props) {
   return (
     <div>
       <Navbar
-        style={{ color: "#C38D9E", backgroundColor: "#41B3A3" }}
-        dark
+        style={{
+          fontFamily: "Cormorant Garamond Light",
+          fontSize: "20px",
+          borderColor: "Black",
+          borderRadius: "5px",
+        }}
         expand="md"
+        light
+        faded
       >
-        <NavbarBrand href="/Home">MyNextPet</NavbarBrand>
+        <NavbarBrand href="/Home" style={{ fontSize: "34px" }}>
+          BookIt
+        </NavbarBrand>
         <NavbarToggler />
+        <div>
+          <NavLink style={{ color: "grey" }} href="/Apply">
+            Register
+          </NavLink>
+        </div>
         <Collapse navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="/SearchPage">Search</NavLink>
-            </NavItem>
-        
-          </Nav>
-          {isAdmin && (
-            <div>
-              <NavLink style={{ color: "white" }} href="/Apply">
-                Register as a Service
-              </NavLink>
-            </div>
-          )}
+          <Nav className="mr-auto" navbar></Nav>
+
           <Login />
           <SignUp />
-          <NavLink href="/ProfileSettings">
+          <NavLink href="/ProfileSettings" style={{ color: "grey" }}>
             {" "}
-           <FaUser style={{ color: "white", right: "0%" }} />
+            <FaUser style={{ color: "grey", right: "0%" }} /> Profile
           </NavLink>
-
-          <NavbarText> Che Sackstein</NavbarText>
         </Collapse>
       </Navbar>
     </div>
