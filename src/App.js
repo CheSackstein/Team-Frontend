@@ -26,24 +26,21 @@ function App() {
 
   return (
 
-    <div className="App" style={{ 
-      backgroundImage: {HomeImage}, backgroundSize:"cover", width:'100%', height:'100%'
-
-    }} id ="bg">
+    <div className="App">
       <Router>
-        <NavBar />
         <Switch>
-          <Route exact path="/search">
-            <SearchPage />
-          </Route>
-          <Route path="/Provider/:id">
-            <ServiceProfile />
           <Route exact path="/" component={Home}></Route>
           <Route exact path="/Home" component={Dashboard}></Route>
           <Route exact path="/Apply" component={Apply}></Route>
           <Route exact path="/ProfileSettings" component={ProfileSettings}></Route>
+          <Route path="/Provider/:id" component={ServiceProfile}> </Route>
+          <Route exact path="/SearchPage"  component={SearchPage}> </Route>
+        
           <Route>
             <ul>
+            <li>
+                <Link to="/SearchPage">Search</Link>
+              </li>
             <li>
                 <Link to="/ProfileSettings">ProfileSettings</Link>
               </li>
@@ -61,6 +58,7 @@ function App() {
         </Switch>
       </Router>
     </div>
+    
   );
 }
 

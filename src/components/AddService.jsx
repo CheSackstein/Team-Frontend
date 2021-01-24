@@ -14,14 +14,13 @@ import {
   FormText,
 } from "reactstrap";
 import "./Apply.css";
-import {
-  POSTtoUsers,
+import { POSTtoUsers,
   PUTtoUsers,
   GETFromUsers,
   GETFromProviders,
   PUTtoProviders,
-  POSTtoProviders,
-} from "../lib/FetchShortcuts";
+  POSTtoProviders} from '../lib/FetchShortcuts';
+
 
 function AddService(props) {
   const [provider, setProvider] = useState("");
@@ -34,20 +33,21 @@ function AddService(props) {
   function onAddService(event) {
     event.preventDefault();
     const formData = {
-      service: serviceName,
-      duration: duration,
-      price: price,
+service: serviceName,
+duration: duration,
+price: price
     };
 
+  
     onAddService(formData);
     console.log(JSON.stringify(formData));
     console.log(formData);
-    POSTtoProviders(formData);
+    POSTtoProviders(formData)
     // const requestOptions = {
     //   method: "POST",
     //   body: formData,
     // };
-
+ 
     // GETFromUsers();
     // fetch("http://localhost:5000/api/users", requestOptions).then((res) => {
     //   console.log(formData);
@@ -62,11 +62,12 @@ function AddService(props) {
     console.log(newService);
   }
 
+ 
   const submitValueApply = () => {
     const frmdetails = {
-      serviceName: serviceName,
-      duration: duration,
-      price: price,
+ serviceName: serviceName,
+ duration:duration,
+ price:price
     };
     console.log(frmdetails);
   };
@@ -74,53 +75,48 @@ function AddService(props) {
   return (
     <div className="AddService" id="AddService">
       <Form onSubmit={(event) => onAddService(event)}>
-        <Row form>
-          <Col md={5}>
-            <FormGroup>
-              <Label for="Service">Service:</Label>
-              <Input
-                type="text"
-                name="Service"
-                id="Service"
-                placeholder="Manicure, haircut"
-                onChange={(e) => setServiceName(e.target.value)}
-              />
-            </FormGroup>
-          </Col>
+          <Row form>
+            <Col md={5}>
+              <FormGroup>
+                <Label for="Service">Service:</Label>
+                <Input
+                  type="text"
+                  name="Service"
+                  id="Service"
+                  placeholder="Manicure, haircut"
+                  onChange={(e) => setServiceName(e.target.value)}
+                />
+              </FormGroup>
+            </Col>
+    
+            <Col md={3}>
+              <FormGroup>
+                <Label for="Price">Price:</Label>
+                <Input
+                  type="text"
+                  name="Price"
+                  id="Price"
+                  placeholder="Price"
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+              </FormGroup>
+            </Col>
 
-          <Col md={3}>
-            <FormGroup>
-              <Label for="Price">Price:</Label>
-              <Input
-                type="text"
-                name="Price"
-                id="Price"
-                placeholder="Price"
-                onChange={(e) => setPrice(e.target.value)}
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Label for="exampleSelect">Duration</Label>
-              <Input
-                type="select"
-                name="select"
-                id="exampleSelect"
-                onChange={(e) => setDuration(e.target.value)}
-              >
-                <option>15 mins</option>
-                <option>30 mins</option>
-                <option>45 mins</option>
-                <option>60 mins</option>
-                <option>75 mins</option>
-                <option>90 mins</option>
-                <option>2 hours</option>
-              </Input>
-            </FormGroup>
-          </Col>
-
+            <Col md={3}>
+              <FormGroup>
+                <Label for="exampleSelect">Duration</Label>
+                <Input type="select" name="select" id="exampleSelect" onChange={(e) => setDuration(e.target.value)}>
+                  <option>15 mins</option>
+                  <option>30 mins</option>
+                  <option>45 mins</option>
+                  <option>60 mins</option>
+                  <option>75 mins</option>
+                  <option>90 mins</option>
+                  <option>2 hours</option>
+                </Input>
+              </FormGroup>
+            </Col>
+        
           <Button
             type="Primary"
             color="secondary"
@@ -128,8 +124,10 @@ function AddService(props) {
           >
             Add Service
           </Button>
+   
         </Row>
       </Form>
+    
     </div>
   );
 }
