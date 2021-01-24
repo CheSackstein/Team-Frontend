@@ -8,14 +8,9 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App" style={{ 
-      backgroundImage: {HomeImage}, backgroundSize:"cover", width:'100%', height:'100%'
-
-    }} id ="bg">
+    <div className="App"  id ="bg">
       <Router>
         <Switch>
-          <Route exact path="/" component={Home}></Route>
-          <Route exact path="/Home" component={Dashboard}></Route>
           <Route exact path="/Apply" component={Apply}></Route>
           <Route exact path="/ProfileSettings" component={ProfileSettings}></Route>
           <Route>
