@@ -104,7 +104,7 @@ const POSTtoProviders = (endpoint, data) => {
     .catch(catchError());
 };
 
-module.exports = {
+export {
   POSTtoUsers,
   PUTtoUsers,
   GETFromUsers,

@@ -2,8 +2,8 @@
     width: 90%;
     padding: 1rem;
     text-align: left;
-    color: rgb(65, 179, 163);
-    font-size: large;
+    color: rgb(89, 73, 59);
+    font-size: 22px;
 }
 
 .formWrapper input, .formWrapper select {
@@ -17,11 +17,11 @@
 
 .formWrapper button {
     color: white;
-    width: 220px;
+    width: 280px;
     border-radius: 6px;
     margin-top: .8rem;
     font-weight: 700;
     padding: .1rem 0;
-    background-color: rgb(65, 179, 163);
+    background-color: rgb(89, 73, 59);
     border: 1px solid black;
 }

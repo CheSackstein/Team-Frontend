@@ -3,6 +3,7 @@ import SearchForm from './SearchForm'
 import SearchList from './SearchResultsList';
 import { POSTtoProviders } from '../lib/FetchShortcuts';
 import { BeautyProviders } from "../lib/mockProviders";
+import NavBar from './NavBar';
 
 export default function SearchPage() {
     const [resultsList, setResultsList] = useState([])
@@ -26,6 +27,7 @@ export default function SearchPage() {
 
     return (
       <>
+        <NavBar />
         <SearchForm search={(data) => fetchResults(data)} />
         <SearchList resultsList={resultsList} />
       </>
