@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Login from './Login'
-import SignUp from './Signup'
+import Login from "./Login";
+import SignUp from "./Signup";
 import {
   Collapse,
   Container,
@@ -13,7 +13,8 @@ import {
   NavbarText,
   FormGroup,
 } from "reactstrap";
-
+import { FontAwesome } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 function NavBar(props) {
   const [isAdmin, setIsAdmin] = useState(false);
   if (localStorage.getItem("admin") === false) {
@@ -21,12 +22,25 @@ function NavBar(props) {
   return (
     <div>
       <Navbar
-        style={{ color: "#C38D9E", backgroundColor: "#41B3A3" }}
-        dark
+        style={{
+          fontFamily: "Cormorant Garamond Light",
+          fontSize: "20px",
+          borderColor: "Black",
+          borderRadius: "5px",
+        }}
         expand="md"
+        light
+        faded
       >
-        <NavbarBrand href="/Home">MyNextPet</NavbarBrand>
+        <NavbarBrand href="/Home" style={{ fontSize: "34px" }}>
+          BookIt
+        </NavbarBrand>
         <NavbarToggler />
+        <div>
+          <NavLink style={{ color: "grey" }} href="/Apply">
+            Register
+          </NavLink>
+        </div>
         <Collapse navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
@@ -44,10 +58,14 @@ function NavBar(props) {
               </NavLink>
             </div>
           )}
+          <Nav className="mr-auto" navbar></Nav>
+
           <Login />
           <SignUp />
-          <NavLink href="/ProfileSettings">
+          <NavLink href="/ProfileSettings" style={{ color: "grey" }}>
             {" "}
+
+            <FaUser style={{ color: "grey", right: "0%" }} /> Profile
           </NavLink>
         </Collapse>
       </Navbar>

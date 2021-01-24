@@ -1,23 +1,25 @@
-const BaseURL = "http://localhost:3000";
+import Swal from "sweetalert2";
+
+const BaseURL = "http://localhost:3001";
 // These are all set to send JSON not formData
 
 const handleResponse = (res) => {
   if (res.ok) {
-    return res
+    Swal.fire("Request saved", "You will be contacted shortly", "success");
   } else {
-    window.alert("A problem ocurred. Please try again later.");
+    Swal.fire("A problem ocurred", "Please try again later", "error");
   }
 };
 
 const catchError = () => {
-  window.alert("Cannot connect to server at this time, pleaser try again later.");
+  Swal.fire("A problem ocurred", "Please try again later", "error");
 };
 
 const retrieveAndSetUser = (res, setUser) => {
   if (res.ok) {
     res.json().then((data) => setUser(data));
   } else {
-    window.alert("Please sign in");
+    Swal.fire("A problem ocurred", "Please try again later", "error");
   }
 };
 
