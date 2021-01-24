@@ -1,12 +1,7 @@
 import App from "../App";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { POSTtoUsers,
-  PUTtoUsers,
-  GETFromUsers,
-  GETFromProviders,
-  PUTtoProviders,
-  POSTtoProviders} from '../lib/FetchShortcuts'
+import { POSTtoUsers} from '../lib/FetchShortcuts'
 import {
   Button,
   Modal,
