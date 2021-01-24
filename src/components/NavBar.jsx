@@ -42,12 +42,29 @@ function NavBar(props) {
           </NavLink>
         </div>
         <Collapse navbar>
+          <Nav className="mr-auto" navbar>
+            <NavItem>
+              <NavLink href="/search">Search</NavLink>
+            </NavItem>
+        
+          </Nav>
+          {isAdmin && (
+            <div>
+              <NavLink style={{ color: "white" }} href="/AddPet">
+                AddPet
+              </NavLink>
+              <NavLink style={{ color: "white" }} href="/AdminPet">
+                Admin
+              </NavLink>
+            </div>
+          )}
           <Nav className="mr-auto" navbar></Nav>
 
           <Login />
           <SignUp />
           <NavLink href="/ProfileSettings" style={{ color: "grey" }}>
             {" "}
+
             <FaUser style={{ color: "grey", right: "0%" }} /> Profile
           </NavLink>
         </Collapse>
