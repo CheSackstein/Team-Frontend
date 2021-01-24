@@ -1,7 +1,5 @@
-
 import App from "../App";
 import React, { useEffect, useState } from "react";
-
 import axios from "axios";
 import {
   Button,
@@ -12,25 +10,16 @@ import {
   Form,
   Input,
   Label,
-  FormText,
-  Collapse,
-  Container,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
   FormGroup,
 } from "reactstrap";
 import NavBar from "./NavBar";
 import { Link, useHistory } from "react-router-dom";
-
+import { POSTtoUsers,
+  PUTtoUsers,
+  GETFromUsers,
+  GETFromProviders,
+  PUTtoProviders,
+  POSTtoProviders} from '../lib/FetchShortcuts'
 
 function SignUp(props) {
   const [user, setUser] = useState("");
@@ -50,7 +39,7 @@ function SignUp(props) {
   function onSignUp(event) {
     event.preventDefault();
     const newUser = {
-      FirstName: setEmail(),
+      FirstName: firstName,
       LastName: lastName,
       Email: email,
       Cell: cell,
@@ -60,27 +49,9 @@ function SignUp(props) {
 
     setUser(newUser);
     console.log(user);
+    Register(newUser);
   }
 
-  function onLogin(event) {
-    event.preventDefault();
-
-    const findUser = {
-      Email: email,
-      Password: password,
-    };
-
-    getUser(findUser);
-    onAddUser(findUser);
-    console.log(JSON.stringify(findUser));
-  }
-
-  function onAddUser(event) {
-    const newUser = user;
-    console.log(newUser);
-  }
-
- 
 
 
   const [fName, setfName] = useState("");
@@ -89,13 +60,10 @@ function SignUp(props) {
   const [data, setData] = useState("");
 
 
-  async function sendUser(frmData) {
+  async function Register(frmData) {
     console.log(frmData);
 
-    const response = await axios.post("http://localhost:5000/api/user/login", {
-      Email: email,
-      Password: password,
-    });
+    const response = await POSTtoUsers(frmData);
 
     if (response.status === 200) {
       localStorage.setItem("token", response);
@@ -119,8 +87,7 @@ function SignUp(props) {
             width: "130px",
             borderRadius: "20px",
             fontSize: "20px",
-            left: "20px",
-            backgroundColor: "#41B3A3",
+            left: "20px"
           }}
         >
           Sign up
@@ -194,7 +161,7 @@ function SignUp(props) {
               <Button
                 type="primary"
                 color="primary"
-                onClick={(event) => onAddUser(event)}
+                onClick={(event) => Register(event)}
               >
                 Sign up
               </Button>
