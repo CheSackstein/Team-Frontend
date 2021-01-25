@@ -87,7 +87,7 @@ const history = useHistory();
         </div>
         <div className={serviceProfile.calendarForm}>
           <h3>Here will be the form and calendar</h3>
-          <Button className="bookNow" id='bookNow' onClick={(event)=>Redirect(event)}>Book Now</Button>
+          <Button className="bookNow" id='bookNow' >Book Now</Button>
         </div>
       </div>
     </div>
