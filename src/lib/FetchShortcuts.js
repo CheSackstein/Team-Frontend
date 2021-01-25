@@ -91,7 +91,7 @@ const PUTtoProviders = (endpoint, data) => {
     .catch(catchError());
 };
 
-const POSTtoProviders = (endpoint, data) => {
+function POSTtoProviders  (endpoint, data){
   fetch(`${BaseURL}/api/providers/${endpoint}`, {
     method: "POST",
     credentials: "include",

@@ -15,27 +15,10 @@ function App() {
   const [user, setUser] = useState(false);
   const [isFirstLoaded, setIsFirstLoaded] = useState(false);
 
-  //useEffect(() => {
-  // fetch(`localhost:3000/api/users/${endpoint}`)
-  // .then((res) => {
-  //   if (res.ok) {
-  //   res.json().then((data) => setUser(data));
-  // }}
-  // .catch(catchError());
-  //}, [])
-
   return (
-    <div
-      className="App"
-      style={{
-        backgroundImage: { HomeImage },
-        backgroundSize: 'cover',
-        width: '100%',
-        minHeight: '100%',
-        backgroundRepeat: 'repeat-y'
-      }}
-      id="bg"
-    >
+
+
+    <div className="App">
       <Router>
         <Switch>
           <Route exact path="/search" component={SearchPage} />
@@ -50,8 +33,11 @@ function App() {
           ></Route>
           <Route>
             <ul>
+     <li>
+ <Link to="/search">Search</Link>
+              </li>
               <li>
-                <Link to="/ProfileSettings">ProfileSettings</Link>
+ <Link to="/ProfileSettings">ProfileSettings</Link>
               </li>
               <li>
                 <Link to="/Apply">Apply</Link>
@@ -67,6 +53,7 @@ function App() {
         </Switch>
       </Router>
     </div>
+    
   );
 }
 

@@ -1,7 +1,7 @@
+
 import App from "../App";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import HomeImage from "./bOOKit.png";
 import "./Home.css";
 import {
   Button,
@@ -30,26 +30,30 @@ import {
 } from "reactstrap";
 import NavBar from "./NavBar";
 import { Link, useHistory } from "react-router-dom";
-
-function Home(props) {
-  const [user, setUser] = useState("");
-  const [findUser, getUser] = useState("");
+import './ConfirmationPage.css'
+function ConfirmationPage(props) {
   const [modalLog, setModalLog] = useState(false);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("Hi");
-  const [cell, setCell] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
   const toggleLog = () => setModalLog(!modalLog);
   const [modalSign, setModalSign] = useState(false);
   const history = useHistory();
+  const toggleSign = () => setModalSign(!modalSign);
 
+console.log(props)
 
   return (
-    <div id="Home" className="Home">
+    <div id="Confirmation" className="Confirmation" style={{backgroundImage:Background}}>
       <NavBar />
+      <div id='Appointments'>
+      <h3> 
+      Hospital: Mercy Hospital <br></br>
+      City: Fairfield <br></br>
+      Date: Sunday, 14th of February 10:00 am <br></br>
+      Booking ID: 2344758747y87 <br></br>
+      Your email address: chesackstein@gmail.com
+      </h3>
+      </div>
     </div>
   );
 }
-export default Home;
+export default ConfirmationPage;
