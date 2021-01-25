@@ -5,6 +5,7 @@ import { GETFromProviders } from '../lib/FetchShortcuts';
 import serviceProfile from './serviceProfile.module.css';
 import { BeautyProviders } from '../lib/mockProviders';
 import { v4 as uuidv4 } from 'uuid';
+import NavBar from './NavBar';
 
 export default function ServiceProfile() {
   const [provider, setProvider] = useState({});
@@ -45,6 +46,7 @@ export default function ServiceProfile() {
 
   return (
     <div>
+      <NavBar />
       <div
         className={serviceProfile.banner}
         style={{

@@ -104,7 +104,7 @@ function POSTtoProviders  (endpoint, data){
     .catch(catchError());
 };
 
-export  {
+export {
   POSTtoUsers,
   PUTtoUsers,
   GETFromUsers,
