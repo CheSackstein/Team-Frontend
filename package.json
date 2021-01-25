@@ -12,6 +12,7 @@
     "moment": "^2.29.1",
     "popper.js": "^1.16.1",
     "react": "^17.0.1",
+    "react-appointment-picker": "^3.0.1",
     "react-bootstrap": "^1.4.3",
     "react-dom": "^17.0.1",
     "react-form-hook": "0.0.1",

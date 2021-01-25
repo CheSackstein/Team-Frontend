@@ -19,14 +19,14 @@ export default class Scheduler extends Component {
   async addAppointment(day, number, time) {
     console.log(localStorage.getItem('token'))
     console.log(day, number, time);
-    console.log(this.props.hospitalId);
+    console.log(this.props.providerId);
     try {
       const formatMe = "YYYY-MM-DD HH:mm"
       await axios.post("http://localhost:5000/newappointment", {
 
         dateTime:moment(time).format(formatMe),
        
-        hospitalId: this.props.hospitalId
+        providerId: this.props.providerId
       }, {
         headers: {
           "authorization": localStorage.getItem('token'),
@@ -41,7 +41,7 @@ export default class Scheduler extends Component {
     try {
       await axios.post("http://localhost:5000/cancelappointment", {
         dateTime:moment(time).format("YYYY-MM-DD HH:mm:ss"),
-        hospitalId: this.props.hospitalId
+        hospitalId: this.props.providerId
       }, {
         headers: {
           "authorization":localStorage.getItem('token'),

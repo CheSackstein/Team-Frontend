@@ -30,7 +30,7 @@ import {
 } from "reactstrap";
 import NavBar from "./NavBar";
 import { Link, useHistory } from "react-router-dom";
-import './ConfirmationPage.css'
+// import './ConfirmationPage.css'
 function ConfirmationPage(props) {
   const [modalLog, setModalLog] = useState(false);
   const [password, setPassword] = useState("");
@@ -42,7 +42,7 @@ function ConfirmationPage(props) {
 console.log(props)
 
   return (
-    <div id="Confirmation" className="Confirmation" style={{backgroundImage:Background}}>
+    <div id="Confirmation" className="Confirmation" >
       <NavBar />
       <div id='Appointments'>
       <h3> 

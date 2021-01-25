@@ -10,14 +10,14 @@ import './Bookings.css'
 function Bookings(props){
 const [scheduledHrs, setScheduledHrs] = useState([[], [], [], [], [], [], []]);
 
-const hospitalId = props.location.state.params.hospitalId;
+const providerId = props.location.state.params.providerId;
 
 useEffect(
  
      async  () => {
-      console.log(hospitalId, 'before')
+      console.log(providerId, 'before')
             const response = await axios.get(
-              `http://localhost:5000/appointment?hospitalId=${hospitalId}`, {
+              `http://localhost:5000/appointmentproviderId=${providerId}`, {
                 headers: {
                   "authorization": localStorage.getItem('token')
                 }
@@ -33,7 +33,7 @@ return (
       startHour={moment().hours(9).minutes(0).seconds(0)}
       endHour={moment().hours(17).minutes(0).seconds(0)}
       scheduledHours={scheduledHrs}
-      hospitalId={hospitalId}
+      hospitalId={providerId}
       />
 
   </div>)
