@@ -55,8 +55,9 @@ export default function ServiceProfile() {
 
 
 
-  function Redirect() {
-    history.push(`/Bookings/${_id}`);
+  function handleDate(date) {
+    setSelectedDate(date)
+    setSelectedHour(null)
   }
 
   return (
@@ -93,7 +94,7 @@ export default function ServiceProfile() {
           <DatePicker
             className ='rounded py-1'
             selected={selectedDate}
-            onChange={date => setSelectedDate(date) }
+            onChange={date => handleDate(date) }
             minDate={new Date}
             filterDate={date => date.getDay() !== 6 && date.getDay() !== 5}
             isClearable
@@ -106,10 +107,15 @@ export default function ServiceProfile() {
             <div>
               
               <p>hours list</p>
-              <br/>
-              <Button className="bookNow mt-1" id='bookNow' onClick={() => console.log(selectedDate)}>Book Now</Button>
+              
 
             </div> 
+          }
+
+          {selectedHour && <div>
+          <br/>
+          <Button className="bookNow mt-1" id='bookNow' onClick={() => console.log(selectedDate)}>Book Now</Button>
+          </div>
           }
         </div>
       </div>
