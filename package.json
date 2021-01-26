@@ -22,9 +22,11 @@
     "react-icons": "^4.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+
     "reactstrap": "^8.9.0",
     "sweetalert2": "^10.13.0",
     "uuidv4": "^6.2.6",
+
     "web-vitals": "^0.2.4"
   },
   "scripts": {

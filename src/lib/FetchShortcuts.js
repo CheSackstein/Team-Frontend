@@ -1,5 +1,4 @@
 import Swal from "sweetalert2";
-
 const BaseURL = "http://localhost:3001";
 // These are all set to send JSON not formData
 
