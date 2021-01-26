@@ -13,16 +13,11 @@ import ProfileSettings from "../src/components/ProfileSettings";
 import Bookings from "../src/components/Bookings";
 
 function App() {
-<<<<<<< HEAD
-  return (
-    <div className="App"  id ="bg">
-=======
   const [user, setUser] = useState(false);
   const [isFirstLoaded, setIsFirstLoaded] = useState(false);
 
   return (
     <div className="App">
->>>>>>> d9519eb60b44c17c8d9307fbffb875913d518be7
       <Router>
         <Switch>
           <Route exact path="/search" component={SearchPage} />

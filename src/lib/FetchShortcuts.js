@@ -1,28 +1,4 @@
 import Swal from "sweetalert2";
-
-<<<<<<< HEAD
-const BaseURL = "http://localhost:3000";
-// These are all set to send JSON not formData
-
-const handleResponse = (res) => {
-  if (res.ok) {
-    Swal.fire("Request saved", "You will be contacted shortly", "success");
-  } else {
-    Swal.fire("A problem ocurred", "Please try again later", "error");
-  }
-};
-
-const catchError = () => {
-  Swal.fire("A problem ocurred", "Please try again later", "error");
-};
-
-const retrieveAndSetUser = (res, setUser) => {
-  if (res.ok) {
-    res.json().then((data) => setUser(data));
-  } else {
-    Swal.fire("A problem ocurred", "Please try again later", "error");
-  }
-=======
 const BaseURL = "http://localhost:3001";
 // These are all set to send JSON not formData
 
@@ -44,7 +20,6 @@ const retrieveAndSetUser = (res, setUser) => {
     } else {
         Swal.fire("A problem ocurred", "Please try again later", "error");
     }
->>>>>>> d9519eb60b44c17c8d9307fbffb875913d518be7
 };
 
 
