@@ -13,6 +13,7 @@ import {
   Col,
   FormGroup,
   FormText,
+  Select
 } from "reactstrap";
 import "./Apply.css";
 import {
@@ -32,8 +33,8 @@ function Apply(props) {
   const [company, setCompany] = useState("");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
-  const [type, setType] = useState("");
-  const [category, setCategory] = useState("");
+  const [type, setType] = useState('');
+  const [category, setCategory] = useState('beauty');
   const [fName, setfName] = useState("");
   const [lName, setlName] = useState("");
   const [phone, setPhone] = useState("");
@@ -54,7 +55,7 @@ function Apply(props) {
       Description: description,
       Address: address,
       Type: type,
-      Category: category,
+      category: category,
     };
 
     onAddProvider(formData);
@@ -157,7 +158,7 @@ function Apply(props) {
                   type="email"
                   name="email"
                   id="exampleEmail"
-                  placeholder="Email"
+                  placeholder="sample@email.com"
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </FormGroup>
@@ -181,12 +182,25 @@ function Apply(props) {
                 <legend>Business Category:</legend>
                 <FormGroup check>
                   <Label check>
-                    <Input type="radio" name="radio1" /> Beauty
+                    <Input
+                      type="radio"
+                      name="radio1"
+                      value="beauty"
+                      defaultChecked
+                      onChange={(e) => setCategory(e.target.value)}
+                    />{' '}
+                    Beauty
                   </Label>
                 </FormGroup>
                 <FormGroup check>
                   <Label check>
-                    <Input type="radio" name="radio1" /> Health
+                    <Input
+                      type="radio"
+                      name="radio1"
+                      value="health"
+                      onChange={(e) => setCategory(e.target.value)}
+                    />{' '}
+                    Health
                   </Label>
                 </FormGroup>
               </FormGroup>
@@ -207,14 +221,37 @@ function Apply(props) {
             </Col>
             <Col md={2}>
               <FormGroup>
-                <Label for="exampleText"> Service Type:</Label>
-                <Input
-                  type="textarea"
-                  name="text"
-                  id="exampleText"
-                  placeholder="Hair Salon, Spa etc"
-                  onChange={(e) => setType(e.target.value)}
-                />
+                <Label for="type"> Service Type:</Label>
+                <br />
+                {category === 'beauty' && (
+                  <Input
+                    type="select"
+                    name="text"
+                    id="type"
+                    onChange={(e) => setType(e.target.value)}
+                  >
+                    <option value="">select one</option>
+                    <option value="salon">Salon</option>
+                    <option value="barber">Barber Shop</option>
+                    <option value="nail salon">Nail Salon</option>
+                    <option value="massage">Massage</option>
+                    <option value="other">Other</option>
+                  </Input>
+                )}
+
+                {category === 'health' && (
+                  <Input
+                    type="select"
+                    name="text"
+                    id="type"
+                    onChange={(e) => setType(e.target.value)}
+                  >
+                    <option value="">select one</option>
+                    <option value="chiropractor">Chiropractor</option>
+                    <option value="dentist">Dentist </option>
+                    <option value="other">Other</option>
+                  </Input>
+                )}
               </FormGroup>
             </Col>
 
@@ -298,7 +335,7 @@ function Apply(props) {
                 <Label for="exampleFile">File</Label>
                 <Input type="file" name="file" id="exampleFile" />
                 <FormText color="muted">
-                  Click to upload company profile picture for approval.
+                  Recommended ratio of the banner url: 1300px by 200px.
                 </FormText>
               </FormGroup>
             </Col>

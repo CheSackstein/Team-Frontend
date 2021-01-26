@@ -94,7 +94,7 @@ export default function SearchForm(props) {
               {type !== '' && (
                 <p>
                   <label htmlFor="companyName">
-                    Do you knnow who you're looking for?
+                    Do you know who you're looking for?
                   </label>
                   <input
                     type="text"

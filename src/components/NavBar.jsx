@@ -38,13 +38,13 @@ function NavBar(props) {
         <NavbarToggler />
         <div>
           <NavLink style={{ color: "grey" }} href="/Apply">
-            Register
+            Register a Company
           </NavLink>
         </div>
         <Collapse navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/search">Search</NavLink>
+              <NavLink href="/search">Find a Service</NavLink>
             </NavItem>
         
           </Nav>
