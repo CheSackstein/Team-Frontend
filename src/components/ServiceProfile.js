@@ -30,7 +30,8 @@ const history = useHistory();
     openingHrs,
     description,
     address,
-    type
+    type,
+    _id
   } = provider;
 
   let list = <p>no services registered yet</p>;
@@ -53,7 +54,7 @@ const history = useHistory();
 
 
   function Redirect(event) {
-    history.push("/Bookings");
+    history.push(`/Bookings/${_id}`);
   }
 
   return (
@@ -87,7 +88,7 @@ const history = useHistory();
         </div>
         <div className={serviceProfile.calendarForm}>
           <h3>Here will be the form and calendar</h3>
-          <Button className="bookNow" id='bookNow' >Book Now</Button>
+          <Button className="bookNow" id='bookNow' onClick={() =>Redirect() }>Book Now</Button>
         </div>
       </div>
     </div>
