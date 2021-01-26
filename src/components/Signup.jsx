@@ -26,6 +26,7 @@ function SignUp(props) {
   const [findUser, getUser] = useState("");
   const [modalLog, setModalLog] = useState(false);
   const [firstName, setFirstName] = useState("");
+  const [fullName, setFullname] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("Hi");
   const [cell, setCell] = useState("");
@@ -35,20 +36,20 @@ function SignUp(props) {
   const [modalSign, setModalSign] = useState(false);
   const history = useHistory();
   const toggleSign = () => setModalSign(!modalSign);
+  const [errors, setErrors] = useState({});
 
   function onSignUp(event) {
     event.preventDefault();
     const newUser = {
-      FirstName: firstName,
-      LastName: lastName,
-      Email: email,
-      Cell: cell,
-      Password: password,
-      PasswordConfirm: passwordConfirm,
+      fullName: fullName,
+      email: email,
+      phone: cell,
+      password: password,
+      confirmPassword: passwordConfirm,
     };
 
-    setUser(newUser);
-    console.log(user);
+    //setUser(newUser);
+
     Register(newUser);
   }
 
@@ -61,16 +62,27 @@ function SignUp(props) {
 
 
   async function Register(frmData) {
-    console.log(frmData);
+    const user = await POSTtoUsers('/sign-up',frmData);
 
-    const response = await POSTtoUsers(frmData);
-
-    if (response.status === 200) {
-      localStorage.setItem("token", response);
+    if(user.errors){
+      // display errors
+      console.log(user.errors);
+      const errs = {}
+      for(let err of user.errors){
+        errs[err.param] = err.msg;
+      }
+      setErrors(errs);
+    }else {
+      // use the user object
+      console.log('USER:',user);
     }
-    console.log(response.data);
-    history.push("/Home");
-    window.location.reload();
+
+    // if (response.status === 200) {
+    //   localStorage.setItem("token", response);
+    // }
+    // console.log(response.data);
+    // history.push("/Home");
+    // window.location.reload();
   }
 
 
@@ -99,24 +111,15 @@ function SignUp(props) {
           <ModalBody>
             <Form onSubmit={(event) => onSignUp(event)}>
               <FormGroup>
-                <Label for="firstName">First name:</Label>
+                <Label for="fullName">Full Name:</Label>
                 <Input
                   type="text"
-                  name="firstName"
-                  id="firstName"
-                  placeholder="First Name"
-                  onChange={(e) => setfName(e.target.value)}
+                  name="fullName"
+                  id="fullName"
+                  placeholder="Full Name"
+                  onChange={(e) => setFullname(e.target.value)}
                 />
-              </FormGroup>
-              <FormGroup>
-                <Label for="lastName">Last name:</Label>
-                <Input
-                  type="text"
-                  name="lastName"
-                  id="lastName"
-                  placeholder="Last Name"
-                  onChange={(e) => setlName(e.target.value)}
-                />
+                <span className='alert-danger'>{errors.fullName}</span>
               </FormGroup>
               <FormGroup>
                 <Label for="phone">Cell:</Label>
@@ -125,8 +128,9 @@ function SignUp(props) {
                   name="cellPhone"
                   id="cellPhone"
                   placeholder="Cell phone number"
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => setCell(e.target.value)}
                 />
+                {errors.phone}
               </FormGroup>
               <FormGroup>
                 <Label for="exampleEmail">Email</Label>
@@ -137,6 +141,7 @@ function SignUp(props) {
                   placeholder="Email"
                   onChange={(e) => setEmail(e.target.value)}
                 />
+                {errors.email}
               </FormGroup>
               <FormGroup>
                 <Label for="examplePassword">Password</Label>
@@ -147,6 +152,7 @@ function SignUp(props) {
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                {errors.password}
               </FormGroup>
               <FormGroup>
                 <Label for="examplePasswordConfirm">Confirm password:</Label>
@@ -157,12 +163,11 @@ function SignUp(props) {
                   placeholder="Password"
                   onChange={(e) => setPasswordConfirm(e.target.value)}
                 />
+                {errors.confirmPassword}
               </FormGroup>
               <Button
                 type="primary"
-                color="primary"
-                onClick={(event) => Register(event)}
-              >
+                color="primary">
                 Sign up
               </Button>
             </Form>

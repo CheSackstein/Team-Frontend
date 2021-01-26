@@ -16,7 +16,10 @@ function Dashboard(props) {
   const history = useHistory();
   const toggleSign = () => setModalSign(!modalSign);
 
+  // on component did mount call auth() => user if(!user.type = "ADMIN") redriect
+
   return (
+
     <div className="Dashboard" id="Dashboard">
       <NavBar />
     </div>

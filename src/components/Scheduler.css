@@ -1,0 +1,23 @@
+.appointment{
+    /* background-color:#b80a28; */
+    background-color: rgb(255, 255, 255);
+    width: 150px;
+    padding:30px;
+    
+}
+#ConfBtn{
+    width:750px;
+    display:flex;
+    justify-content: center;
+    background-color: white;
+   margin-left: 28%;
+}
+
+.appointment-picker__col__name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}
