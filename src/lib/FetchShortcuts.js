@@ -96,11 +96,12 @@ function POSTtoProviders(endpoint, data) {
 };
 
 export {
-    POSTtoUsers,
-    PUTtoUsers,
-    GETFromUsers,
-    GETFromProviders,
-    PUTtoProviders,
-    POSTtoProviders,
-    auth
+  POSTtoUsers,
+  PUTtoUsers,
+  GETFromUsers,
+  GETFromProviders,
+  PUTtoProviders,
+  POSTtoProviders,
+  auth,
+  BaseURL
 };

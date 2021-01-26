@@ -7,18 +7,20 @@ import { BeautyProviders } from '../lib/mockProviders';
 import { v4 as uuidv4 } from 'uuid';
 import NavBar from './NavBar';
 import { Button } from 'reactstrap'
-import Scheduler from './Scheduler'
-
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export default function ServiceProfile() {
-  
+  const [selectedDate, setSelectedDate] = useState(null)
+  const [selectedHour, setSelectedHour] = useState(null);
   const [provider, setProvider] = useState({});
  
   const { id } = useParams();
-const history = useHistory();
+  const history = useHistory();
   useEffect(() => {
     // for when we connect to backend
     // GETFromProviders(`getById`, JSON.stringify(id) )
+    // let available = await  GETProviders available times
     setProvider(BeautyProviders[0]);
   }, []);
 
@@ -53,7 +55,7 @@ const history = useHistory();
 
 
 
-  function Redirect(event) {
+  function Redirect() {
     history.push(`/Bookings/${_id}`);
   }
 
@@ -87,8 +89,28 @@ const history = useHistory();
           <p><b>Location:</b><em> { address}</em></p>
         </div>
         <div className={serviceProfile.calendarForm}>
-          <h3>Here will be the form and calendar</h3>
-          <Button className="bookNow" id='bookNow' onClick={() =>Redirect() }>Book Now</Button>
+          <h3>To book an appointment, please select a date:</h3>
+          <DatePicker
+            className ='rounded py-1'
+            selected={selectedDate}
+            onChange={date => setSelectedDate(date) }
+            minDate={new Date}
+            filterDate={date => date.getDay() !== 6 && date.getDay() !== 5}
+            isClearable
+            showYearDropdown
+            scrollableYearDropdown
+          />
+
+          {
+            selectedDate && 
+            <div>
+              
+              <p>hours list</p>
+              <br/>
+              <Button className="bookNow mt-1" id='bookNow' onClick={() => console.log(selectedDate)}>Book Now</Button>
+
+            </div> 
+          }
         </div>
       </div>
     </div>

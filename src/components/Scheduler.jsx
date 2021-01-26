@@ -6,6 +6,7 @@ import './Scheduler.css'
 import ConfirmationPage from './ConfirmationPage';
 import { Redirect } from 'react-router-dom';
 import { Button } from 'reactstrap'
+import { BaseURL } from "../lib/FetchShortcuts";
 export default class Scheduler extends Component {
 
   state = {
@@ -13,24 +14,28 @@ export default class Scheduler extends Component {
     lastDate: ''
   };
 
-
-  
-
   async addAppointment(day, number, time) {
     console.log(localStorage.getItem('token'))
     console.log(day, number, time);
     console.log(this.props.providerId);
     try {
       const formatMe = "YYYY-MM-DD HH:mm"
-      await axios.post("http://localhost:5000/newappointment", {
+      await axios.post(
+        `${BaseURL}/newappointment`,
+        {
+          credentials: 'include',
 
-        dateTime:moment(time).format(formatMe),
-       
-        providerId: this.props.providerId
-      }, {
-        headers: {
-          "authorization": localStorage.getItem('token'),
-      }})
+          dateTime: moment(time).format(formatMe),
+
+          providerId: this.props.providerId
+        }
+        // , Don't think we need this as we're using cookies, not JWT
+        // {
+        //   headers: {
+        //     authorization: localStorage.getItem('token')
+        //   }
+        // }
+      );
     }
     catch (e) {
 
