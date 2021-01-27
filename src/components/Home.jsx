@@ -47,9 +47,13 @@ function Home(props) {
   const history = useHistory();
 
 
-  useEffect(()=>{
+  useEffect( async ()=>{
     // check if logged 
-    auth();
+    let response = await auth();
+    console.log('response: ', response);
+    user = response.json()
+    console.log('user: ', user);
+
   },[])
 
   return (

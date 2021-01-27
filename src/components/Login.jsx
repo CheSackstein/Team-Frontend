@@ -43,12 +43,11 @@ Login(findUser);
   }
 
   async function Login(frmData) {
-    const user = await POSTtoUsers('sign-in',frmData);
+    const response = await POSTtoUsers('sign-in',frmData);
+    console.log('response: ', response);
 
-    if (response.status === 200) {
       localStorage.setItem("user", response);
       props.passUser(response)
-    }
   }
 
   return (

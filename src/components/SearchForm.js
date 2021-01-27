@@ -35,10 +35,10 @@ export default function SearchForm(props) {
             onChange={(e) => handleCategory(e)}
           >
             <option value="">select one</option>
-            <option value="beauty">Beauty</option>
-            <option value="health">Health and Wellness</option>
+            <option value="BEAUTY">Beauty</option>
+            <option value="HEALTH">Health and Wellness</option>
           </select>
-          {category === 'beauty' && (
+          {category === 'BEAUTY' && (
             <>
               <span>
                 <label htmlFor="type">What are you looking for?</label>
@@ -76,7 +76,7 @@ export default function SearchForm(props) {
             </>
           )}
 
-          {category === 'health' && (
+          {category === 'HEALTH' && (
             <>
               <span>
                 <label htmlFor="type">What are you looking for?</label>

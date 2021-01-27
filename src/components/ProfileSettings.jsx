@@ -29,8 +29,7 @@ function ProfileSettings(props) {
       email: email,
       phone: phone,
       password: password,
-
-      confirmPassword: passwordConfirm,
+      currentPassword: currentPassword
     };
     const user = await PUTtoUsers('update-settings',updatedUser);
 
@@ -134,7 +133,7 @@ async function getUser(){
                     id="currentPassword"
                     placeholder="Password"
                     onChange={(e) => setCurrentPassword(e.target.value)}
-                  password/>
+                  />
                 </FormGroup>
               </Col>
             </Row>

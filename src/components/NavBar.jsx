@@ -18,15 +18,11 @@ import { FaUser } from 'react-icons/fa';
 import './ProfileSettings.css';
 
 function NavBar(props) {
-  const [user, setUser] = useState({type:'provider'});
+  const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   if (localStorage.getItem('admin') === false) {
   }
 
-  if (localStorage.getItem('user')) {
-    let token = localStorage.getItem('user');
-    setUser(token)
-  }
   return (
     <div>
       <Navbar
@@ -51,11 +47,13 @@ function NavBar(props) {
           </div>
         )}
         <Collapse navbar>
-          <Nav className="mr-auto" navbar>
+          {user && <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/search">Find a Service</NavLink>
+              <NavLink href="/search">
+                Find a Service
+              </NavLink>
             </NavItem>
-          </Nav>
+          </Nav>}
           {isAdmin && (
             <div>
               <NavLink style={{ color: 'white' }} href="/AddPet">
@@ -75,10 +73,10 @@ function NavBar(props) {
               </span>
             </>
           )}
-          <NavLink href="/ProfileSettings" style={{ color: 'grey' }}>
+          {user &&  <NavLink href="/ProfileSettings" style={{ color: 'grey' }}>
             {' '}
             <FaUser style={{ color: 'grey', right: '0%' }} /> Profile
-          </NavLink>
+          </NavLink>}
         </Collapse>
       </Navbar>
     </div>

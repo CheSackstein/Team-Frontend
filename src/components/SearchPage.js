@@ -8,44 +8,41 @@ import Swal from "sweetalert2";
 
 
   
-export default function SearchPage() {
-    const [resultsList, setResultsList] = useState([])
+export default function SearchPage(props) {
+  const [resultsList, setResultsList] = useState([]);
 
-    const fetchResults = async (data) => {
-        let queryParams
-        if (data.companyName) {
-             queryParams = `?type=${data.type}&category=${
-              data.category
-                }&search=${data.companyName}`
-        } else (
-            queryParams = `?type=${data.type}&category=${
-              data.category}`
-              )
- try {     let res = await POSTtoProvidersUnhandled(
-        `/available-services${queryParams}`,
+  const fetchResults = async (data) => {
+    let queryParams;
+    if (data.companyName) {
+      queryParams = `?type=${data.type}&category=${data.category}&search=${data.companyName}`;
+    } else queryParams = `?type=${data.type}&category=${data.category}`;
+    try {
+      let res = await POSTtoProvidersUnhandled(
+        `available-services${queryParams}`,
         data
       );
-        
-        console.log('res: ', res);
-      // if (res.ok) {
-      //   let results = await res.json()
-      //   setResultsList(results);
-      // } else {
-      //   let err = await res.json()
-      //   console.log('err: ', err);
-      //   Swal.fire("A problem ocurred", "Please try again later", "error");
-      // }
- } catch {
-     Swal.fire("A problem ocurred", "Please try again later", "error");
- }
-      setResultsList(BeautyProviders);
-    }
 
-    return (
-      <>
-        <NavBar />
-        <SearchForm search={(data) => fetchResults(data)} />
-        <SearchList resultsList={resultsList} />
-      </>
-    );
+      console.log('res: ', res);
+      if (res.ok) {
+        let results = await res.json()
+        setResultsList(results);
+      } else {
+        let err = await res.json()
+        console.log('err: ', err);
+        Swal.fire("A problem ocurred", "Please try again later", "error");
+      }
+    } catch(e){
+      console.log('e: ', e);
+      Swal.fire('A problem ocurred', 'Please try again later', 'error');
+    }
+    setResultsList(BeautyProviders);
+  };
+
+  return (
+    <>
+      <NavBar />
+      <SearchForm search={(data) => fetchResults(data)} />
+      <SearchList resultsList={resultsList} />
+    </>
+  );
 }

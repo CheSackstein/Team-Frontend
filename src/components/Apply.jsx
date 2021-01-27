@@ -25,7 +25,7 @@ import {
   POSTtoProviders
 } from '../lib/FetchShortcuts';
 
-function Apply(props) {
+export default function Apply(props) {
 const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [company, setCompany] = useState('');
@@ -62,7 +62,6 @@ price: price
   async function onApply(event) {
 
     event.preventDefault();
-    setHrs(closingHrs - openingHrs);
     const formData = {
       fullName: fullName,
       phone: phone,
@@ -80,10 +79,7 @@ price: price
       availableServices: availableServices
     };
 
-    console.log(JSON.stringify(formData));
-
-    console.log(formData);
-    const provider = await POSTtoProviders("become-provider",formData);
+    const provider = await POSTtoProviders("become-provider", formData);
 
     // if(provider.errors){
     //   // display errors

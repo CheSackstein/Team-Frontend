@@ -13,7 +13,7 @@ import Calendar from './Calendar';
 
 
 
-export default function ServiceProfile() {
+export default function ServiceProfile(props) {
   const [provider, setProvider] = useState({});
 
   const { id } = useParams();

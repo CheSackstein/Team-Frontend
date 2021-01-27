@@ -143,7 +143,7 @@ function SignUp(props) {
               <FormGroup>
                 <Label for="examplePasswordConfirm">Confirm password:</Label>
                 <Input
-                  type="passwordConfirm"
+                  type="password"
                   name="passwordConfirm"
                   id="PasswordConfirm"
                   placeholder="Password"
