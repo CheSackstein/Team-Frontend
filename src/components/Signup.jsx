@@ -54,13 +54,6 @@ function SignUp(props) {
   }
 
 
-
-  const [fName, setfName] = useState("");
-  const [lName, setlName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [data, setData] = useState("");
-
-
   async function Register(frmData) {
     const user = await POSTtoUsers('sign-up',frmData);
 

@@ -44,7 +44,7 @@ const PUTtoUsers = (endpoint, data) => {
             headers: {
                 "content-type": "application/json",
             },
-            body: data,
+            body: JSON.stringify(data),
         })
         .then((res) => handleResponse(res))
         .catch(catchError());
@@ -82,6 +82,7 @@ const PUTtoProviders = (endpoint, data) => {
 };
 
 function POSTtoProviders(endpoint, data) {
+<<<<<<< HEAD
     fetch(`${BaseURL}/api/serviceproviders/${endpoint}`, {
       method: 'POST',
       credentials: 'include',
@@ -103,6 +104,18 @@ function POSTtoProvidersUnhandled(endpoint, data) {
       },
       body: JSON.stringify(data)
     })
+=======
+    fetch(`${BaseURL}/api/providers/${endpoint}`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+        .then((res) => handleResponse(res))
+        .catch(catchError());
+>>>>>>> 2f6c9e45ea9d6061c8aab8a3925caff852a8689b
 };
 
 export {
