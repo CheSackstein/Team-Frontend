@@ -15,8 +15,8 @@ export default function Calendar(props) {
   for (let i = start; i < close; i++) {
     list.push(
       <>
-        <option value={i}>{i}:00</option>
-        <option value={i + 0.5}>{i}:30</option>
+        <option key={i} value={i}>{i}:00</option>
+        <option key={i+0.5} value={i + 0.5}>{i}:30</option>
       </>
     );
   }
@@ -42,7 +42,8 @@ export default function Calendar(props) {
   return (
     <div className={serviceProfile.calendarForm}>
       <h3>To book an appointment, please select a date:</h3>
-      <p>
+      <hr/>
+      <div>
         <span className="h-5">
           <b>Select a day:</b>{' '}
         </span>
@@ -54,10 +55,10 @@ export default function Calendar(props) {
           filterDate={(date) => date.getDay() !== 6 && date.getDay() !== 5}
           isClearable
         />
-      </p>
+      </div>
 
       {selectedDate && (
-        <div>
+        <div className='mt-1'>
           <span className="h-5">
             <b>Select an hour:</b>{' '}
           </span>{' '}

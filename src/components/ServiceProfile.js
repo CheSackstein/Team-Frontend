@@ -37,22 +37,20 @@ export default function ServiceProfile() {
     _id
   } = provider;
 
-  let list = <p>no services registered yet</p>;
+    let list = [<p key="bahehaeoe">no services registered yet</p>]
 
   if (availableServices && availableServices.length > 0) {
     list = availableServices.map((result) => {
       const { name, price, duration } = result;
       return (
-        <>
           <div key={uuidv4()} className={serviceProfile.service}>
             {name} at a cost of {price} shekels
             {duration && ` for ${duration} minutes`}.
           </div>
-        </>
       );
     });
   } else {
-    list = <p>no services registered yet</p>;
+    list = [<p key ='vnaein23'>no services registered yet</p>]
   }
 
   
@@ -65,7 +63,7 @@ export default function ServiceProfile() {
           backgroundImage: `url(${bannerUrl})`,
           backgroundSize: 'contain'
         }}
-      ></div>
+      />
 
       <div className={serviceProfile.content}>
         <div className={serviceProfile.data}>
