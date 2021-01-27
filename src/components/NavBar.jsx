@@ -32,7 +32,6 @@ function NavBar(props) {
         }}
         expand="md"
         light
-        faded
       >
         <NavbarBrand href="/Home" style={{ fontSize: '34px' }}>
           BookIt

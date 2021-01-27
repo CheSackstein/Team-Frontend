@@ -76,13 +76,6 @@ function SignUp(props) {
       // use the user object
       console.log('USER:',user);
     }
-
-    // if (response.status === 200) {
-    //   localStorage.setItem("token", response);
-    // }
-    // console.log(response.data);
-    // history.push("/Home");
-    // window.location.reload();
   }
 
 
