@@ -44,7 +44,7 @@ const PUTtoUsers = (endpoint, data) => {
             headers: {
                 "content-type": "application/json",
             },
-            body: data,
+            body: JSON.stringify(data),
         })
         .then((res) => handleResponse(res))
         .catch(catchError());
@@ -88,7 +88,7 @@ function POSTtoProviders(endpoint, data) {
             headers: {
                 "content-type": "application/json",
             },
-            body: data,
+            body: JSON.stringify(data),
         })
         .then((res) => handleResponse(res))
         .catch(catchError());
