@@ -1,20 +1,21 @@
 import React from 'react';
-import { Redirect, useParams, useHistory} from 'react-router-dom';
+import { Redirect, useParams, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { GETFromProviders } from '../lib/FetchShortcuts';
 import serviceProfile from './serviceProfile.module.css';
 import { BeautyProviders } from '../lib/mockProviders';
 import { v4 as uuidv4 } from 'uuid';
 import NavBar from './NavBar';
-import { Button } from 'reactstrap'
+import { Button } from 'reactstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import Calendar from './Calendar';
+
+
 
 export default function ServiceProfile() {
-  const [selectedDate, setSelectedDate] = useState(null)
-  const [selectedHour, setSelectedHour] = useState(null);
   const [provider, setProvider] = useState({});
- 
+
   const { id } = useParams();
   const history = useHistory();
   useEffect(() => {
@@ -44,7 +45,8 @@ export default function ServiceProfile() {
       return (
         <>
           <div key={uuidv4()} className={serviceProfile.service}>
-            {name} at a cost of {price} shekels{duration && ` for ${duration} minutes`}.
+            {name} at a cost of {price} shekels
+            {duration && ` for ${duration} minutes`}.
           </div>
         </>
       );
@@ -53,13 +55,7 @@ export default function ServiceProfile() {
     list = <p>no services registered yet</p>;
   }
 
-
-
-  function handleDate(date) {
-    setSelectedDate(date)
-    setSelectedHour(null)
-  }
-
+  
   return (
     <div>
       <NavBar />
@@ -84,40 +80,21 @@ export default function ServiceProfile() {
           <hr />
           <p>{description}</p>
           <br />
-          <h4><u><b>Services offered:</b></u></h4>
+          <h4>
+            <u>
+              <b>Services offered:</b>
+            </u>
+          </h4>
           <div>{list}</div>
           <br />
-          <p><b>Location:</b><em> { address}</em></p>
+          <p>
+            <b>Location:</b>
+            <em> {address}</em>
+          </p>
         </div>
-        <div className={serviceProfile.calendarForm}>
-          <h3>To book an appointment, please select a date:</h3>
-          <DatePicker
-            className ='rounded py-1'
-            selected={selectedDate}
-            onChange={date => handleDate(date) }
-            minDate={new Date}
-            filterDate={date => date.getDay() !== 6 && date.getDay() !== 5}
-            isClearable
-            showYearDropdown
-            scrollableYearDropdown
-          />
-
-          {
-            selectedDate && 
-            <div>
-              
-              <p>hours list</p>
-              
-
-            </div> 
-          }
-
-          {selectedHour && <div>
-          <br/>
-          <Button className="bookNow mt-1" id='bookNow' onClick={() => console.log(selectedDate)}>Book Now</Button>
-          </div>
-          }
-        </div>
+        <Calendar
+          provider={provider}
+        ></Calendar>
       </div>
     </div>
   );
