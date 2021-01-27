@@ -14,11 +14,14 @@ export default function Calendar(props) {
   const [selectedHour, setSelectedHour] = useState(null);
   for (let i = start; i < close; i++) {
     list.push(
-      <>
+
         <option key={i} value={i}>{i}:00</option>
-        <option key={i+0.5} value={i + 0.5}>{i}:30</option>
-      </>
     );
+     list.push(
+       <option key={i + 0.5} value={i + 0.5}>
+         {i}:30
+       </option>
+     );
   }
 
   function handleDate(date) {
