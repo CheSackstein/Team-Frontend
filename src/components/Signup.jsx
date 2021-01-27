@@ -74,7 +74,7 @@ function SignUp(props) {
       setErrors(errs);
     }else {
       // use the user object
-      console.log('USER:',user);
+      props.passUser(user)  
     }
   }
 

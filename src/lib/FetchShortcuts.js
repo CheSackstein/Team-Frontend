@@ -27,8 +27,8 @@ const auth = (setUser, data) => {
     fetch(`${BaseURL}/api/users/auth`, {
             method: "POST",
             credentials: "include"
-        }).then((res) => res.json()).then(data => console.log(data)) // retrieveAndSetUser(data, setUser)
-        .catch(catchError());
+    }).then((res) => res.json())
+        .then(data => console.log(data)) // retrieveAndSetUser(data, setUser)
 }
 
 const GETFromUsers = (endpoint, setUser) => {
@@ -63,35 +63,46 @@ const POSTtoUsers = async(endpoint, data) => {
 };
 
 const GETFromProviders = (endpoint) => {
-    fetch(`${BaseURL}/api/providers/${endpoint}`)
+    fetch(`${BaseURL}/api/serviceproviders/${endpoint}`)
         .then((res) => handleResponse(res))
         .catch(catchError());
 };
 
 const PUTtoProviders = (endpoint, data) => {
-    fetch(`${BaseURL}/api/providers/${endpoint}`, {
-            method: "PUT",
-            credentials: "include",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: data,
-        })
-        .then((res) => handleResponse(res))
-        .catch(catchError());
+    fetch(`${BaseURL}/api/serviceproviders/${endpoint}`, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: data
+    })
+      .then((res) => handleResponse(res))
+      .catch(catchError());
 };
 
 function POSTtoProviders(endpoint, data) {
-    fetch(`${BaseURL}/api/providers/${endpoint}`, {
-            method: "POST",
-            credentials: "include",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: data,
-        })
-        .then((res) => handleResponse(res))
-        .catch(catchError());
+    fetch(`${BaseURL}/api/serviceproviders/${endpoint}`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then((res) => handleResponse(res))
+      .catch(catchError());
+};
+
+function POSTtoProvidersUnhandled(endpoint, data) {
+    fetch(`${BaseURL}/api/serviceproviders/${endpoint}`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
 };
 
 export {
@@ -101,6 +112,7 @@ export {
   GETFromProviders,
   PUTtoProviders,
   POSTtoProviders,
-  auth,
+    auth,
+  POSTtoProvidersUnhandled,
   BaseURL
 };

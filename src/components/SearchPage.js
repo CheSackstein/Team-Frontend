@@ -1,27 +1,43 @@
 import {useState} from 'react'
 import SearchForm from './SearchForm'
 import SearchList from './SearchResultsList';
-import { POSTtoProviders } from '../lib/FetchShortcuts';
+import { BaseURL, POSTtoProvidersUnhandled } from '../lib/FetchShortcuts';
 import { BeautyProviders } from "../lib/mockProviders";
 import NavBar from './NavBar';
+import Swal from "sweetalert2";
 
+
+  
 export default function SearchPage() {
     const [resultsList, setResultsList] = useState([])
 
-    const fetchResults = (data) => {
+    const fetchResults = async (data) => {
         let queryParams
         if (data.companyName) {
              queryParams = `?type=${data.type}&category=${
               data.category
-                }&companyName=${data.companyName}`
+                }&search=${data.companyName}`
         } else (
             queryParams = `?type=${data.type}&category=${
               data.category}`
-      )
-      //with real request:
-      //POSTtoProviders(queryParams, JSON.stringify([])).then(res => setResultsList(res))
-      
-      //simulating response for now
+              )
+ try {     let res = await POSTtoProvidersUnhandled(
+        `/available-services${queryParams}`,
+        data
+      );
+        
+        console.log('res: ', res);
+      // if (res.ok) {
+      //   let results = await res.json()
+      //   setResultsList(results);
+      // } else {
+      //   let err = await res.json()
+      //   console.log('err: ', err);
+      //   Swal.fire("A problem ocurred", "Please try again later", "error");
+      // }
+ } catch {
+     Swal.fire("A problem ocurred", "Please try again later", "error");
+ }
       setResultsList(BeautyProviders);
     }
 

@@ -79,7 +79,8 @@ function Login(props) {
     const response = await POSTtoUsers(frmData);
 
     if (response.status === 200) {
-      localStorage.setItem("token", response);
+      localStorage.setItem("user", response);
+      props.passUser(response)
     }
     console.log(response.data);
     history.push("/Home");

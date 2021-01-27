@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Login from './Login';
 import SignUp from './Signup';
 import {
@@ -15,11 +15,17 @@ import {
 } from 'reactstrap';
 import { FontAwesome } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa';
-import './ProfileSettings.css'
+import './ProfileSettings.css';
 
 function NavBar(props) {
+  const [user, setUser] = useState({type:'provider'});
   const [isAdmin, setIsAdmin] = useState(false);
   if (localStorage.getItem('admin') === false) {
+  }
+
+  if (localStorage.getItem('user')) {
+    let token = localStorage.getItem('user');
+    setUser(token)
   }
   return (
     <div>
@@ -37,11 +43,13 @@ function NavBar(props) {
           BookIt
         </NavbarBrand>
         <NavbarToggler />
-        <div>
-          <NavLink style={{ color: 'grey' }} href="/Apply">
-            Register a Company
-          </NavLink>
-        </div>
+        {user && user.type !== 'provider' && (
+          <div>
+            <NavLink style={{ color: 'grey' }} href="/Apply">
+              Register a Company
+            </NavLink>
+          </div>
+        )}
         <Collapse navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
@@ -59,11 +67,14 @@ function NavBar(props) {
             </div>
           )}
           <Nav className="mr-auto" navbar></Nav>
-
-          <Login />
-          <span className="navBar-button">
-            <SignUp />
-          </span>
+          {!user && (
+            <>
+              <Login passUser={(user) => setUser(user)} />
+              <span className="navBar-button">
+                <SignUp passUser={(user) => setUser(user)} />
+              </span>
+            </>
+          )}
           <NavLink href="/ProfileSettings" style={{ color: 'grey' }}>
             {' '}
             <FaUser style={{ color: 'grey', right: '0%' }} /> Profile

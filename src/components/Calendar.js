@@ -4,24 +4,41 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { BeautyProviders } from '../lib/mockProviders';
 import serviceProfile from './serviceProfile.module.css';
 import { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { POSTtoProviders } from '../lib/FetchShortcuts';
 
 export default function Calendar(props) {
-    const { openingHrs, closingHrs } = props.provider;
-  const list = [];
+  const { openingHrs, closingHrs, availableServices, _id } = props.provider;
+  const times = [];
   let start = parseInt(openingHrs);
   let close = parseInt(closingHrs);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedHour, setSelectedHour] = useState(null);
+  const [selectedService, setSelectedService] = useState('');
   for (let i = start; i < close; i++) {
-    list.push(
-
-        <option key={i} value={i}>{i}:00</option>
+    times.push(
+      <option key={i} value={i}>
+        {i}:00
+      </option>
     );
-     list.push(
-       <option key={i + 0.5} value={i + 0.5}>
-         {i}:30
-       </option>
-     );
+    times.push(
+      <option key={i + 0.5} value={i + 0.5}>
+        {i}:30
+      </option>
+    );
+  }
+
+  let list = [];
+
+  if (availableServices && availableServices.length > 0) {
+    list = availableServices.map((result) => {
+      const { name } = result;
+      return(
+        <option key={uuidv4()} value={name} className={serviceProfile.service}>
+          {name}
+        </option>
+      );
+    });
   }
 
   function handleDate(date) {
@@ -29,8 +46,8 @@ export default function Calendar(props) {
     setSelectedHour(start);
   }
 
-  function HandleHour(e) {
-    setSelectedHour(e.target.value);
+  function handleService(e) {
+    setSelectedService(e.target.value);
   }
 
   function handleSubmit() {
@@ -39,29 +56,60 @@ export default function Calendar(props) {
       minutes = 30;
     }
     let appointment = selectedDate.setHours(selectedHour, minutes);
-    console.log('appointment: ', new Date(appointment));
+    let data = { spid: _id, date: appointment, service: selectedService }
+    POSTtoProviders('/make-appointment', data )
   }
 
   return (
     <div className={serviceProfile.calendarForm}>
-      <h3>To book an appointment, please select a date:</h3>
-      <hr/>
+      <h3>
+        <b>Book an appointment now:</b>
+      </h3>
+      <p>
+        <i>First, select a service</i>
+      </p>
+      <hr />
       <div>
         <span className="h-5">
-          <b>Select a day:</b>{' '}
+          <b>Select a service:</b>
         </span>
-        <DatePicker
-          className="rounded py-1"
-          selected={selectedDate}
-          onChange={(date) => handleDate(date)}
-          minDate={new Date()}
-          filterDate={(date) => date.getDay() !== 6 && date.getDay() !== 5}
-          isClearable
-        />
+        <select
+          name="service"
+          id="service"
+          className="rounded ml-1 mb-2 py-1"
+          value={selectedService}
+          onChange={(e) => handleService(e)}
+        >
+          <option
+            disabled
+            selected
+            key={uuidv4()}
+            value=""
+            className={serviceProfile.service}
+          >
+            choose one
+          </option>
+          {list}
+        </select>
       </div>
+      {selectedService !== '' && (
+        <div>
+          <span className="h-5">
+            <b>Select a day:</b>{' '}
+          </span>
+          <DatePicker
+            className="rounded py-1"
+            selected={selectedDate}
+            onChange={(date) => handleDate(date)}
+            minDate={new Date()}
+            filterDate={(date) => date.getDay() !== 6 && date.getDay() !== 5}
+            isClearable
+          />
+        </div>
+      )}
 
       {selectedDate && (
-        <div className='mt-1'>
+        <div className="mt-1">
           <span className="h-5">
             <b>Select an hour:</b>{' '}
           </span>{' '}
@@ -71,12 +119,12 @@ export default function Calendar(props) {
             className="rounded py-1"
             onChange={(e) => setSelectedHour(e.target.value)}
           >
-            {list}
+            {times}
           </select>
         </div>
       )}
 
-      {(selectedDate && selectedHour) && (
+      {selectedDate && selectedHour && (
         <div>
           <br />
           <Button
