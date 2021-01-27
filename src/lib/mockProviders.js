@@ -9,8 +9,8 @@ const BeautyProviders = [
     description: 'We cut hair and do nails with style, love and dedication since 2020.',
     appointments: [],
     weekends: 'Friday',
-    openingHrs: '09:00',
-    closingHrs: '17:00',
+    openingHrs: '09',
+    closingHrs: '17',
     availableServices: [
       { name: 'Manicure', price: 100 },
       { name: 'Pedicure', price: 100, duration: 45 },

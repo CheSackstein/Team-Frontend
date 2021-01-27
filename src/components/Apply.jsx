@@ -1,9 +1,9 @@
-import React from "react";
-import App from "../App";
-import { useState } from "react";
-import NavBar from "./NavBar";
-import AddService from "./AddService";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import React from 'react';
+import App from '../App';
+import { useState } from 'react';
+import NavBar from './NavBar';
+import AddService from './AddService';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import {
   Button,
   Form,
@@ -14,33 +14,33 @@ import {
   FormGroup,
   FormText,
   Select
-} from "reactstrap";
-import "./Apply.css";
+} from 'reactstrap';
+import './Apply.css';
 import {
   POSTtoUsers,
   PUTtoUsers,
   GETFromUsers,
   GETFromProviders,
   PUTtoProviders,
-  POSTtoProviders,
-} from "../lib/FetchShortcuts";
+  POSTtoProviders
+} from '../lib/FetchShortcuts';
 
 function Apply(props) {
-  const [provider, setProvider] = useState("");
+  const [provider, setProvider] = useState('');
   const [modalLog, setModalLog] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [company, setCompany] = useState("");
-  const [description, setDescription] = useState("");
-  const [address, setAddress] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [company, setCompany] = useState('');
+  const [description, setDescription] = useState('');
+  const [address, setAddress] = useState('');
   const [type, setType] = useState('');
   const [category, setCategory] = useState('beauty');
-  const [fName, setfName] = useState("");
-  const [lName, setlName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [openingHrs, setOpeningHrs] = useState("");
-  const [closingHrs, setClosingHrs] = useState("");
-  const [Hrs, setHrs] = useState("");
+  const [fName, setfName] = useState('');
+  const [lName, setlName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [openingHrs, setOpeningHrs] = useState('09');
+  const [closingHrs, setClosingHrs] = useState('17');
+  const [Hrs, setHrs] = useState('');
 
   function onApply(event) {
     event.preventDefault();
@@ -56,6 +56,8 @@ function Apply(props) {
       Address: address,
       Type: type,
       category: category,
+      openingHrs,
+      closingHrs
     };
 
     onAddProvider(formData);
@@ -87,7 +89,7 @@ function Apply(props) {
       lastName: lName,
       Phone: phone,
       Email: email,
-      Password: password,
+      Password: password
     };
     console.log(frmdetails);
   };
@@ -264,24 +266,26 @@ function Apply(props) {
                   id="exampleSelect"
                   onChange={(e) => setOpeningHrs(e.target.value)}
                 >
-                  <option>5:00</option>
-                  <option>6:00</option>
-                  <option>7:00</option>
-                  <option>8:00</option>
-                  <option>9:00</option>
-                  <option>10:00</option>
-                  <option>11:00</option>
-                  <option>12:00</option>
-                  <option>13:00</option>
-                  <option>14:00</option>
-                  <option>15:00</option>
-                  <option>16:00</option>
-                  <option>17:00</option>
-                  <option>18:00</option>
-                  <option>19:00</option>
-                  <option>20:00</option>
-                  <option>21:00</option>
-                  <option>22:00</option>
+                  <option value="05">5:00</option>
+                  <option value="06">6:00</option>
+                  <option value="07"> 7:00</option>
+                  <option value="08">8:00</option>
+                  <option value="09" selected="selected">
+                    9:00
+                  </option>
+                  <option value="10">10:00</option>
+                  <option value="11">11:00</option>
+                  <option value="12">12:00</option>
+                  <option value="13">13:00</option>
+                  <option value="14">14:00</option>
+                  <option value="15">15:00</option>
+                  <option value="16"> 16:00</option>
+                  <option value="17">17:00</option>
+                  <option value="18">18:00</option>
+                  <option value="19">19:00</option>
+                  <option value="20">20:00</option>
+                  <option value="21">21:00</option>
+                  <option value="22">22:00</option>
                 </Input>
               </FormGroup>
             </Col>
@@ -294,24 +298,26 @@ function Apply(props) {
                   id="exampleSelect"
                   onChange={(e) => setClosingHrs(e.target.value)}
                 >
-                  <option>5:00</option>
-                  <option>6:00</option>
-                  <option>7:00</option>
-                  <option>8:00</option>
-                  <option>9:00</option>
-                  <option>10:00</option>
-                  <option>11:00</option>
-                  <option>12:00</option>
-                  <option>13:00</option>
-                  <option>14:00</option>
-                  <option>15:00</option>
-                  <option>16:00</option>
-                  <option>17:00</option>
-                  <option>18:00</option>
-                  <option>19:00</option>
-                  <option>20:00</option>
-                  <option>21:00</option>
-                  <option>22:00</option>
+                  <option value="05">5:00</option>
+                  <option value="06">6:00</option>
+                  <option value="07"> 7:00</option>
+                  <option value="08">8:00</option>
+                  <option value="09">9:00</option>
+                  <option value="10">10:00</option>
+                  <option value="11">11:00</option>
+                  <option value="12">12:00</option>
+                  <option value="13">13:00</option>
+                  <option value="14">14:00</option>
+                  <option value="15">15:00</option>
+                  <option value="16"> 16:00</option>
+                  <option value="17" selected="selected">
+                    17:00
+                  </option>
+                  <option value="18">18:00</option>
+                  <option value="19">19:00</option>
+                  <option value="20">20:00</option>
+                  <option value="21">21:00</option>
+                  <option value="22">22:00</option>
                 </Input>
               </FormGroup>
             </Col>
