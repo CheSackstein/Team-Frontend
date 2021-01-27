@@ -41,41 +41,49 @@ function Apply(props) {
   const [openingHrs, setOpeningHrs] = useState('09');
   const [closingHrs, setClosingHrs] = useState('17');
   const [Hrs, setHrs] = useState('');
-
+  const [errors, setErrors] = useState("");
+  const [ profilePictureURL, setProfilePictureUrl ] = useState("");
+  const [ bannerURL, setBannerUrl ] = useState("");
+  const [ daysOff, setDaysOff ] = useState("");
+  const [ numStaff, setNumStaff ] = useState("");
+  const [price, setPrice] = useState("");
+  const [duration, setDuration] = useState("");
+  const [serviceName, setServiceName] = useState("");
+  const [availableServices, setAvailableServices] = useState("");
+  function onAddService(event) {
+    event.preventDefault();
+    const  availableServices= {
+service: serviceName,
+duration: duration,
+price: price
+    };
+    setAvailableServices(availableServices)
+  }
   function onApply(event) {
     event.preventDefault();
     setHrs(closingHrs - openingHrs);
     const formData = {
       firstName: fName,
       lastName: lName,
-      Phone: phone,
-      Email: email,
-      Password: password,
-      Company: company,
-      Description: description,
-      Address: address,
-      Type: type,
+      phone: phone,
+      email: email,
+      password: password,
+      companyName: company,
+      description: description,
+      address: address,
+      type: type,
       category: category,
-      openingHrs,
-      closingHrs
+      openingHrs: openingHrs,
+      closingHrs: closingHrs,
+      weekends: daysOff,
+      numberOfStaff: numStaff,
+      availableServices: availableServices
     };
 
     onAddProvider(formData);
     console.log(JSON.stringify(formData));
-    console.log(formData);
-    POSTtoProviders(formData);
-    // const requestOptions = {
-    //   method: "POST",
-    //   body: formData,
-    // };
+    Apply(formData);
 
-    // GETFromUsers();
-    // fetch("http://localhost:5000/api/users", requestOptions).then((res) => {
-    //   console.log(formData);
-    //   console.log(res.status);
-    // });
-
-    POSTtoProviders(formData);
   }
 
   function onAddProvider(event) {
@@ -83,16 +91,23 @@ function Apply(props) {
     console.log(newProvider);
   }
 
-  const submitValueApply = () => {
-    const frmdetails = {
-      firstName: fName,
-      lastName: lName,
-      Phone: phone,
-      Email: email,
-      Password: password
-    };
-    console.log(frmdetails);
-  };
+  async function Apply(frmData) {
+    const provider = await POSTtoProviders('/become-provider',frmData);
+
+    if(provider.errors){
+      // display errors
+      console.log(provider.errors);
+      const errs = {}
+      for(let err of provider.errors){
+        errs[err.param] = err.msg;
+      }
+      setErrors(errs);
+    }else {
+      // use the user object
+      console.log('PROVIDER:',provider);
+    }
+  }
+
 
   return (
     <div className="Apply" id="Apply">
@@ -126,18 +141,74 @@ function Apply(props) {
             </Col>
             <Col md={4}>
               <FormGroup>
-                <Label for="exampleText"> Short description of company:</Label>
+                <Label for="description"> Short description of company:</Label>
                 <Input
                   type="textarea"
                   name="text"
-                  id="exampleText"
+                  id="description"
                   placeholder="A little about your company ..."
                   onChange={(e) => setDescription(e.target.value)}
                 />
               </FormGroup>
             </Col>
             <Col md={3}>
-              <AddService />
+              {/* <AddService /> */}
+              <div className="AddService" id="AddService">
+      <Form onSubmit={(event) => onAddService(event)}>
+          <Row form>
+            <Col md={5}>
+              <FormGroup>
+                <Label for="Service">Service:</Label>
+                <Input
+                  type="text"
+                  name="Service"
+                  id="Service"
+                  placeholder="Manicure, haircut"
+                  onChange={(e) => setServiceName(e.target.value)}
+                />
+              </FormGroup>
+            </Col>
+    
+            <Col md={3}>
+              <FormGroup>
+                <Label for="Price">Price:</Label>
+                <Input
+                  type="text"
+                  name="Price"
+                  id="Price"
+                  placeholder="Price"
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+              </FormGroup>
+            </Col>
+
+            <Col md={3}>
+              <FormGroup>
+                <Label for="exampleSelect">Duration</Label>
+                <Input type="select" name="select" id="exampleSelect" onChange={(e) => setDuration(e.target.value)}>
+                  <option>15 mins</option>
+                  <option>30 mins</option>
+                  <option>45 mins</option>
+                  <option>60 mins</option>
+                  <option>75 mins</option>
+                  <option>90 mins</option>
+                  <option>2 hours</option>
+                </Input>
+              </FormGroup>
+            </Col>
+        
+          <Button
+            type="Primary"
+            color="secondary"
+            onSubmit={(event) => onAddService(event)}
+          >
+            Add Service
+          </Button>
+   
+        </Row>
+      </Form>
+    
+    </div>
             </Col>
           </Row>
           <Row form>
@@ -168,11 +239,11 @@ function Apply(props) {
 
             <Col md={4}>
               <FormGroup>
-                <Label for="exampleText">Address:</Label>
+                <Label for="address">Address:</Label>
                 <Input
                   type="textarea"
                   name="text"
-                  id="exampleText"
+                  id="address"
                   placeholder="Dizengoff 12, Tel Aviv"
                   onChange={(e) => setAddress(e.target.value)}
                 />
@@ -211,7 +282,7 @@ function Apply(props) {
           <Row center>
             <Col md={4}>
               <FormGroup>
-                <Label for="examplePassword">Password</Label>
+                <Label for="examplePassword" password>Password</Label>
                 <Input
                   type="password"
                   name="password"
@@ -221,49 +292,15 @@ function Apply(props) {
                 />
               </FormGroup>
             </Col>
-            <Col md={2}>
-              <FormGroup>
-                <Label for="type"> Service Type:</Label>
-                <br />
-                {category === 'beauty' && (
-                  <Input
-                    type="select"
-                    name="text"
-                    id="type"
-                    onChange={(e) => setType(e.target.value)}
-                  >
-                    <option value="">select one</option>
-                    <option value="salon">Salon</option>
-                    <option value="barber">Barber Shop</option>
-                    <option value="nail salon">Nail Salon</option>
-                    <option value="massage">Massage</option>
-                    <option value="other">Other</option>
-                  </Input>
-                )}
-
-                {category === 'health' && (
-                  <Input
-                    type="select"
-                    name="text"
-                    id="type"
-                    onChange={(e) => setType(e.target.value)}
-                  >
-                    <option value="">select one</option>
-                    <option value="chiropractor">Chiropractor</option>
-                    <option value="dentist">Dentist </option>
-                    <option value="other">Other</option>
-                  </Input>
-                )}
-              </FormGroup>
-            </Col>
+       
 
             <Col md={1}>
               <FormGroup>
-                <Label for="exampleSelect">Opening Times</Label>
+                <Label for="openingTimes">Opening Times</Label>
                 <Input
                   type="select"
                   name="select"
-                  id="exampleSelect"
+                  id="openingTimes"
                   onChange={(e) => setOpeningHrs(e.target.value)}
                 >
                   <option value="05">5:00</option>
@@ -291,11 +328,11 @@ function Apply(props) {
             </Col>
             <Col md={1}>
               <FormGroup>
-                <Label for="exampleSelect">Closing Times</Label>
+                <Label for="closingTimes">Closing Times</Label>
                 <Input
                   type="select"
                   name="select"
-                  id="exampleSelect"
+                  id="closingTimes"
                   onChange={(e) => setClosingHrs(e.target.value)}
                 >
                   <option value="05">5:00</option>
@@ -321,6 +358,27 @@ function Apply(props) {
                 </Input>
               </FormGroup>
             </Col>
+            <Col md={2}>
+              <FormGroup>
+                <Label for="daysOff">Days Off:</Label>
+                <Input
+                  type="select"
+                  name="select"
+                  id="daysOff"
+                  onChange={(e) => setDaysOff(e.target.value)}
+                >
+                  <option value="Sunday">Sunday</option>
+                  <option value="Monday">Monday</option>
+                  <option value="Tuesday">Tuesday</option>
+                  <option value="Wednesday">Wednesday</option>
+                  <option value="Thursday" selected="selected">
+                  Thursday
+                  </option>
+                  <option value="Friday">Friday</option>
+                  <option value="Saturday">Saturday</option>
+                </Input>
+              </FormGroup>
+            </Col>
           </Row>
 
           <Row>
@@ -338,11 +396,40 @@ function Apply(props) {
             </Col>
             <Col md={4}>
               <FormGroup>
-                <Label for="exampleFile">File</Label>
-                <Input type="file" name="file" id="exampleFile" />
-                <FormText color="muted">
-                  Recommended ratio of the banner url: 1300px by 200px.
-                </FormText>
+              <Label for="examplePicture">Picture url:</Label>
+                <Input
+                  type="picture"
+                  name="picture"
+                  id="examplePicture"
+                  placeholder=""
+                  onChange={(e) => setProfilePictureUrl(e.target.value)}
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+          <Col md={4}>
+              <FormGroup>
+              <Label for="exampleBanner">Banner url:</Label>
+                <Input
+                  type="banner"
+                  name="banner"
+                  id="exampleBanner"
+                  placeholder=""
+                  onChange={(e) => setBannerUrl(e.target.value)}
+                />
+              </FormGroup>
+            </Col>
+            <Col md={3}>
+              <FormGroup>
+              <Label for="exampleStaff">Number of Staff:</Label>
+                <Input
+                  type="staff"
+                  name="staff"
+                  id="staff"
+                  placeholder=""
+                  onChange={(e) => setNumStaff(e.target.value)}
+                />
               </FormGroup>
             </Col>
           </Row>
