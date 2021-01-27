@@ -17,6 +17,7 @@ function ProfileSettings(props) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [currentPassword, setCurrentPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
@@ -28,10 +29,11 @@ function ProfileSettings(props) {
       email: email,
       phone: phone,
       password: password,
-      currentPassword: currentPassword,
+
+      confirmPassword: passwordConfirm,
     };
-    console.log(updatedUser)
-    const user = await POSTtoUsers('update-settings',updatedUser);
+    const user = await PUTtoUsers('update-settings',updatedUser);
+
 
     // if(user.errors){
     //   // display errors
@@ -46,9 +48,11 @@ function ProfileSettings(props) {
     //   console.log('USER:',user);
     // }
   }
+
 async function getUser(){
   let response = await GETFromUsers()
 }
+
   return (
     <div>
       <NavBar />
@@ -66,7 +70,11 @@ async function getUser(){
                     type="text"
                     name="fullName"
                     id="fullName"
-                    placeholder=""
+
+                    placeholder="Full Name"
+
+                   
+
                     onChange={(e) => setFullName(e.target.value)}
                   />
                 </FormGroup>

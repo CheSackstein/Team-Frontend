@@ -33,7 +33,7 @@ const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [type, setType] = useState('');
   const [category, setCategory] = useState('beauty');
-  const [fName, setfName] = useState('');
+  const [fullName, setFullName] = useState('');
   const [lName, setlName] = useState('');
   const [phone, setPhone] = useState('');
   const [openingHrs, setOpeningHrs] = useState('09');
@@ -47,7 +47,7 @@ const [email, setEmail] = useState('');
   const [price, setPrice] = useState("");
   const [duration, setDuration] = useState("");
   const [serviceName, setServiceName] = useState("");
-  const [availableServices, setAvailableServices] = useState("");
+  const [availableServices, setAvailableServices] = useState({});
 
   
   function onAddService(event) {
@@ -59,13 +59,12 @@ price: price
     };
     setAvailableServices(availableServices)
   }
-  function onApply(event) {
+  async function onApply(event) {
 
     event.preventDefault();
     setHrs(closingHrs - openingHrs);
     const formData = {
-      firstName: fName,
-      lastName: lName,
+      fullName: fullName,
       phone: phone,
       email: email,
       password: password,
@@ -81,55 +80,42 @@ price: price
       availableServices: availableServices
     };
 
-    onAddProvider(formData);
     console.log(JSON.stringify(formData));
 
     console.log(formData);
-    const provider = await POSTtoProviders("/become-provider",formData);
+    const provider = await POSTtoProviders("become-provider",formData);
 
-    if(provider.errors){
-      // display errors
-      console.log(provider.errors);
-      const errs = {}
-      for(let err of provider.errors){
-        errs[err.param] = err.msg;
-      }
-      setErrors(errs);
-    }else {
-      // use the user object
-      console.log('PROVIDER:',provider);
-    }
-    Apply(formData);
-
+    // if(provider.errors){
+    //   // display errors
+    //   console.log(provider.errors);
+    //   const errs = {}
+    //   for(let err of provider.errors){
+    //     errs[err.param] = err.msg;
+    //   }
+    //   setErrors(errs);
+    // }else {
+    //   // use the user object
+    //   console.log('PROVIDER:',provider);
+    // }
+   
+  }
 
 
   return (
-    <div className="Apply" id="Apply">
+    <div className="Apply" id="Apply" >
       <NavBar />
-      <Form onSubmit={(event) => onApply(event)}>
+      <Form onSubmit={(event) => onApply(event)} style={{backgroundColor:'grey'}}>
         <FormGroup>
           <Row form>
-            <Col md={2}>
+            <Col md={4}>
               <FormGroup>
-                <Label for="firstName">First name:</Label>
+                <Label for="fullName">Full name:</Label>
                 <Input
                   type="text"
-                  name="firstName"
-                  id="firstName"
-                  placeholder="First Name"
-                  onChange={(e) => setfName(e.target.value)}
-                />
-              </FormGroup>
-            </Col>
-            <Col md={2}>
-              <FormGroup>
-                <Label for="lastName">Last name:</Label>
-                <Input
-                  type="text"
-                  name="lastName"
-                  id="lastName"
-                  placeholder="Last Name"
-                  onChange={(e) => setlName(e.target.value)}
+                  name="fullName"
+                  id="fullName"
+                  placeholder="Full Name"
+                  onChange={(e) => setFullName(e.target.value)}
                 />
               </FormGroup>
             </Col>
@@ -145,8 +131,34 @@ price: price
                 />
               </FormGroup>
             </Col>
+          </Row>
 
-            <Col md={4}>
+          <Row form>
+            <Col md={2}>
+              <FormGroup>
+                <Label for="phone">Cell:</Label>
+                <Input
+                  type="text"
+                  name="cellPhone"
+                  id="cellPhone"
+                  placeholder="Cell phone number"
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </FormGroup>
+            </Col>
+            <Col md={2}>
+              <FormGroup>
+                <Label for="exampleEmail">Email</Label>
+                <Input
+                  type="email"
+                  name="email"
+                  id="exampleEmail"
+                  placeholder="sample@email.com"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </FormGroup>
+            </Col>
+          <Col md={4}>
               <FormGroup tag="fieldset">
                 <legend>Business Category:</legend>
                 <FormGroup check>
@@ -173,7 +185,62 @@ price: price
                   </Label>
                 </FormGroup>
               </FormGroup>
+</Col>
+           
+          </Row>
+          <Row center>
+            <Col md={4}>
+              <FormGroup>
+                <Label for="examplePassword" password>Password</Label>
+                <Input
+                  type="password"
+                  name="password"
+                  id="examplePassword"
+                  placeholder="Password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </FormGroup>
+            </Col>
 
+            <Col md={2}>
+              <FormGroup>
+                <Label for="type"> Service Type:</Label>
+                <br />
+                {category === "beauty" && (
+                  <Input
+                    type="select"
+                    name="text"
+                    id="type"
+                    onChange={(e) => setType(e.target.value)}
+                  >
+                    <option value="">select one</option>
+                    <option value="salon">Salon</option>
+                    <option value="barber">Barber Shop</option>
+                    <option value="nail salon">Nail Salon</option>
+                    <option value="massage">Massage</option>
+                    <option value="other">Other</option>
+                  </Input>
+                )}
+
+                {category === "health" && (
+                  <Input
+                    type="select"
+                    name="text"
+                    id="type"
+                    onChange={(e) => setType(e.target.value)}
+                  >
+                    <option value="">select one</option>
+                    <option value="chiropractor">Chiropractor</option>
+                    <option value="dentist">Dentist </option>
+                    <option value="other">Other</option>
+                  </Input>
+                )}
+              </FormGroup>
+            </Col>
+
+   
+
+           
             <Col md={3}>
               {/* <AddService /> */}
               <div className="AddService" id="AddService">
@@ -232,35 +299,9 @@ price: price
       </Form>
     
     </div>
-
-            </Col>
-          </Row>
-          <Row form>
-            <Col md={2}>
-              <FormGroup>
-                <Label for="phone">Cell:</Label>
-                <Input
-                  type="text"
-                  name="cellPhone"
-                  id="cellPhone"
-                  placeholder="Cell phone number"
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-              </FormGroup>
-            </Col>
-            <Col md={2}>
-              <FormGroup>
-                <Label for="exampleEmail">Email</Label>
-                <Input
-                  type="email"
-                  name="email"
-                  id="exampleEmail"
-                  placeholder="sample@email.com"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </FormGroup>
-            </Col>
-
+    </Col>
+            </Row>
+            <Row>
             <Col md={4}>
               <FormGroup>
                 <Label for="address">Address:</Label>
@@ -273,60 +314,47 @@ price: price
                 />
               </FormGroup>
             </Col>
-          </Row>
-          <Row center>
             <Col md={4}>
               <FormGroup>
-                <Label for="examplePassword" password>Password</Label>
+              <Label for="exampleBanner">Banner url:</Label>
                 <Input
-                  type="password"
-                  name="password"
-                  id="examplePassword"
-                  placeholder="Password"
-                  onChange={(e) => setPassword(e.target.value)}
+                  type="banner"
+                  name="banner"
+                  id="exampleBanner"
+                  placeholder=""
+                  onChange={(e) => setBannerUrl(e.target.value)}
                 />
               </FormGroup>
             </Col>
-
-            <Col md={2}>
+            </Row>
+          <Row>
+            <Col md={4}>
               <FormGroup>
-                <Label for="type"> Service Type:</Label>
-                <br />
-                {category === "beauty" && (
-                  <Input
-                    type="select"
-                    name="text"
-                    id="type"
-                    onChange={(e) => setType(e.target.value)}
-                  >
-                    <option value="">select one</option>
-                    <option value="salon">Salon</option>
-                    <option value="barber">Barber Shop</option>
-                    <option value="nail salon">Nail Salon</option>
-                    <option value="massage">Massage</option>
-                    <option value="other">Other</option>
-                  </Input>
-                )}
-
-                {category === "health" && (
-                  <Input
-                    type="select"
-                    name="text"
-                    id="type"
-                    onChange={(e) => setType(e.target.value)}
-                  >
-                    <option value="">select one</option>
-                    <option value="chiropractor">Chiropractor</option>
-                    <option value="dentist">Dentist </option>
-                    <option value="other">Other</option>
-                  </Input>
-                )}
+                <Label for="exampleCompany">Company Name:</Label>
+                <Input
+                  type="company"
+                  name="company"
+                  id="exampleCompnay"
+                  placeholder="Company Name"
+                  onChange={(e) => setCompany(e.target.value)}
+                />
               </FormGroup>
             </Col>
-
-   
-
-            <Col md={1}>
+            <Col md={4}>
+              <FormGroup>
+              <Label for="examplePicture">Picture url:</Label>
+                <Input
+                  type="picture"
+                  name="picture"
+                  id="examplePicture"
+                  placeholder=""
+                  onChange={(e) => setProfilePictureUrl(e.target.value)}
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+          <Col md={1}>
               <FormGroup>
                 <Label for="openingTimes">Opening Times</Label>
                 <Input
@@ -411,49 +439,8 @@ price: price
                 </Input>
               </FormGroup>
             </Col>
-            <Col md={3}>
-              <AddService />
-            </Col>
           </Row>
           <Row>
-            <Col md={4}>
-              <FormGroup>
-                <Label for="exampleCompany">Company Name:</Label>
-                <Input
-                  type="company"
-                  name="company"
-                  id="exampleCompnay"
-                  placeholder="Company Name"
-                  onChange={(e) => setCompany(e.target.value)}
-                />
-              </FormGroup>
-            </Col>
-            <Col md={4}>
-              <FormGroup>
-              <Label for="examplePicture">Picture url:</Label>
-                <Input
-                  type="picture"
-                  name="picture"
-                  id="examplePicture"
-                  placeholder=""
-                  onChange={(e) => setProfilePictureUrl(e.target.value)}
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row>
-          <Col md={4}>
-              <FormGroup>
-              <Label for="exampleBanner">Banner url:</Label>
-                <Input
-                  type="banner"
-                  name="banner"
-                  id="exampleBanner"
-                  placeholder=""
-                  onChange={(e) => setBannerUrl(e.target.value)}
-                />
-              </FormGroup>
-            </Col>
             <Col md={3}>
               <FormGroup>
               <Label for="exampleStaff">Number of Staff:</Label>

@@ -31,59 +31,32 @@ function Login(props) {
   const history = useHistory();
   const toggleSign = () => setModalSign(!modalSign);
   const [isAdmin, setIsAdmin] = useState(false);
-  function onSignUp(event) {
-    event.preventDefault();
-    const newUser = {
-      FirstName: setEmail(),
-      LastName: lastName,
-      Email: email,
-      Cell: cell,
-      Password: password,
-      PasswordConfirm: passwordConfirm,
-    };
-
-    setUser(newUser);
-    console.log(user);
-  }
-
+  const [errors, setErrors ] = useState("")
   function onLogin(event) {
     event.preventDefault();
 
     const findUser = {
-      Email: email,
-      Password: password,
+      email: email,
+      password: password,
     };
-
-    getUser(findUser);
-    onAddUser(findUser);
-    console.log(JSON.stringify(findUser));
+Login(findUser);
   }
 
-  function onAddUser(event) {
-    const newUser = user;
-    console.log(newUser);
-  }
+  async function Login(frmData) {
+    const user = await POSTtoUsers('sign-in',frmData);
 
-  const submitValueLogin = () => {
-    const frmdetails = {
-      Email: email,
-      Password: password,
-    };
-    console.log(frmdetails);
-    sendUser(frmdetails);
-  };
-
-  async function sendUser(frmData) {
-    console.log(frmData);
-
-    const response = await POSTtoUsers(frmData);
-
-    if (response.status === 200) {
-      localStorage.setItem("token", response);
+    if(user.errors){
+      // display errors
+      console.log(user.errors);
+      const errs = {}
+      for(let err of user.errors){
+        errs[err.param] = err.msg;
+      }
+      setErrors(errs);
+    }else {
+      // use the user object
+      console.log('USER:',user);
     }
-    console.log(response.data);
-    history.push("/Home");
-    const reload = window.location.reload();
   }
 
   return (
@@ -127,7 +100,7 @@ function Login(props) {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </FormGroup>
-              <Button type="primary" color="primary" onClick={submitValueLogin}>
+              <Button type="primary" color="primary" onClick={onLogin}>
                 Log in
               </Button>
             </Form>
