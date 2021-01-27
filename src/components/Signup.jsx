@@ -53,25 +53,6 @@ function SignUp(props) {
     Register(newUser);
   }
 
-  // function onLogin(event) {
-  //   event.preventDefault();
-
-  //   const findUser = {
-  //     Email: email,
-  //     Password: password,
-  //   };
-
-  //   getUser(findUser);
-  //   onAddUser(findUser);
-  //   console.log(JSON.stringify(findUser));
-  // }
-
-  // function onAddUser(event) {
-  //   const newUser = user;
-  //   console.log(newUser);
-  // }
-
- 
 
 
   const [fName, setfName] = useState("");
