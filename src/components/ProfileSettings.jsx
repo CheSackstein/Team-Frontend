@@ -14,12 +14,11 @@ import { POSTtoUsers,
   POSTtoProviders} from '../lib/FetchShortcuts'
 
 function ProfileSettings(props) {
-  const [user, setUser] = useState("");
-  const [findUser, getUser] = useState("");
-  const [modalLog, setModalLog] = useState(false);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
+
+  const [currentPassword, setCurrentPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [ errors, setErrors ] = useState("");
@@ -30,9 +29,11 @@ function ProfileSettings(props) {
       email: email,
       phone: phone,
       password: password,
+
       confirmPassword: passwordConfirm,
     };
     const user = await PUTtoUsers('update-settings',updatedUser);
+
 
     // if(user.errors){
     //   // display errors
@@ -48,10 +49,13 @@ function ProfileSettings(props) {
     // }
   }
 
+async function getUser(){
+  let response = await GETFromUsers()
+}
+
   return (
     <div>
       <NavBar />
-
       <div
         className="profileSettings"
         id="profileSettings"
@@ -66,7 +70,11 @@ function ProfileSettings(props) {
                     type="text"
                     name="fullName"
                     id="fullName"
+
                     placeholder="Full Name"
+
+                   
+
                     onChange={(e) => setFullName(e.target.value)}
                   />
                 </FormGroup>
@@ -112,6 +120,21 @@ function ProfileSettings(props) {
                     placeholder="Password"
                     onChange={(e) => setPassword(e.target.value)}
                   />
+                </FormGroup>
+              </Col>
+            </Row>
+
+<Row>
+              <Col md={3}>
+                <FormGroup>
+                  <Label for="currentPassword">Current Password:</Label>
+                  <Input
+                    type="currentPassword"
+                    name="currentPassword"
+                    id="currentPassword"
+                    placeholder="Password"
+                    onChange={(e) => setCurrentPassword(e.target.value)}
+                  password/>
                 </FormGroup>
               </Col>
             </Row>
