@@ -13,7 +13,7 @@ import {
   Col,
   FormGroup,
   FormText,
-  Select
+  Select,
 } from "reactstrap";
 import "./Apply.css";
 import {
@@ -33,16 +33,18 @@ function Apply(props) {
   const [company, setCompany] = useState("");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
-  const [type, setType] = useState('');
-  const [category, setCategory] = useState('beauty');
+  const [type, setType] = useState("");
+  const [category, setCategory] = useState("beauty");
   const [fName, setfName] = useState("");
   const [lName, setlName] = useState("");
   const [phone, setPhone] = useState("");
   const [openingHrs, setOpeningHrs] = useState("");
   const [closingHrs, setClosingHrs] = useState("");
   const [Hrs, setHrs] = useState("");
+  const [errors, setErrors]= useState("");
 
-  function onApply(event) {
+  
+  async function onApply(event) {
     event.preventDefault();
     setHrs(closingHrs - openingHrs);
     const formData = {
@@ -61,7 +63,20 @@ function Apply(props) {
     onAddProvider(formData);
     console.log(JSON.stringify(formData));
     console.log(formData);
-    POSTtoProviders(formData);
+    const provider = await POSTtoProviders("/become-provider",formData);
+
+    if(provider.errors){
+      // display errors
+      console.log(provider.errors);
+      const errs = {}
+      for(let err of provider.errors){
+        errs[err.param] = err.msg;
+      }
+      setErrors(errs);
+    }else {
+      // use the user object
+      console.log('PROVIDER:',provider);
+    }
     // const requestOptions = {
     //   method: "POST",
     //   body: formData,
@@ -73,12 +88,13 @@ function Apply(props) {
     //   console.log(res.status);
     // });
 
-    POSTtoProviders(formData);
+    // POSTtoProviders(formData);
   }
 
   function onAddProvider(event) {
     const newProvider = provider;
     console.log(newProvider);
+
   }
 
   const submitValueApply = () => {
@@ -134,8 +150,33 @@ function Apply(props) {
                 />
               </FormGroup>
             </Col>
-            <Col md={3}>
-              <AddService />
+            <Col md={4}>
+              <FormGroup tag="fieldset">
+                <legend>Business Category:</legend>
+                <FormGroup check>
+                  <Label check>
+                    <Input
+                      type="radio"
+                      name="radio1"
+                      value="beauty"
+                      defaultChecked
+                      onChange={(e) => setCategory(e.target.value)}
+                    />{" "}
+                    Beauty
+                  </Label>
+                </FormGroup>
+                <FormGroup check>
+                  <Label check>
+                    <Input
+                      type="radio"
+                      name="radio1"
+                      value="health"
+                      onChange={(e) => setCategory(e.target.value)}
+                    />{" "}
+                    Health
+                  </Label>
+                </FormGroup>
+              </FormGroup>
             </Col>
           </Row>
           <Row form>
@@ -176,35 +217,6 @@ function Apply(props) {
                 />
               </FormGroup>
             </Col>
-
-            <Col md={4}>
-              <FormGroup tag="fieldset">
-                <legend>Business Category:</legend>
-                <FormGroup check>
-                  <Label check>
-                    <Input
-                      type="radio"
-                      name="radio1"
-                      value="beauty"
-                      defaultChecked
-                      onChange={(e) => setCategory(e.target.value)}
-                    />{' '}
-                    Beauty
-                  </Label>
-                </FormGroup>
-                <FormGroup check>
-                  <Label check>
-                    <Input
-                      type="radio"
-                      name="radio1"
-                      value="health"
-                      onChange={(e) => setCategory(e.target.value)}
-                    />{' '}
-                    Health
-                  </Label>
-                </FormGroup>
-              </FormGroup>
-            </Col>
           </Row>
           <Row center>
             <Col md={4}>
@@ -223,7 +235,7 @@ function Apply(props) {
               <FormGroup>
                 <Label for="type"> Service Type:</Label>
                 <br />
-                {category === 'beauty' && (
+                {category === "beauty" && (
                   <Input
                     type="select"
                     name="text"
@@ -239,7 +251,7 @@ function Apply(props) {
                   </Input>
                 )}
 
-                {category === 'health' && (
+                {category === "health" && (
                   <Input
                     type="select"
                     name="text"
@@ -315,8 +327,10 @@ function Apply(props) {
                 </Input>
               </FormGroup>
             </Col>
+            <Col md={3}>
+              <AddService />
+            </Col>
           </Row>
-
           <Row>
             <Col md={4}>
               <FormGroup>

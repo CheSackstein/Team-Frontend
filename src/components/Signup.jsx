@@ -62,7 +62,7 @@ function SignUp(props) {
 
 
   async function Register(frmData) {
-    const user = await POSTtoUsers('/sign-up',frmData);
+    const user = await POSTtoUsers('sign-up',frmData);
 
     if(user.errors){
       // display errors

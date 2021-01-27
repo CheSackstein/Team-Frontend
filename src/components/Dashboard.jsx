@@ -19,7 +19,6 @@ function Dashboard(props) {
   // on component did mount call auth() => user if(!user.type = "ADMIN") redriect
 
   return (
-
     <div className="Dashboard" id="Dashboard">
       <NavBar />
     </div>

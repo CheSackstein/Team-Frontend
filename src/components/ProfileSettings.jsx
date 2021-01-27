@@ -6,6 +6,12 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Button, Form, Input, Label, Row, Col, FormGroup, Container } from "reactstrap";
 import HomeImage from "./bOOKit.png";
 import "./ProfileSettings.css";
+import { POSTtoUsers,
+  PUTtoUsers,
+  GETFromUsers,
+  GETFromProviders,
+  PUTtoProviders,
+  POSTtoProviders} from '../lib/FetchShortcuts'
 
 function ProfileSettings(props) {
   const [user, setUser] = useState("");
@@ -14,7 +20,6 @@ function ProfileSettings(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-
   const [fName, setfName] = useState("");
   const [lName, setlName] = useState("");
   const [phone, setPhone] = useState("");
@@ -35,14 +40,15 @@ function ProfileSettings(props) {
     onAddUser(formData);
     console.log(JSON.stringify(formData));
     console.log(formData);
-    const requestOptions = {
-      method: "POST",
-      body: formData,
-    };
-    fetch("http://localhost:5000/api/users", requestOptions).then((res) => {
-      console.log(formData);
-      console.log(res.status);
-    });
+    POSTtoUsers("http://localhost:5000/api/users", formData)
+    // const requestOptions = {
+    //   method: "POST",
+    //   body: formData,
+    // };
+    // fetch("http://localhost:5000/api/users", requestOptions).then((res) => {
+    //   console.log(formData);
+    //   console.log(res.status);
+    // });
   }
 
   function onAddUser(event) {
