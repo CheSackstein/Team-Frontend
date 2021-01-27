@@ -26,9 +26,7 @@ import {
 } from '../lib/FetchShortcuts';
 
 function Apply(props) {
-  const [provider, setProvider] = useState('');
-  const [modalLog, setModalLog] = useState(false);
-  const [email, setEmail] = useState('');
+const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [company, setCompany] = useState('');
   const [description, setDescription] = useState('');
@@ -50,6 +48,8 @@ function Apply(props) {
   const [duration, setDuration] = useState("");
   const [serviceName, setServiceName] = useState("");
   const [availableServices, setAvailableServices] = useState("");
+
+  
   function onAddService(event) {
     event.preventDefault();
     const  availableServices= {
@@ -60,6 +60,7 @@ price: price
     setAvailableServices(availableServices)
   }
   function onApply(event) {
+
     event.preventDefault();
     setHrs(closingHrs - openingHrs);
     const formData = {
@@ -82,17 +83,9 @@ price: price
 
     onAddProvider(formData);
     console.log(JSON.stringify(formData));
-    Apply(formData);
 
-  }
-
-  function onAddProvider(event) {
-    const newProvider = provider;
-    console.log(newProvider);
-  }
-
-  async function Apply(frmData) {
-    const provider = await POSTtoProviders('/become-provider',frmData);
+    console.log(formData);
+    const provider = await POSTtoProviders("/become-provider",formData);
 
     if(provider.errors){
       // display errors
@@ -106,7 +99,8 @@ price: price
       // use the user object
       console.log('PROVIDER:',provider);
     }
-  }
+    Apply(formData);
+
 
 
   return (
@@ -151,6 +145,35 @@ price: price
                 />
               </FormGroup>
             </Col>
+
+            <Col md={4}>
+              <FormGroup tag="fieldset">
+                <legend>Business Category:</legend>
+                <FormGroup check>
+                  <Label check>
+                    <Input
+                      type="radio"
+                      name="radio1"
+                      value="beauty"
+                      defaultChecked
+                      onChange={(e) => setCategory(e.target.value)}
+                    />{" "}
+                    Beauty
+                  </Label>
+                </FormGroup>
+                <FormGroup check>
+                  <Label check>
+                    <Input
+                      type="radio"
+                      name="radio1"
+                      value="health"
+                      onChange={(e) => setCategory(e.target.value)}
+                    />{" "}
+                    Health
+                  </Label>
+                </FormGroup>
+              </FormGroup>
+
             <Col md={3}>
               {/* <AddService /> */}
               <div className="AddService" id="AddService">
@@ -209,6 +232,7 @@ price: price
       </Form>
     
     </div>
+
             </Col>
           </Row>
           <Row form>
@@ -249,35 +273,6 @@ price: price
                 />
               </FormGroup>
             </Col>
-
-            <Col md={4}>
-              <FormGroup tag="fieldset">
-                <legend>Business Category:</legend>
-                <FormGroup check>
-                  <Label check>
-                    <Input
-                      type="radio"
-                      name="radio1"
-                      value="beauty"
-                      defaultChecked
-                      onChange={(e) => setCategory(e.target.value)}
-                    />{' '}
-                    Beauty
-                  </Label>
-                </FormGroup>
-                <FormGroup check>
-                  <Label check>
-                    <Input
-                      type="radio"
-                      name="radio1"
-                      value="health"
-                      onChange={(e) => setCategory(e.target.value)}
-                    />{' '}
-                    Health
-                  </Label>
-                </FormGroup>
-              </FormGroup>
-            </Col>
           </Row>
           <Row center>
             <Col md={4}>
@@ -292,7 +287,44 @@ price: price
                 />
               </FormGroup>
             </Col>
-       
+
+            <Col md={2}>
+              <FormGroup>
+                <Label for="type"> Service Type:</Label>
+                <br />
+                {category === "beauty" && (
+                  <Input
+                    type="select"
+                    name="text"
+                    id="type"
+                    onChange={(e) => setType(e.target.value)}
+                  >
+                    <option value="">select one</option>
+                    <option value="salon">Salon</option>
+                    <option value="barber">Barber Shop</option>
+                    <option value="nail salon">Nail Salon</option>
+                    <option value="massage">Massage</option>
+                    <option value="other">Other</option>
+                  </Input>
+                )}
+
+                {category === "health" && (
+                  <Input
+                    type="select"
+                    name="text"
+                    id="type"
+                    onChange={(e) => setType(e.target.value)}
+                  >
+                    <option value="">select one</option>
+                    <option value="chiropractor">Chiropractor</option>
+                    <option value="dentist">Dentist </option>
+                    <option value="other">Other</option>
+                  </Input>
+                )}
+              </FormGroup>
+            </Col>
+
+   
 
             <Col md={1}>
               <FormGroup>
@@ -379,8 +411,10 @@ price: price
                 </Input>
               </FormGroup>
             </Col>
+            <Col md={3}>
+              <AddService />
+            </Col>
           </Row>
-
           <Row>
             <Col md={4}>
               <FormGroup>
