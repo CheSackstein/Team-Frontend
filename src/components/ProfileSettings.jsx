@@ -14,111 +14,67 @@ import { POSTtoUsers,
   POSTtoProviders} from '../lib/FetchShortcuts'
 
 function ProfileSettings(props) {
-  const [user, setUser] = useState("");
-  const [findUser, getUser] = useState("");
-  const [modalLog, setModalLog] = useState(false);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [fName, setfName] = useState("");
-  const [lName, setlName] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
-
-  function onLogin(event) {
+  const [ errors, setErrors ] = useState("");
+  async function Update(event) {
     event.preventDefault();
-
-    const formData = {
-      firstName: fName,
-      lastName: lName,
-      Phone: phone,
-      Email: email,
-      Password: password,
-      PasswordConfirm: passwordConfirm,
+    const updatedUser = {
+      fullName: fullName,
+      email: email,
+      phone: phone,
+      password: password,
+      currentPassword: currentPassword,
     };
+    console.log(updatedUser)
+    const user = await POSTtoUsers('update-settings',updatedUser);
 
-    getUser(formData);
-    onAddUser(formData);
-    console.log(JSON.stringify(formData));
-    console.log(formData);
-    POSTtoUsers("http://localhost:5000/api/users", formData)
-    // const requestOptions = {
-    //   method: "POST",
-    //   body: formData,
-    // };
-    // fetch("http://localhost:5000/api/users", requestOptions).then((res) => {
-    //   console.log(formData);
-    //   console.log(res.status);
-    // });
+    // if(user.errors){
+    //   // display errors
+    //   console.log(user.errors);
+    //   const errs = {}
+    //   for(let err of user.errors){
+    //     errs[err.param] = err.msg;
+    //   }
+    //   setErrors(errs);
+    // }else {
+    //   // use the user object
+    //   console.log('USER:',user);
+    // }
   }
-
-  function onAddUser(event) {
-    const newUser = user;
-    console.log(newUser);
-  }
-
-  const submitValueSignUp = () => {
-    const frmdetails = {
-      "First Name": fName,
-      "Last Name": lName,
-      Phone: phone,
-      Email: email,
-      Password: password,
-      PasswordConfirm: passwordConfirm,
-    };
-    console.log(frmdetails);
-  };
-  const submitValueLogin = () => {
-    const frmdetails = {
-      "First Name": fName,
-      "Last Name": lName,
-      Phone: phone,
-      Email: email,
-      Password: password,
-      PasswordConfirm: passwordConfirm,
-    };
-    console.log(frmdetails);
-  };
-
+async function getUser(){
+  let response = await GETFromUsers()
+}
   return (
     <div>
       <NavBar />
-
       <div
         className="profileSettings"
         id="profileSettings"
       >
-        <Container className="Form" id="Form">
-        <Form onSubmit={(event) => onLogin(event)} >
+        <Container className="Form" id="Form" >
+        <Form onSubmit={(event) => Update(event)} >
         <Row >
         <Col md={3}> 
                 <FormGroup>
-                  <Label for="firstName">First name:</Label>
+                  <Label for="fullName">Full name:</Label>
                   <Input
                     type="text"
-                    name="firstName"
-                    id="firstName"
-                    placeholder="First Name"
-                    onChange={(e) => setfName(e.target.value)}
+                    name="fullName"
+                    id="fullName"
+                    placeholder=""
+                    onChange={(e) => setFullName(e.target.value)}
                   />
                 </FormGroup>
                 </Col>
-              </Row>
-              <Row>
-              <Col md={3}>
-                <FormGroup>
-                  <Label for="lastName">Last name:</Label>
-                  <Input
-                    type="text"
-                    name="lastName"
-                    id="lastName"
-                    placeholder="Last Name"
-                    onChange={(e) => setlName(e.target.value)}
-                  />
-                </FormGroup>
-              </Col>
+
             </Row>
             <Row form>
-              <Col md={2}>
+              <Col md={3}>
                 <FormGroup>
                   <Label for="phone">Cell:</Label>
                   <Input
@@ -159,11 +115,26 @@ function ProfileSettings(props) {
                 </FormGroup>
               </Col>
             </Row>
+
+<Row>
+              <Col md={3}>
+                <FormGroup>
+                  <Label for="currentPassword">Current Password:</Label>
+                  <Input
+                    type="currentPassword"
+                    name="currentPassword"
+                    id="currentPassword"
+                    placeholder="Password"
+                    onChange={(e) => setCurrentPassword(e.target.value)}
+                  password/>
+                </FormGroup>
+              </Col>
+            </Row>
 <Row>
             <Button
               type="Primary"
               color="secondary"
-              onSubmit={(event) => onLogin(event)}
+              onSubmit={(event) => Update(event)}
               className="changeBtn"
               id="changeBtn"
             >
