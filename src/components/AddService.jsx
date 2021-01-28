@@ -13,7 +13,7 @@ import {
   FormGroup,
   FormText,
 } from "reactstrap";
-import "./Apply.css";
+import "./Apply/Apply.css";
 import { POSTtoUsers,
   PUTtoUsers,
   GETFromUsers,
