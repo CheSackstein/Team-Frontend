@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import HomeImage from "../src/components/bOOKit.png";
+import HomeImage from "../src/components/Home/bOOKit.png";
 import "./App.css";
-import Home from "../src/components/Home";
+import Home from "../src/components/Home/Home";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import SearchPage from "./components/SearchPage";
 import { GETFromUsers } from "./lib/FetchShortcuts";
 import ServiceProfile from "./components/ServiceProfile";
-import Apply from "../src/components/Apply";
+import Apply from "../src/components/Apply/Apply";
 import ProfileSettings from "../src/components/ProfileSettings";
 
 function App() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import NavBar from './NavBar';
-import AddService from './AddService';
+import NavBar from "../NavBar";
+import AddService from '../AddService';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import {
   Button,
@@ -14,7 +14,7 @@ import {
   FormText,
   Select
 } from 'reactstrap';
-import './Apply.css';
+import "./Apply.css"
 import {
   POSTtoUsers,
   PUTtoUsers,
@@ -22,7 +22,7 @@ import {
   GETFromProviders,
   PUTtoProviders,
   POSTtoProviders
-} from '../lib/FetchShortcuts';
+} from '../../lib/FetchShortcuts';
 
 export default function Apply(props) {
 const [email, setEmail] = useState('');

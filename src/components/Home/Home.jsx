@@ -1,8 +1,8 @@
-import App from "../App";
+import App from "../../App";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import HomeImage from "./bOOKit.png";
-import {auth} from '../lib/FetchShortcuts';
+import {auth} from '../../lib/FetchShortcuts';
 import "./Home.css";
 import {
   Button,

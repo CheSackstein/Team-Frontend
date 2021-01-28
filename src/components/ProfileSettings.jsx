@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Button, Form, Input, Label, Row, Col, FormGroup, Container } from "reactstrap";
-import HomeImage from "./bOOKit.png";
+import HomeImage from "./Home/bOOKit.png";
 import "./ProfileSettings.css";
 import { POSTtoUsers,
   PUTtoUsers,
