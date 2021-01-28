@@ -54,12 +54,6 @@ function NavBar(props) {
           )}
           {isAdmin && (
             <div>
-              <NavLink style={{ color: 'white' }} href="/AddPet">
-                AddPet
-              </NavLink>
-              <NavLink style={{ color: 'white' }} href="/AdminPet">
-                Admin
-              </NavLink>
             </div>
           )}
           <Nav className="mr-auto" navbar></Nav>

@@ -35,7 +35,9 @@ export default function SearchForm(props) {
             ref={register}
             onChange={(e) => handleCategory(e)}
           >
-            <option disabled value="">select one</option>
+            <option disabled selected value="">
+              select one
+            </option>
             <option value="BEAUTY">Beauty</option>
             <option value="HEALTH">Health and Wellness</option>
           </select>
@@ -48,7 +50,9 @@ export default function SearchForm(props) {
                   onChange={(e) => handleType(e)}
                   ref={register}
                 >
-                  <option disabled value="">select one</option>
+                  <option disabled selected value="">
+                    select one
+                  </option>
                   <option value="salon">Salon</option>
                   <option value="barber">Barber Shop</option>
                   <option value="nail salon">Nail Salon</option>
@@ -65,7 +69,7 @@ export default function SearchForm(props) {
                     ref={register}
                     type="text"
                     name="companyName"
-                    placeholder="find by name"
+                    placeholder="Tell us what to look for"
                   />
                   <span>
                     <button variant="success" type="submit">
