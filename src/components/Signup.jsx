@@ -1,6 +1,4 @@
-import App from "../App";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import {
   Button,
   Modal,
@@ -12,7 +10,6 @@ import {
   Label,
   FormGroup,
 } from "reactstrap";
-import NavBar from "./NavBar";
 import { Link, useHistory } from "react-router-dom";
 import { POSTtoUsers,
   PUTtoUsers,
@@ -23,7 +20,6 @@ import { POSTtoUsers,
 
 function SignUp(props) {
   const [user, setUser] = useState("");
-  const [findUser, getUser] = useState("");
   const [modalLog, setModalLog] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [fullName, setFullname] = useState("");

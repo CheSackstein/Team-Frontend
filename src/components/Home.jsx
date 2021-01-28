@@ -29,7 +29,6 @@ import {
   NavbarText,
   FormGroup,
 } from "reactstrap";
-import NavBar from "./NavBar";
 import { Link, useHistory } from "react-router-dom";
 
 function Home(props) {

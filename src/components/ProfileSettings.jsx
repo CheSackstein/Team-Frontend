@@ -1,7 +1,5 @@
 import React from "react";
-import App from "../App";
 import { useState } from "react";
-import NavBar from "./NavBar";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Button, Form, Input, Label, Row, Col, FormGroup, Container } from "reactstrap";
 import HomeImage from "./bOOKit.png";

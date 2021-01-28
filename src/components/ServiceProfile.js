@@ -5,13 +5,9 @@ import { GETFromProviders } from '../lib/FetchShortcuts';
 import serviceProfile from './serviceProfile.module.css';
 import { BeautyProviders } from '../lib/mockProviders';
 import { v4 as uuidv4 } from 'uuid';
-import NavBar from './NavBar';
 import { Button } from 'reactstrap';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Calendar from './Calendar';
-
-
 
 export default function ServiceProfile(props) {
   const [provider, setProvider] = useState({});

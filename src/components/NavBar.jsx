@@ -11,16 +11,27 @@ import {
   NavItem,
   NavLink,
   NavbarText,
-  FormGroup
+  FormGroup,
+  Button
 } from 'reactstrap';
 import { FontAwesome } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa';
 import './ProfileSettings.css';
+import { POSTtoUsersUnhandled } from '../lib/FetchShortcuts';
 
 function NavBar(props) {
   const {user, passUser} = props
   const [isAdmin, setIsAdmin] = useState(false);
   
+  const  handleLogout = async ( ) =>{
+    localStorage.clear()
+    const response = await POSTtoUsersUnhandled('log-out');
+    console.log('response: ', response);
+    //when we set user by cookie we'll delete this
+          window.location.reload();
+
+  }
+
   return (
     <div>
       <Navbar
@@ -52,10 +63,7 @@ function NavBar(props) {
               </NavItem>
             </Nav>
           )}
-          {isAdmin && (
-            <div>
-            </div>
-          )}
+          {isAdmin && <div></div>}
           <Nav className="mr-auto" navbar></Nav>
           {!user && (
             <>
@@ -65,11 +73,29 @@ function NavBar(props) {
               </span>
             </>
           )}
+
           {user && (
-            <NavLink href="/ProfileSettings" style={{ color: 'grey' }}>
-              {' '}
-              <FaUser style={{ color: 'grey', right: '0%' }} /> Profile
-            </NavLink>
+            <>
+              <span className="navBar-button">
+                <Button
+                  variant="info"
+                  style={{
+                    height: '70px',
+                    width: '130px',
+                    borderRadius: '20px',
+                    fontSize: '20px',
+                    left: '20px'
+                  }}
+                  onClick={() => handleLogout()}
+                >
+                  Logout
+                </Button>
+              </span>
+              <NavLink href="/ProfileSettings" style={{ color: 'grey' }}>
+                {' '}
+                <FaUser style={{ color: 'grey', right: '0%' }} /> Profile
+              </NavLink>
+            </>
           )}
         </Collapse>
       </Navbar>

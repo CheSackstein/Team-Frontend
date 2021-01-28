@@ -62,6 +62,18 @@ const POSTtoUsers = async(endpoint, data) => {
     return await resp.json();
 };
 
+const POSTtoUsersUnhandled = async (endpoint, data) => {
+  const resp = await fetch(`${BaseURL}/api/users/${endpoint}`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json'
+    },
+    credentials: 'include',
+    body: JSON.stringify(data)
+  });
+  return resp;
+};
+
 const GETFromProviders = (endpoint) => {
     fetch(`${BaseURL}/api/serviceproviders/${endpoint}`)
         .then((res) => handleResponse(res))
@@ -124,5 +136,6 @@ export {
   POSTtoProviders,
     auth,
   POSTtoProvidersUnhandled,
+  POSTtoUsersUnhandled,
   BaseURL
 };

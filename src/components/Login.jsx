@@ -1,6 +1,5 @@
 import App from "../App";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { POSTtoUsers} from '../lib/FetchShortcuts'
 import {
   Button,
@@ -13,7 +12,6 @@ import {
   Label,
   FormGroup,
 } from "reactstrap";
-import NavBar from "./NavBar";
 import { Link, useHistory } from "react-router-dom";
 
 function Login(props) {

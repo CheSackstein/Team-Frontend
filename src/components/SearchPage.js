@@ -3,7 +3,6 @@ import SearchForm from './SearchForm'
 import SearchList from './SearchResultsList';
 import { BaseURL, POSTtoProvidersUnhandled } from '../lib/FetchShortcuts';
 import { BeautyProviders } from "../lib/mockProviders";
-import NavBar from './NavBar';
 import Swal from "sweetalert2";
 
 
