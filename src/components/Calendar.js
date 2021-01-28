@@ -136,7 +136,7 @@ export default function Calendar(props) {
         <div>
           <br />
           <Button
-            className="bookNow mt-1"
+            className={serviceProfile.bookNow}
             id="bookNow"
             onClick={() => handleSubmit(selectedDate)}
           >

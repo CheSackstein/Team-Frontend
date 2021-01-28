@@ -12,6 +12,7 @@ export default function SearchForm(props) {
     setCategory(value);
     setType('');
   };
+
   const handleType = (e) => {
     const value = e.target.value;
     setType(value);
@@ -34,7 +35,7 @@ export default function SearchForm(props) {
             ref={register}
             onChange={(e) => handleCategory(e)}
           >
-            <option value="">select one</option>
+            <option disabled value="">select one</option>
             <option value="BEAUTY">Beauty</option>
             <option value="HEALTH">Health and Wellness</option>
           </select>
@@ -47,7 +48,7 @@ export default function SearchForm(props) {
                   onChange={(e) => handleType(e)}
                   ref={register}
                 >
-                  <option value="">select one</option>
+                  <option disabled value="">select one</option>
                   <option value="salon">Salon</option>
                   <option value="barber">Barber Shop</option>
                   <option value="nail salon">Nail Salon</option>
