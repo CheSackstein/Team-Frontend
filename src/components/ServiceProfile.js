@@ -56,7 +56,6 @@ export default function ServiceProfile(props) {
   
   return (
     <div>
-      <NavBar />
       <div
         className={serviceProfile.banner}
         style={{

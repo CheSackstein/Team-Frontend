@@ -98,9 +98,12 @@ price: price
 
 
   return (
-    <div className="Apply" id="Apply" >
-      <NavBar />
-      <Form onSubmit={(event) => onApply(event)} style={{backgroundColor:'grey'}}>
+    <div className="Apply" id="Apply">
+      <Form
+        onSubmit={(event) => onApply(event)}
+        className='mx-5 rounded px-3 py-1'
+        style={{ backgroundColor: 'rgb(222,222,222)' }}
+      >
         <FormGroup>
           <Row form>
             <Col md={4}>
@@ -134,7 +137,7 @@ price: price
               <FormGroup>
                 <Label for="phone">Cell:</Label>
                 <Input
-                  type="text"
+                  type="number"
                   name="cellPhone"
                   id="cellPhone"
                   placeholder="Cell phone number"
@@ -154,7 +157,7 @@ price: price
                 />
               </FormGroup>
             </Col>
-          <Col md={4}>
+            <Col md={4}>
               <FormGroup tag="fieldset">
                 <legend>Business Category:</legend>
                 <FormGroup check>
@@ -165,7 +168,7 @@ price: price
                       value="beauty"
                       defaultChecked
                       onChange={(e) => setCategory(e.target.value)}
-                    />{" "}
+                    />{' '}
                     Beauty
                   </Label>
                 </FormGroup>
@@ -176,18 +179,19 @@ price: price
                       name="radio1"
                       value="health"
                       onChange={(e) => setCategory(e.target.value)}
-                    />{" "}
+                    />{' '}
                     Health
                   </Label>
                 </FormGroup>
               </FormGroup>
-</Col>
-           
+            </Col>
           </Row>
           <Row center>
             <Col md={4}>
               <FormGroup>
-                <Label for="examplePassword" password>Password</Label>
+                <Label for="examplePassword" password>
+                  Password
+                </Label>
                 <Input
                   type="password"
                   name="password"
@@ -202,7 +206,7 @@ price: price
               <FormGroup>
                 <Label for="type"> Service Type:</Label>
                 <br />
-                {category === "beauty" && (
+                {category === 'beauty' && (
                   <Input
                     type="select"
                     name="text"
@@ -218,7 +222,7 @@ price: price
                   </Input>
                 )}
 
-                {category === "health" && (
+                {category === 'health' && (
                   <Input
                     type="select"
                     name="text"
@@ -234,69 +238,69 @@ price: price
               </FormGroup>
             </Col>
 
-   
-
-           
             <Col md={3}>
               {/* <AddService /> */}
               <div className="AddService" id="AddService">
-      <Form onSubmit={(event) => onAddService(event)}>
-          <Row form>
-            <Col md={5}>
-              <FormGroup>
-                <Label for="Service">Service:</Label>
-                <Input
-                  type="text"
-                  name="Service"
-                  id="Service"
-                  placeholder="Manicure, haircut"
-                  onChange={(e) => setServiceName(e.target.value)}
-                />
-              </FormGroup>
-            </Col>
-               <Col md={3}>
-               <FormGroup>
-                 <Label for="Price">Price:</Label>
-                 <Input
-                  type="text"
-                  name="Price"
-                  id="Price"
-                  placeholder="Price"
-                  onChange={(e) => setPrice(e.target.value)}
-                />
-              </FormGroup>
-            </Col>
+                <Form onSubmit={(event) => onAddService(event)}>
+                  <Row form>
+                    <Col md={5}>
+                      <FormGroup>
+                        <Label for="Service">Service:</Label>
+                        <Input
+                          type="text"
+                          name="Service"
+                          id="Service"
+                          placeholder="Manicure, haircut"
+                          onChange={(e) => setServiceName(e.target.value)}
+                        />
+                      </FormGroup>
+                    </Col>
+                    <Col md={3}>
+                      <FormGroup>
+                        <Label for="Price">Price:</Label>
+                        <Input
+                          type="text"
+                          name="Price"
+                          id="Price"
+                          placeholder="Price"
+                          onChange={(e) => setPrice(e.target.value)}
+                        />
+                      </FormGroup>
+                    </Col>
 
-            <Col md={3}>
-              <FormGroup>
-                <Label for="exampleSelect">Duration</Label>
-                <Input type="select" name="select" id="exampleSelect" onChange={(e) => setDuration(e.target.value)}>
-                  <option>15 mins</option>
-                  <option>30 mins</option>
-                  <option>45 mins</option>
-                  <option>60 mins</option>
-                  <option>75 mins</option>
-                  <option>90 mins</option>
-                  <option>2 hours</option>
-                </Input>
-              </FormGroup>
+                    <Col md={3}>
+                      <FormGroup>
+                        <Label for="exampleSelect">Duration</Label>
+                        <Input
+                          type="select"
+                          name="select"
+                          id="exampleSelect"
+                          onChange={(e) => setDuration(e.target.value)}
+                        >
+                          <option>15 mins</option>
+                          <option>30 mins</option>
+                          <option>45 mins</option>
+                          <option>60 mins</option>
+                          <option>75 mins</option>
+                          <option>90 mins</option>
+                          <option>2 hours</option>
+                        </Input>
+                      </FormGroup>
+                    </Col>
+
+                    <Button
+                      type="Primary"
+                      color="secondary"
+                      onSubmit={(event) => onAddService(event)}
+                    >
+                      Add Service
+                    </Button>
+                  </Row>
+                </Form>
+              </div>
             </Col>
-        
-          <Button
-            type="Primary"
-            color="secondary"
-            onSubmit={(event) => onAddService(event)}
-          >
-            Add Service
-          </Button>
-   
-        </Row>
-      </Form>
-    
-    </div>
-    </Col>
-            </Row>
-            <Row>
+          </Row>
+          <Row>
             <Col md={4}>
               <FormGroup>
                 <Label for="address">Address:</Label>
@@ -311,7 +315,7 @@ price: price
             </Col>
             <Col md={4}>
               <FormGroup>
-              <Label for="exampleBanner">Banner url:</Label>
+                <Label for="exampleBanner">Banner url:</Label>
                 <Input
                   type="banner"
                   name="banner"
@@ -321,7 +325,7 @@ price: price
                 />
               </FormGroup>
             </Col>
-            </Row>
+          </Row>
           <Row>
             <Col md={4}>
               <FormGroup>
@@ -337,7 +341,7 @@ price: price
             </Col>
             <Col md={4}>
               <FormGroup>
-              <Label for="examplePicture">Picture url:</Label>
+                <Label for="examplePicture">Picture url:</Label>
                 <Input
                   type="picture"
                   name="picture"
@@ -349,7 +353,7 @@ price: price
             </Col>
           </Row>
           <Row>
-          <Col md={1}>
+            <Col md={1}>
               <FormGroup>
                 <Label for="openingTimes">Opening Times</Label>
                 <Input
@@ -427,7 +431,7 @@ price: price
                   <option value="Tuesday">Tuesday</option>
                   <option value="Wednesday">Wednesday</option>
                   <option value="Thursday" selected="selected">
-                  Thursday
+                    Thursday
                   </option>
                   <option value="Friday">Friday</option>
                   <option value="Saturday">Saturday</option>
@@ -438,9 +442,9 @@ price: price
           <Row>
             <Col md={3}>
               <FormGroup>
-              <Label for="exampleStaff">Number of Staff:</Label>
+                <Label for="exampleStaff">Number of Staff:</Label>
                 <Input
-                  type="staff"
+                  type="number"
                   name="staff"
                   id="staff"
                   placeholder=""

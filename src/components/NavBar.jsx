@@ -18,11 +18,9 @@ import { FaUser } from 'react-icons/fa';
 import './ProfileSettings.css';
 
 function NavBar(props) {
-  const [user, setUser] = useState(null);
+  const {user, passUser} = props
   const [isAdmin, setIsAdmin] = useState(false);
-  if (localStorage.getItem('admin') === false) {
-  }
-
+  
   return (
     <div>
       <Navbar
@@ -47,13 +45,13 @@ function NavBar(props) {
           </div>
         )}
         <Collapse navbar>
-          {user && <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="/search">
-                Find a Service
-              </NavLink>
-            </NavItem>
-          </Nav>}
+          {user && (
+            <Nav className="mr-auto" navbar>
+              <NavItem>
+                <NavLink href="/search">Find a Service</NavLink>
+              </NavItem>
+            </Nav>
+          )}
           {isAdmin && (
             <div>
               <NavLink style={{ color: 'white' }} href="/AddPet">
@@ -67,16 +65,18 @@ function NavBar(props) {
           <Nav className="mr-auto" navbar></Nav>
           {!user && (
             <>
-              <Login passUser={(user) => setUser(user)} />
+              <Login passUser={(user) => passUser(user)} />
               <span className="navBar-button">
-                <SignUp passUser={(user) => setUser(user)} />
+                <SignUp passUser={(user) => passUser(user)} />
               </span>
             </>
           )}
-          {user &&  <NavLink href="/ProfileSettings" style={{ color: 'grey' }}>
-            {' '}
-            <FaUser style={{ color: 'grey', right: '0%' }} /> Profile
-          </NavLink>}
+          {user && (
+            <NavLink href="/ProfileSettings" style={{ color: 'grey' }}>
+              {' '}
+              <FaUser style={{ color: 'grey', right: '0%' }} /> Profile
+            </NavLink>
+          )}
         </Collapse>
       </Navbar>
     </div>

@@ -13,17 +13,27 @@ import ProfileSettings from "../src/components/ProfileSettings";
 import Bookings from "../src/components/Bookings";
 
 function App() {
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(null);
+  console.log('user: ', user);
   const [isFirstLoaded, setIsFirstLoaded] = useState(false);
+
+useEffect(() => {
+  let userBrought = localStorage.getItem('user')
+  setUser(userBrought);
+}, [])
 
   return (
     <div className="App">
+      <NavBar
+        user={user}
+      //passUser={user => setUser(user)} 
+      />
       <Router>
         <Switch>
           <Route exact path="/search" component={SearchPage} />
           <Route path="/Provider/:id" component={ServiceProfile} />
           <Route exact path="/" component={Home}></Route>
-          <Route exact path="/Home" component={Dashboard}></Route>
+          <Route exact path="/Home" component={Home}></Route>
           <Route exact path="/Apply" component={Apply}></Route>
           <Route
             exact

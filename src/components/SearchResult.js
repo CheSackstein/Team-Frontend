@@ -8,11 +8,11 @@ export default function SearchResult(props) {
   return (
     <>
       <div className={searchResult.container}>
-        <img
+        {/* <img
           className={searchResult.img}
           src={props && props.obj.profilePicture}
           alt={props ? props.obj.name : 'profilePic'}
-        />
+        /> */}
         <div className={searchResult.data}>
           <h4 className={searchResult.name}>
             <b>{props && props.obj.companyName}</b>

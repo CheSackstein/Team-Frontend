@@ -6,7 +6,8 @@ const BeautyProviders = [
     email: '222@22',
     category: 'beauty',
     type: 'Salon',
-    description: 'We cut hair and do nails with style, love and dedication since 2020.',
+    description:
+      'We cut hair and do nails with style, love and dedication since 2020.',
     appointments: [],
     weekends: 'Friday',
     openingHrs: '09',
@@ -37,7 +38,7 @@ const BeautyProviders = [
       { name: 'manicure', price: 100, duration: 45 },
       { name: 'pedicure', price: 100, duration: 45 }
     ],
-    bannerUrl: 'URL',
+    bannerUrl: '/hairsalon1.jpg',
     profilePictureUrl: '/hairsalon1.jpg',
     staffAvailable: 1,
     OwnerID: 1,

@@ -6,6 +6,7 @@ import serviceProfile from './serviceProfile.module.css';
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { POSTtoProviders } from '../lib/FetchShortcuts';
+import Swal from 'sweetalert2';
 
 export default function Calendar(props) {
   const { openingHrs, closingHrs, availableServices, _id } = props.provider;
@@ -57,7 +58,14 @@ export default function Calendar(props) {
     }
     let appointment = selectedDate.setHours(selectedHour, minutes);
     let data = { spid: _id, date: appointment, service: selectedService }
-    POSTtoProviders('/make-appointment', data )
+    //POSTtoProviders('/make-appointment', data )
+    Swal.fire(
+      'Request saved',
+      'Your appointment has been scheduled',
+      'success'
+    );
+
+    
   }
 
   return (

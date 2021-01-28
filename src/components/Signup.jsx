@@ -65,9 +65,11 @@ function SignUp(props) {
         errs[err.param] = err.msg;
       }
       setErrors(errs);
-    }else {
+    } else {
+      localStorage.setItem('user', user);
+      window.location.reload()
       // use the user object
-      props.passUser(user)  
+      //props.passUser(user)  
     }
   }
 

@@ -46,8 +46,9 @@ Login(findUser);
     const response = await POSTtoUsers('sign-in',frmData);
     console.log('response: ', response);
 
-      localStorage.setItem("user", response);
-      props.passUser(response)
+    localStorage.setItem("user", response);
+      window.location.reload();
+      //props.passUser(response)
   }
 
   return (

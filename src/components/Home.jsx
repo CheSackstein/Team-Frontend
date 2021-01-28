@@ -49,16 +49,15 @@ function Home(props) {
 
   useEffect( async ()=>{
     // check if logged 
-    let response = await auth();
-    console.log('response: ', response);
-    user = response.json()
-    console.log('user: ', user);
+    auth();
+    // console.log('response: ', response);
+    // user = response.json()
+    // console.log('user: ', user);
 
   },[])
 
   return (
     <div id="Home" className="Home">
-      <NavBar />
     </div>
   );
 }
