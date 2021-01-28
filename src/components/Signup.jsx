@@ -1,29 +1,21 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Button,
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   Form,
   Input,
   Label,
   FormGroup,
 } from "reactstrap";
 import { Link, useHistory } from "react-router-dom";
-import { POSTtoUsers,
-  PUTtoUsers,
-  GETFromUsers,
-  GETFromProviders,
-  PUTtoProviders,
-  POSTtoProviders} from '../lib/FetchShortcuts'
+import { POSTtoUsers } from '../lib/FetchShortcuts'
 
-function SignUp(props) {
+function SignUp() {
   const [user, setUser] = useState("");
   const [modalLog, setModalLog] = useState(false);
-  const [firstName, setFirstName] = useState("");
   const [fullName, setFullname] = useState("");
-  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("Hi");
   const [cell, setCell] = useState("");
   const [password, setPassword] = useState("");
@@ -43,8 +35,6 @@ function SignUp(props) {
       password: password,
       confirmPassword: passwordConfirm,
     };
-
-    //setUser(newUser);
 
     Register(newUser);
   }
