@@ -16,20 +16,14 @@ import {
 import { FontAwesome } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa';
 import './ProfileSettings.css'
-
+import './NavBar.css'
 function NavBar(props) {
   const [isAdmin, setIsAdmin] = useState(false);
   if (localStorage.getItem('admin') === false) {
   }
   return (
-    <div>
+    <div id="NavBar">
       <Navbar
-        style={{
-          fontFamily: 'Cormorant Garamond Light',
-          fontSize: '20px',
-          borderColor: 'Black',
-          borderRadius: '5px'
-        }}
         expand="md"
         light
       >
