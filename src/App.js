@@ -9,6 +9,8 @@ import { GETFromUsers } from "./lib/FetchShortcuts";
 import ServiceProfile from "./components/ServiceProfile";
 import Apply from "../src/components/Apply/Apply";
 import ProfileSettings from "../src/components/ProfileSettings";
+import Err500 from "./components/Errors/Err500";
+import Err404 from "./components/Errors/Err404";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -24,7 +26,7 @@ useEffect(() => {
     <div className="App">
       <NavBar
         user={user}
-      //passUser={user => setUser(user)} 
+        //passUser={user => setUser(user)}
       />
       <Router>
         <Switch>
@@ -38,6 +40,8 @@ useEffect(() => {
             path="/ProfileSettings"
             component={ProfileSettings}
           ></Route>
+          <Route path="/err500" component={Err500} />
+          <Route component={Err404} />
           <Route>
             <ul>
               <li>
