@@ -23,12 +23,13 @@ const retrieveAndSetUser = (res, setUser) => {
 };
 
 
-const auth = (setUser, data) => {
-    fetch(`${BaseURL}/api/users/auth`, {
-            method: "POST",
-            credentials: "include"
-    }).then((res) => res.json())
-        .then(data => console.log(data)) // retrieveAndSetUser(data, setUser)
+const auth = async () => {
+   let res = await fetch(`${BaseURL}/api/users/auth`, {
+      method: 'POST',
+      credentials: 'include'
+    })
+    let user = await res.json()
+    return user
 }
 
 const GETFromUsers = (endpoint, setUser) => {

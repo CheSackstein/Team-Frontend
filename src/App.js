@@ -5,28 +5,29 @@ import Home from "../src/components/Home/Home";
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import SearchPage from "./components/SearchPage";
-import { GETFromUsers } from "./lib/FetchShortcuts";
+import { auth } from "./lib/FetchShortcuts";
 import ServiceProfile from "./components/ServiceProfile";
 import Apply from "../src/components/Apply/Apply";
 import ProfileSettings from "../src/components/ProfileSettings";
 
 function App() {
   const [user, setUser] = useState(null);
-  console.log('user: ', user);
   const [isFirstLoaded, setIsFirstLoaded] = useState(false);
 
-useEffect(() => {
+  useEffect(() => {
+    // auth().then(user => {
+    //   setUser(user)
+    // }).then(setIsFirstLoaded(true))
+    
   let userBrought = localStorage.getItem('user')
   setUser(userBrought);
   setIsFirstLoaded(true)
 }, [])
 
-  console.log(user);
   return (
     isFirstLoaded && <div className="App">
       <NavBar
         user={user}
-      //passUser={user => setUser(user)} 
       />
       <Router>
         <Switch>
@@ -43,28 +44,13 @@ useEffect(() => {
             path="/ProfileSettings"
             user={user}
             render={props => {
-              if (!user) {
+              if (user) {
+                return <ProfileSettings  />
+              } else {
                 return <Redirect to='Home' />;
               }
-              return <ProfileSettings  />
             }}
           ></Route>
-          <Route>
-            <ul>
-              <li>
-                <Link to="/search">Search</Link>
-              </li>
-              {/* <li>
-                <Link to="/ProfileSettings">ProfileSettings</Link>
-              </li>
-              <li>
-                <Link to="/Apply">Apply</Link>
-              </li> */}
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-            </ul>
-          </Route>
         </Switch>
       </Router>
     </div>

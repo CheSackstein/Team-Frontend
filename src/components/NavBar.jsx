@@ -26,9 +26,7 @@ function NavBar(props) {
   const  handleLogout = async ( ) =>{
     localStorage.clear()
     const response = await POSTtoUsersUnhandled('log-out');
-    console.log('response: ', response);
-    //when we set user by cookie we'll delete this
-          window.location.reload();
+    window.location.reload();
 
   }
 
