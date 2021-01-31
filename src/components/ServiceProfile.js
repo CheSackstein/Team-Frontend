@@ -49,7 +49,6 @@ export default function ServiceProfile(props) {
     list = [<p key ='vnaein23'>no services registered yet</p>]
   }
 
-  
   return (
     <div>
       <div
@@ -67,7 +66,7 @@ export default function ServiceProfile(props) {
           </h2>
           <p>
             <i>
-              Open from: {openingHrs} to {closingHrs}
+              Open from: {parseInt(openingHrs)}:00 to {parseInt(closingHrs)}:00
             </i>
           </p>
           <hr />

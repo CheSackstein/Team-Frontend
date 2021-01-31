@@ -20,7 +20,7 @@ export default function SearchForm(props) {
 
   const onSubmit = (data) => {
     props.search(data);
-  };
+  }
 
   return (
     <>
