@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import HomeImage from "../src/components/Home/bOOKit.png";
-import "./App.css";
+import styles from './App.module.css';
 import Home from "../src/components/Home/Home";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import SearchPage from "./components/SearchPage";
+import NavBar from "./components/navBar/NavBar";
+import SearchPage from "./components/Search/SearchPage";
 import { GETFromUsers } from "./lib/FetchShortcuts";
-import ServiceProfile from "./components/ServiceProfile";
+import ServiceProfile from "./components/ServiceProfile/ServiceProfile";
 import Apply from "../src/components/Apply/Apply";
 import ProfileSettings from "../src/components/ProfileSettings";
 import Err500 from "./components/Errors/Err500";
@@ -23,10 +23,9 @@ useEffect(() => {
 }, [])
 
   return (
-    <div className="App">
+    <div className={styles.App}>
       <NavBar
         user={user}
-        //passUser={user => setUser(user)}
       />
       <Router>
         <Switch>

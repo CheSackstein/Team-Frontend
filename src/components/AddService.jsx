@@ -1,7 +1,7 @@
 import React from "react";
 import App from "../App";
 import { useState } from "react";
-import NavBar from "./NavBar";
+import NavBar from "./navBar/NavBar";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import {
   Button,

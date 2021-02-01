@@ -4,7 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import serviceProfile from './serviceProfile.module.css';
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { POSTtoProviders } from '../lib/FetchShortcuts';
+import { POSTtoProviders } from '../../lib/FetchShortcuts';
 import Swal from 'sweetalert2';
 
 export default function Calendar(props) {

@@ -1,0 +1,29 @@
+.buttonSpan {
+    margin-left: 1.5rem;
+}
+
+.button {
+    height: 70px;
+    width: 130px;
+    border-radius: 20px;
+    font-size: 20px;
+    left: 20px;
+    color: white;
+    background-color: #6c757d;
+    border: 1px solid #6c757d;
+}
+
+.bar {
+    font-family: Cormorant Garamond Light; 
+    font-size: 20px; 
+    border-color: Black;
+    border-radius: 5px
+}
+
+.txt {
+    color: grey;
+}
+
+.txt:hover {
+    color: rgb(14, 13, 13);
+}

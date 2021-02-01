@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Login from './Login';
-import SignUp from './Signup';
+import Login from '../Login';
+import SignUp from '../Signup';
 import {
   Collapse,
   Container,
@@ -16,10 +16,11 @@ import {
 } from 'reactstrap';
 import { FontAwesome } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa';
-import './ProfileSettings.css';
-import { POSTtoUsersUnhandled } from '../lib/FetchShortcuts';
+//import './ProfileSettings.css';
+import navBar from "./navBar.module.css";
+import { POSTtoUsersUnhandled } from '../../lib/FetchShortcuts';
 
-function NavBar(props) {
+function NavBar(props) { 
   const {user, passUser} = props
   const [isAdmin, setIsAdmin] = useState(false);
   
@@ -34,23 +35,14 @@ function NavBar(props) {
 
   return (
     <div>
-      <Navbar
-        style={{
-          fontFamily: 'Cormorant Garamond Light',
-          fontSize: '20px',
-          borderColor: 'Black',
-          borderRadius: '5px'
-        }}
-        expand="md"
-        light
-      >
+      <Navbar className={navBar.bar} expand="md" light>
         <NavbarBrand href="/Home" style={{ fontSize: '34px' }}>
           BookIt
         </NavbarBrand>
         <NavbarToggler />
         {user && user.type !== 'provider' && (
           <div>
-            <NavLink style={{ color: 'grey' }} href="/Apply">
+            <NavLink className={navBar.txt} href="/Apply">
               Register a Company
             </NavLink>
           </div>
@@ -59,7 +51,7 @@ function NavBar(props) {
           {user && (
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink href="/search">Find a Service</NavLink>
+                <NavLink className={navBar.txt} href="/search">Find a Service</NavLink>
               </NavItem>
             </Nav>
           )}
@@ -68,7 +60,7 @@ function NavBar(props) {
           {!user && (
             <>
               <Login passUser={(user) => passUser(user)} />
-              <span className="navBar-button">
+              <span className={navBar.buttonSpan}>
                 <SignUp passUser={(user) => passUser(user)} />
               </span>
             </>
@@ -76,24 +68,18 @@ function NavBar(props) {
 
           {user && (
             <>
-              <span className="navBar-button">
-                <Button
+              <span className={navBar.buttonSpan}>
+                <button
                   variant="info"
-                  style={{
-                    height: '70px',
-                    width: '130px',
-                    borderRadius: '20px',
-                    fontSize: '20px',
-                    left: '20px'
-                  }}
+                  className={navBar.button}
                   onClick={() => handleLogout()}
                 >
                   Logout
-                </Button>
+                </button>
               </span>
-              <NavLink href="/ProfileSettings" style={{ color: 'grey' }}>
+              <NavLink href="/ProfileSettings" className={navBar.txt}>
                 {' '}
-                <FaUser style={{ color: 'grey', right: '0%' }} /> Profile
+                <FaUser className={navBar.txt} /> Profile
               </NavLink>
             </>
           )}
