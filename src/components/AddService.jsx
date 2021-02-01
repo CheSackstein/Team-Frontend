@@ -1,8 +1,5 @@
 import React from "react";
-import App from "../App";
 import { useState } from "react";
-import NavBar from "./navBar/NavBar";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import {
   Button,
   Form,
@@ -11,15 +8,9 @@ import {
   Row,
   Col,
   FormGroup,
-  FormText,
 } from "reactstrap";
 import "./Apply/Apply.css";
-import { POSTtoUsers,
-  PUTtoUsers,
-  GETFromUsers,
-  GETFromProviders,
-  PUTtoProviders,
-  POSTtoProviders} from '../lib/FetchShortcuts';
+import { POSTtoProviders} from '../lib/FetchShortcuts';
 
 
 function AddService(props) {
@@ -33,9 +24,9 @@ function AddService(props) {
   function onAddService(event) {
     event.preventDefault();
     const formData = {
-service: serviceName,
-duration: duration,
-price: price
+      service: serviceName,
+      duration: duration,
+      price: price
     };
 
   
@@ -65,9 +56,9 @@ price: price
  
   const submitValueApply = () => {
     const frmdetails = {
- serviceName: serviceName,
- duration:duration,
- price:price
+      serviceName: serviceName,
+      duration:duration,
+      price:price
     };
     console.log(frmdetails);
   };

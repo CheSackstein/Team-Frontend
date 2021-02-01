@@ -2,14 +2,13 @@ import React from "react";
 import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Button, Form, Input, Label, Row, Col, FormGroup, Container } from "reactstrap";
-import HomeImage from "./Home/bOOKit.png";
-import "./ProfileSettings.css";
+import styles from './ProfileSettings.module.css';
 import { POSTtoUsers,
   PUTtoUsers,
   GETFromUsers,
   GETFromProviders,
   PUTtoProviders,
-  POSTtoProviders} from '../lib/FetchShortcuts'
+  POSTtoProviders} from '../../lib/FetchShortcuts'
 
 function ProfileSettings(props) {
 
@@ -51,31 +50,22 @@ async function getUser(){
 }
 
   return (
-    <div>
-      <div
-        className="profileSettings"
-        id="profileSettings"
-      >
-        <Container className="Form" id="Form" >
-        <Form onSubmit={(event) => Update(event)} >
-        <Row >
-        <Col md={3}> 
+      <div className={styles.profileSettings} id="profileSettings">
+        <Container className={styles.Form} id="Form">
+          <Form onSubmit={(event) => Update(event)}>
+            <Row>
+              <Col md={3}>
                 <FormGroup>
                   <Label for="fullName">Full name:</Label>
                   <Input
                     type="text"
                     name="fullName"
                     id="fullName"
-
                     placeholder="Full Name"
-
-                   
-
                     onChange={(e) => setFullName(e.target.value)}
                   />
                 </FormGroup>
-                </Col>
-
+              </Col>
             </Row>
             <Row form>
               <Col md={3}>
@@ -90,8 +80,8 @@ async function getUser(){
                   />
                 </FormGroup>
               </Col>
-              </Row>
-              <Row >
+            </Row>
+            <Row>
               <Col md={3}>
                 <FormGroup>
                   <Label for="exampleEmail">Email</Label>
@@ -104,8 +94,8 @@ async function getUser(){
                   />
                 </FormGroup>
               </Col>
-</Row>
-<Row>
+            </Row>
+            <Row>
               <Col md={3}>
                 <FormGroup>
                   <Label for="examplePassword">Password</Label>
@@ -120,7 +110,7 @@ async function getUser(){
               </Col>
             </Row>
 
-<Row>
+            <Row>
               <Col md={3}>
                 <FormGroup>
                   <Label for="currentPassword">Current Password:</Label>
@@ -134,21 +124,21 @@ async function getUser(){
                 </FormGroup>
               </Col>
             </Row>
-<Row>
-            <Button
-              type="Primary"
-              color="secondary"
-              onSubmit={(event) => Update(event)}
-              className="changeBtn"
-              id="changeBtn"
-            >
-              Save Changes
-            </Button>
-            </Row>   
-        </Form>
+            <Row>
+              <Button
+                type="Primary"
+                color="secondary"
+                onSubmit={(event) => Update(event)}
+                className={styles.changeBtn}
+                id="changeBtn"
+              >
+                Save Changes
+              </Button>
+            </Row>
+          </Form>
         </Container>
       </div>
-    </div>
+  
   );
 }
 

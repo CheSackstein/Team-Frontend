@@ -8,7 +8,7 @@ import SearchPage from "./components/Search/SearchPage";
 import { GETFromUsers } from "./lib/FetchShortcuts";
 import ServiceProfile from "./components/ServiceProfile/ServiceProfile";
 import Apply from "../src/components/Apply/Apply";
-import ProfileSettings from "../src/components/ProfileSettings";
+import ProfileSettings from "./components/ProfileSettings/ProfileSettings";
 import Err500 from "./components/Errors/Err500";
 import Err404 from "./components/Errors/Err404";
 
