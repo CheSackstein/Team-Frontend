@@ -1,8 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import NavBar from "../NavBar";
-import AddService from '../AddService';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import AddService from './AddService';
+import styles from './Apply.module.css';
 import {
   Button,
   Form,
@@ -12,19 +11,10 @@ import {
   Col,
   FormGroup,
   FormText,
-  Select
 } from 'reactstrap';
-import "./Apply.css"
-import {
-  POSTtoUsers,
-  PUTtoUsers,
-  GETFromUsers,
-  GETFromProviders,
-  PUTtoProviders,
-  POSTtoProviders
-} from '../../lib/FetchShortcuts';
+import { POSTtoProviders } from '../../lib/FetchShortcuts';
 
-export default function Apply(props) {
+export default function Apply() {
 const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [company, setCompany] = useState('');
@@ -97,10 +87,10 @@ price: price
 
 
   return (
-    <div className="Apply" id="Apply">
+    <div className={styles.apply} id="Apply">
       <Form
         onSubmit={(event) => onApply(event)}
-        className='mx-5 rounded px-3 py-1'
+        className="mx-5 rounded px-3 py-1"
         style={{ backgroundColor: 'rgb(222,222,222)' }}
       >
         <FormGroup>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Redirect, useParams, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { GETFromProviders } from '../lib/FetchShortcuts';
+import { GETFromProviders } from '../../lib/FetchShortcuts';
 import serviceProfile from './serviceProfile.module.css';
-import { BeautyProviders } from '../lib/mockProviders';
+import { BeautyProviders } from '../../lib/mockProviders';
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from 'reactstrap';
 import 'react-datepicker/dist/react-datepicker.css';
