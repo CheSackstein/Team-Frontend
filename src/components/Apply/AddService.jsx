@@ -9,9 +9,7 @@ import {
   Col,
   FormGroup,
 } from "reactstrap";
-import "./Apply/Apply.css";
-import { POSTtoProviders} from '../lib/FetchShortcuts';
-
+import { POSTtoProviders} from '../../lib/FetchShortcuts';
 
 function AddService(props) {
   const [provider, setProvider] = useState("");
@@ -64,7 +62,7 @@ function AddService(props) {
   };
 
   return (
-    <div className="AddService" id="AddService">
+    <div className="AddService">
       <Form onSubmit={(event) => onAddService(event)}>
           <Row form>
             <Col md={5}>
@@ -73,7 +71,6 @@ function AddService(props) {
                 <Input
                   type="text"
                   name="Service"
-                  id="Service"
                   placeholder="Manicure, haircut"
                   onChange={(e) => setServiceName(e.target.value)}
                 />
@@ -86,7 +83,6 @@ function AddService(props) {
                 <Input
                   type="text"
                   name="Price"
-                  id="Price"
                   placeholder="Price"
                   onChange={(e) => setPrice(e.target.value)}
                 />
@@ -96,7 +92,7 @@ function AddService(props) {
             <Col md={3}>
               <FormGroup>
                 <Label for="exampleSelect">Duration</Label>
-                <Input type="select" name="select" id="exampleSelect" onChange={(e) => setDuration(e.target.value)}>
+                <Input type="select" name="select" onChange={(e) => setDuration(e.target.value)}>
                   <option>15 mins</option>
                   <option>30 mins</option>
                   <option>45 mins</option>

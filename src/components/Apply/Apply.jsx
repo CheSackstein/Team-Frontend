@@ -1,9 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import NavBar from "../navBar/NavBar";
-import AddService from '../AddService';
+import AddService from './AddService';
 import styles from './Apply.module.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import {
   Button,
   Form,
@@ -13,19 +11,10 @@ import {
   Col,
   FormGroup,
   FormText,
-  Select
 } from 'reactstrap';
-//import "./Apply.css"
-import {
-  POSTtoUsers,
-  PUTtoUsers,
-  GETFromUsers,
-  GETFromProviders,
-  PUTtoProviders,
-  POSTtoProviders
-} from '../../lib/FetchShortcuts';
+import { POSTtoProviders } from '../../lib/FetchShortcuts';
 
-export default function Apply(props) {
+export default function Apply() {
 const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [company, setCompany] = useState('');
