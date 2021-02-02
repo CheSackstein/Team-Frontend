@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import NavBar from "../navBar/NavBar";
 import AddService from '../AddService';
+import styles from './Apply.module.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import {
   Button,
@@ -14,7 +15,7 @@ import {
   FormText,
   Select
 } from 'reactstrap';
-import "./Apply.css"
+//import "./Apply.css"
 import {
   POSTtoUsers,
   PUTtoUsers,
@@ -97,10 +98,10 @@ price: price
 
 
   return (
-    <div className="Apply" id="Apply">
+    <div className={styles.apply} id="Apply">
       <Form
         onSubmit={(event) => onApply(event)}
-        className='mx-5 rounded px-3 py-1'
+        className="mx-5 rounded px-3 py-1"
         style={{ backgroundColor: 'rgb(222,222,222)' }}
       >
         <FormGroup>
