@@ -1,0 +1,45 @@
+.container-500 {
+  display: flex;
+}
+
+.doctorImgDiv {
+  width: 50%;
+  margin: 1rem 0 1rem 0;
+}
+
+.doctorImg {
+  max-width: 100%;
+  max-height: calc(100vh - 7rem);
+}
+
+.error500-message {
+  margin: 1rem 0 0 0;
+  font-size: 2rem;
+}
+
+.error500-message > p {
+  padding: 3rem 0 0 0;
+}
+
+.container-404 {
+  display: flex;
+}
+
+.barberImgDiv {
+  width: 50%;
+  margin: 1rem 0 1rem 0;
+}
+
+.barberImg {
+  max-width: 100%;
+  max-height: calc(100vh - 7rem);
+}
+
+.error404-message {
+  margin: 1rem 0 0 0;
+  font-size: 2rem;
+}
+
+.error404-message > p {
+  padding: 3rem 0 0 0;
+}
