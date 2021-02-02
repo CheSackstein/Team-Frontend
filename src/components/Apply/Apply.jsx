@@ -23,9 +23,13 @@ import {
   PUTtoProviders,
   POSTtoProviders
 } from '../../lib/FetchShortcuts';
+import { useForm } from "react-hook-form";
+
 
 export default function Apply(props) {
-const [email, setEmail] = useState('');
+  const { register, handleSubmit, watch, errors, setValue } = useForm();
+  const onSubmit = data => console.log(data);
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [company, setCompany] = useState('');
   const [description, setDescription] = useState('');
@@ -38,7 +42,7 @@ const [email, setEmail] = useState('');
   const [openingHrs, setOpeningHrs] = useState('09');
   const [closingHrs, setClosingHrs] = useState('17');
   const [Hrs, setHrs] = useState('');
-  const [errors, setErrors] = useState("");
+  // const [errors, setErrors] = useState("");
   const [ profilePictureURL, setProfilePictureUrl ] = useState("");
   const [ bannerURL, setBannerUrl ] = useState("");
   const [ daysOff, setDaysOff ] = useState("");
@@ -48,7 +52,7 @@ const [email, setEmail] = useState('');
   const [serviceName, setServiceName] = useState("");
   const [availableServices, setAvailableServices] = useState({});
 
-  
+  console.log(watch("fullName"));
   function onAddService(event) {
     event.preventDefault();
     const  availableServices= {
@@ -95,11 +99,19 @@ price: price
    
   }
 
+  const handleChange = (e) => {
+    setValue("AntdInput", e.target.value);
+  }
+  
+  React.useEffect(() => {
+    register("AntdInput"); // custom register Antd input
+  }, [register]);
+
 
   return (
     <div className="Apply" id="Apply">
       <Form
-        onSubmit={(event) => onApply(event)}
+        onSubmit={handleSubmit(onSubmit)}
         className='mx-5 rounded px-3 py-1'
         style={{ backgroundColor: 'rgb(222,222,222)' }}
       >
@@ -113,7 +125,8 @@ price: price
                   name="fullName"
                   id="fullName"
                   placeholder="Full Name"
-                  onChange={(e) => setFullName(e.target.value)}
+                  onChange={handleChange}
+                 // onChange={(e) => setFullName(e.target.value)}
                 />
               </FormGroup>
             </Col>
@@ -121,11 +134,13 @@ price: price
               <FormGroup>
                 <Label for="description"> Short description of company:</Label>
                 <Input
+                //  ref={register}
                   type="textarea"
                   name="text"
                   id="description"
                   placeholder="A little about your company ..."
-                  onChange={(e) => setDescription(e.target.value)}
+                  onChange={handleChange}
+                  // onChange={(e) => setDescription(e.target.value)}
                 />
               </FormGroup>
             </Col>
@@ -136,6 +151,7 @@ price: price
               <FormGroup>
                 <Label for="phone">Cell:</Label>
                 <Input
+                 ref={register}
                   type="number"
                   name="cellPhone"
                   id="cellPhone"
@@ -148,6 +164,7 @@ price: price
               <FormGroup>
                 <Label for="exampleEmail">Email</Label>
                 <Input
+                 ref={register}
                   type="email"
                   name="email"
                   id="exampleEmail"
@@ -162,6 +179,7 @@ price: price
                 <FormGroup check>
                   <Label check>
                     <Input
+                     ref={register}
                       type="radio"
                       name="radio1"
                       value="beauty"
@@ -192,6 +210,7 @@ price: price
                   Password
                 </Label>
                 <Input
+                 ref={register}
                   type="password"
                   name="password"
                   id="examplePassword"
@@ -207,6 +226,7 @@ price: price
                 <br />
                 {category === 'beauty' && (
                   <Input
+                  ref={register}
                     type="select"
                     name="text"
                     id="type"
@@ -223,6 +243,7 @@ price: price
 
                 {category === 'health' && (
                   <Input
+                  ref={register}
                     type="select"
                     name="text"
                     id="type"
@@ -246,6 +267,7 @@ price: price
                       <FormGroup>
                         <Label for="Service">Service:</Label>
                         <Input
+                         ref={register}
                           type="text"
                           name="Service"
                           id="Service"
@@ -258,6 +280,7 @@ price: price
                       <FormGroup>
                         <Label for="Price">Price:</Label>
                         <Input
+                         ref={register}
                           type="text"
                           name="Price"
                           id="Price"
@@ -271,6 +294,7 @@ price: price
                       <FormGroup>
                         <Label for="exampleSelect">Duration</Label>
                         <Input
+                         ref={register}
                           type="select"
                           name="select"
                           id="exampleSelect"
@@ -288,6 +312,7 @@ price: price
                     </Col>
 
                     <Button
+                     ref={register}
                       type="Primary"
                       color="secondary"
                       onSubmit={(event) => onAddService(event)}
@@ -304,6 +329,7 @@ price: price
               <FormGroup>
                 <Label for="address">Address:</Label>
                 <Input
+                 ref={register}
                   type="textarea"
                   name="text"
                   id="address"
@@ -316,6 +342,7 @@ price: price
               <FormGroup>
                 <Label for="exampleBanner">Banner url:</Label>
                 <Input
+                 ref={register}
                   type="banner"
                   name="banner"
                   id="exampleBanner"
@@ -330,6 +357,7 @@ price: price
               <FormGroup>
                 <Label for="exampleCompany">Company Name:</Label>
                 <Input
+                 ref={register}
                   type="company"
                   name="company"
                   id="exampleCompnay"
@@ -342,6 +370,7 @@ price: price
               <FormGroup>
                 <Label for="examplePicture">Picture url:</Label>
                 <Input
+                 ref={register}
                   type="picture"
                   name="picture"
                   id="examplePicture"
@@ -356,6 +385,7 @@ price: price
               <FormGroup>
                 <Label for="openingTimes">Opening Times</Label>
                 <Input
+                 ref={register}
                   type="select"
                   name="select"
                   id="openingTimes"
@@ -388,6 +418,7 @@ price: price
               <FormGroup>
                 <Label for="closingTimes">Closing Times</Label>
                 <Input
+                 ref={register}
                   type="select"
                   name="select"
                   id="closingTimes"
@@ -420,6 +451,7 @@ price: price
               <FormGroup>
                 <Label for="daysOff">Days Off:</Label>
                 <Input
+                 ref={register}
                   type="select"
                   name="select"
                   id="daysOff"
@@ -443,6 +475,7 @@ price: price
               <FormGroup>
                 <Label for="exampleStaff">Number of Staff:</Label>
                 <Input
+                 ref={register}
                   type="number"
                   name="staff"
                   id="staff"
@@ -452,13 +485,14 @@ price: price
               </FormGroup>
             </Col>
           </Row>
-          <Button
-            type="Primary"
+          <Input
+          
+            type="submit"
             color="secondary"
-            onSubmit={(event) => onApply(event)}
+            onSubmit={handleSubmit(onSubmit)}
           >
             Save Changes
-          </Button>
+          </Input>
         </FormGroup>
       </Form>
     </div>
