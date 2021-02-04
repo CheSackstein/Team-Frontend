@@ -11,6 +11,7 @@ import Apply from "../src/components/Apply/Apply";
 import ProfileSettings from "./components/ProfileSettings/ProfileSettings";
 import Err500 from "./components/Errors/Err500";
 import Err404 from "./components/Errors/Err404";
+import ServicePage from "./components/ServiceProfile/ServicePage"
 
 function App() {
   const [user, setUser] = useState(null);
@@ -30,7 +31,7 @@ useEffect(() => {
       <Router>
         <Switch>
           <Route exact path="/search" component={SearchPage} />
-          <Route path="/Provider/:id" component={ServiceProfile} />
+          <Route path="/Provider/:id" component={ServicePage} />
           <Route exact path="/" component={Home}></Route>
           <Route exact path="/Home" component={Home}></Route>
           <Route exact path="/Apply" component={Apply}></Route>
