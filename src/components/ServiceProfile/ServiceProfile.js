@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, useParams, useHistory } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { GETFromProviders } from '../../lib/FetchShortcuts';
 import serviceProfile from './serviceProfile.module.css';
@@ -9,11 +9,10 @@ import { Button } from 'reactstrap';
 import 'react-datepicker/dist/react-datepicker.css';
 import Calendar from './Calendar';
 
-export default function ServiceProfile(props) {
+export default function ServiceProfile() {
   const [provider, setProvider] = useState({});
 
   const { id } = useParams();
-  const history = useHistory();
   useEffect(() => {
     // for when we connect to backend
     // GETFromProviders(`getById`, JSON.stringify(id) )
