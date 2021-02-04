@@ -7,19 +7,18 @@ import { BeautyProviders } from '../../lib/mockProviders';
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from 'reactstrap';
 import 'react-datepicker/dist/react-datepicker.css';
-import Calendar from './Calendar';
 
-export default function ServiceProfile(props) {
-  const [provider, setProvider] = useState({});
+export default function ServiceProfile({provider}) {
+  // const [provider, setProvider] = useState({});
 
-  const { id } = useParams();
-  const history = useHistory();
-  useEffect(() => {
-    // for when we connect to backend
-    // GETFromProviders(`getById`, JSON.stringify(id) )
-    // let available = await  GETProviders available times
-    setProvider(BeautyProviders[0]);
-  }, []);
+  // const { id } = useParams();
+  // const history = useHistory();
+  // useEffect(() => {
+  //   // for when we connect to backend
+  //   // GETFromProviders(`getById`, JSON.stringify(id) )
+  //   // let available = await  GETProviders available times
+  //   setProvider(BeautyProviders[0]);
+  // }, []);
 
   const {
     companyName,
@@ -85,9 +84,9 @@ export default function ServiceProfile(props) {
             <em> {address}</em>
           </p>
         </div>
-        <Calendar
+        {/* <Calendar
           provider={provider}
-        ></Calendar>
+        ></Calendar> */}
       </div>
     </div>
   );
