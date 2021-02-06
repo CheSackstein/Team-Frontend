@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, useParams, useHistory } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { GETFromProviders } from '../../lib/FetchShortcuts';
 import serviceProfile from './serviceProfile.module.css';
@@ -51,14 +51,6 @@ export default function ServiceProfile({provider}) {
   
   return (
     <div>
-      <div
-        className={serviceProfile.banner}
-        style={{
-          backgroundImage: `url(${bannerUrl})`,
-          backgroundSize: 'contain'
-        }}
-      />
-
       <div className={serviceProfile.content}>
         <div className={serviceProfile.data}>
           <h2>

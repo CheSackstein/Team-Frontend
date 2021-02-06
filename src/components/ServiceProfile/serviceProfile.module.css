@@ -10,12 +10,12 @@
 }
 
 .data {
-    width: 50vw;
+    width: 40vw;
     margin: 2rem 2rem;
     text-align: left;
     font-weight: 600;
     font-size: large;
-    padding-left: 1rem;
+    padding: 1rem 2rem 1rem 2rem;
     background-color: white;
     border-radius: 6px;
     -webkit-box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 1);
@@ -28,8 +28,10 @@
 }
 
 .calendarForm {
-    width: 50vw;
+    color: rgb(89, 73, 59);
+    text-align: left;
     margin: 2rem 2rem;
+    padding: 1rem 2rem 1rem 2rem;
     background-color: white;
     border-radius: 6px;
     -webkit-box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 1);
@@ -46,6 +48,6 @@
     background-color: rgb(89, 73, 59);
 }
 
-.serviceContainer{
+.serviceContainer {
     display: flex;
 }
