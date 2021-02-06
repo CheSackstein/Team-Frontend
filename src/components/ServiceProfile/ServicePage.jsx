@@ -16,6 +16,7 @@ function ServicePage() {
         setProvider(BeautyProviders[0]);
       }, []);
 
+    
     return (
       <div className={serviceProfile.serviceContainer}>
         <div>
@@ -24,7 +25,7 @@ function ServicePage() {
         <div>
                 <Calendar provider={provider} /> 
         </div>
-      </div>
+      </div>  
     );
 }
 
