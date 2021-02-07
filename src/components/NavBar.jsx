@@ -39,10 +39,11 @@ function NavBar(props) {
           fontFamily: 'Cormorant Garamond Light',
           fontSize: '20px',
           borderColor: 'Black',
-          borderRadius: '5px'
+          borderRadius: '5px',
+          color:'Red'
         }}
         expand="md"
-        light
+      light
       >
         <NavbarBrand href="/Home" style={{ fontSize: '34px' }}>
           BookIt

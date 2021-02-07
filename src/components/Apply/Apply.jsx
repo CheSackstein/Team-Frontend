@@ -27,7 +27,7 @@ import { useForm } from "react-hook-form";
 
 
 export default function Apply(props) {
-  const { register, handleSubmit, watch, errors, setValue } = useForm();
+  const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = data => console.log(data);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -36,7 +36,7 @@ export default function Apply(props) {
   const [address, setAddress] = useState('');
   const [type, setType] = useState('');
   const [category, setCategory] = useState('beauty');
-  const [fullName, setFullName] = useState('');
+  // const [fullName, setFullName] = useState('');
   const [lName, setlName] = useState('');
   const [phone, setPhone] = useState('');
   const [openingHrs, setOpeningHrs] = useState('09');
@@ -52,7 +52,6 @@ export default function Apply(props) {
   const [serviceName, setServiceName] = useState("");
   const [availableServices, setAvailableServices] = useState({});
 
-  console.log(watch("fullName"));
   function onAddService(event) {
     event.preventDefault();
     const  availableServices= {
@@ -66,7 +65,7 @@ price: price
 
     event.preventDefault();
     const formData = {
-      fullName: fullName,
+      // fullName: fullName,
       phone: phone,
       email: email,
       password: password,
@@ -99,20 +98,22 @@ price: price
    
   }
 
-  const handleChange = (e) => {
-    setValue("AntdInput", e.target.value);
-  }
+  // const handleChange = (e) => {
+  //   setValue("AntdInput", e.target.value);
+
+  // }
   
-  React.useEffect(() => {
-    register("AntdInput"); // custom register Antd input
-  }, [register]);
+  // React.useEffect(() => {
+  //   register("AntdInput"); // custom register Antd input
+  // }, [register]);
+ 
+
 
 
   return (
-    <div className="Apply" id="Apply">
+    <div className="Apply" id="Apply" onSubmit={handleSubmit(onSubmit)}>
       <Form
-        onSubmit={handleSubmit(onSubmit)}
-        className='mx-5 rounded px-3 py-1'
+       className='mx-5 rounded px-3 py-1'
         style={{ backgroundColor: 'rgb(222,222,222)' }}
       >
         <FormGroup>
@@ -121,11 +122,11 @@ price: price
               <FormGroup>
                 <Label for="fullName">Full name:</Label>
                 <Input
-                  type="text"
+                  // type="text"
                   name="fullName"
-                  id="fullName"
-                  placeholder="Full Name"
-                  onChange={handleChange}
+                  // id="fullName"
+                  // placeholder="Full Name"
+                  ref={register}
                  // onChange={(e) => setFullName(e.target.value)}
                 />
               </FormGroup>
@@ -134,12 +135,12 @@ price: price
               <FormGroup>
                 <Label for="description"> Short description of company:</Label>
                 <Input
-                //  ref={register}
+                 ref={register}
                   type="textarea"
                   name="text"
                   id="description"
                   placeholder="A little about your company ..."
-                  onChange={handleChange}
+                
                   // onChange={(e) => setDescription(e.target.value)}
                 />
               </FormGroup>
@@ -156,7 +157,7 @@ price: price
                   name="cellPhone"
                   id="cellPhone"
                   placeholder="Cell phone number"
-                  onChange={(e) => setPhone(e.target.value)}
+                  // onChange={(e) => setPhone(e.target.value)}
                 />
               </FormGroup>
             </Col>
@@ -169,7 +170,7 @@ price: price
                   name="email"
                   id="exampleEmail"
                   placeholder="sample@email.com"
-                  onChange={(e) => setEmail(e.target.value)}
+                  // onChange={(e) => setEmail(e.target.value)}
                 />
               </FormGroup>
             </Col>
@@ -192,6 +193,7 @@ price: price
                 <FormGroup check>
                   <Label check>
                     <Input
+                      ref={register}
                       type="radio"
                       name="radio1"
                       value="health"
@@ -486,10 +488,8 @@ price: price
             </Col>
           </Row>
           <Input
-          
-            type="submit"
+           type="submit"
             color="secondary"
-            onSubmit={handleSubmit(onSubmit)}
           >
             Save Changes
           </Input>
