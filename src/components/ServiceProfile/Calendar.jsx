@@ -2,10 +2,12 @@ import { Button } from 'reactstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import serviceProfile from './serviceProfile.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { POSTtoProviders } from '../../lib/FetchShortcuts';
 import Swal from 'sweetalert2';
+import { UserContext } from '../../lib/UserContext';
+
 
 export default function Calendar(props) {
   const { openingHrs, closingHrs, availableServices, _id } = props.provider;
@@ -15,6 +17,8 @@ export default function Calendar(props) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedHour, setSelectedHour] = useState(null);
   const [selectedService, setSelectedService] = useState('');
+  const {user} = useContext(UserContext);
+  
   for (let i = start; i < close; i++) {
     times.push(
       <option key={i} value={i}>
@@ -58,6 +62,7 @@ export default function Calendar(props) {
     let appointment = selectedDate.setHours(selectedHour, minutes);
     let data = { spid: _id, date: appointment, service: selectedService }
     //POSTtoProviders('/make-appointment', data )
+    console.log(user);
     Swal.fire(
       'Request saved',
       'Your appointment has been scheduled',
@@ -89,7 +94,7 @@ export default function Calendar(props) {
         >
           <option
             disabled
-            selected
+            defaultValue
             key={uuidv4()}
             value=""
             className={serviceProfile.service}

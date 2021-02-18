@@ -1,21 +1,19 @@
-import App from "../App";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { POSTtoUsers} from '../lib/FetchShortcuts'
 import {
   Button,
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   Form,
   Input,
   Label,
   FormGroup,
 } from "reactstrap";
-import { Link, useHistory } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
+import { UserContext } from "../lib/UserContext";
 
 function Login(props) {
-  const [user, setUser] = useState("");
   const [findUser, getUser] = useState("");
   const [modalLog, setModalLog] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -29,7 +27,12 @@ function Login(props) {
   const history = useHistory();
   const toggleSign = () => setModalSign(!modalSign);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [errors, setErrors ] = useState("")
+  const [errors, setErrors] = useState("")
+  
+  //USER CONTEXT 
+  //const [user, setUser] = useContext(UserContext)
+
+
   function onLogin(event) {
     event.preventDefault();
 

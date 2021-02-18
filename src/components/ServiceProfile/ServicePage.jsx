@@ -6,11 +6,10 @@ import serviceProfile from "./serviceProfile.module.css";
 import AdminCalendar from "./AdminCalendar";
 
 function ServicePage() {
-  const owner = true;
+  const owner = false;
   const [isLoaded, setIsLoaded] = useState(false);
   const [provider, setProvider] = useState(BeautyProviders[0]);
   const { bannerUrl } = provider;
-  console.log("bannerUrl: ", bannerUrl);
 
   useEffect(() => {
     // for when we connect to backend
