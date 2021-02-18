@@ -48,13 +48,11 @@ function NavBar(props) {
           </div>
         )}
         <Collapse navbar>
-          {user && (
             <Nav className="mr-auto" navbar>
               <NavItem>
                 <NavLink className={navBar.txt} href="/search">Find a Service</NavLink>
               </NavItem>
             </Nav>
-          )}
           {isAdmin && <div></div>}
           <Nav className="mr-auto" navbar></Nav>
           {!user && (
