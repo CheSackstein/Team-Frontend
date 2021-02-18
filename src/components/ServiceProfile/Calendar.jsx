@@ -55,24 +55,32 @@ export default function Calendar(props) {
   }
 
   function handleSubmit() {
-    var minutes = selectedHour - Math.floor(selectedHour);
-    if (minutes) {
-      minutes = 30;
-    }
-    let appointment = selectedDate.setHours(selectedHour, minutes);
-    let data = {
-      spid: _id,
-      date: appointment,
-      service: selectedService,
-      user: user
-    };
-  
-    //POSTtoProviders('/make-appointment', data )
-    Swal.fire(
-      'Request saved',
-      'Your appointment has been scheduled',
-      'success'
-    );
+    if (user) {
+      var minutes = selectedHour - Math.floor(selectedHour);
+      if (minutes) {
+        minutes = 30;
+      }
+      let appointment = selectedDate.setHours(selectedHour, minutes);
+      let data = {
+        spid: _id,
+        date: new Date(appointment),
+        service: selectedService,
+        client: user.fullName
+      };
+      console.log(data);
+      //POSTtoProviders('/make-appointment', data )
+      Swal.fire(
+        'Request saved',
+        'Your appointment has been scheduled',
+        'success'
+      );
+    } else {
+       Swal.fire(
+         'Not signed in',
+         'You must log in to schedule an appointment',
+         'error'
+       );
+   }
 
     
   }
@@ -147,7 +155,7 @@ export default function Calendar(props) {
           <Button
             className={serviceProfile.bookNow}
             id="bookNow"
-            onClick={() => handleSubmit(selectedDate)}
+            onClick={() => handleSubmit()}
           >
             Book Now
           </Button>

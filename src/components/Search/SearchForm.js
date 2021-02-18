@@ -111,6 +111,7 @@ export default function SearchForm(props) {
                     placeholder="find by name"
                   />
                   <span>
+                    {!compress && <br />}
                     <button variant="success" type="submit">
                       {type !== 'other' ? `Find me a ${type}` : 'Search'}
                     </button>
