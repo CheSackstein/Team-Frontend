@@ -30,7 +30,7 @@ function Login(props) {
   const [errors, setErrors] = useState("")
   
   //USER CONTEXT 
-  //const [user, setUser] = useContext(UserContext)
+  //const {user, setUser} = useContext(UserContext)
 
 
   function onLogin(event) {
@@ -40,16 +40,14 @@ function Login(props) {
       email: email,
       password: password,
     };
-Login(findUser);
+    Login(findUser);
   }
 
   async function Login(frmData) {
     const response = await POSTtoUsers('sign-in',frmData);
-    console.log('response: ', response);
-
-    localStorage.setItem("user", response);
-      window.location.reload();
-      //props.passUser(response)
+    const item = JSON.stringify(response);
+    localStorage.setItem('user', item);
+    window.location.reload();
   }
 
   return (

@@ -16,7 +16,9 @@ function App() {
   const [isFirstLoaded, setIsFirstLoaded] = useState(false);
 
 useEffect(() => {
-  let userBrought = localStorage.getItem('user')
+  let userBrought = JSON.parse(localStorage.getItem('user'))
+  //let item = JSON.parse(userBrought);
+  console.log('userBrought: ', userBrought);
   setUser(userBrought);  
 }, [])
 

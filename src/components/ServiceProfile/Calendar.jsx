@@ -60,9 +60,14 @@ export default function Calendar(props) {
       minutes = 30;
     }
     let appointment = selectedDate.setHours(selectedHour, minutes);
-    let data = { spid: _id, date: appointment, service: selectedService }
+    let data = {
+      spid: _id,
+      date: appointment,
+      service: selectedService,
+      user: user
+    };
+  
     //POSTtoProviders('/make-appointment', data )
-    console.log(user);
     Swal.fire(
       'Request saved',
       'Your appointment has been scheduled',
