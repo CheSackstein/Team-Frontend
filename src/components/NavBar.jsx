@@ -28,7 +28,7 @@ function NavBar(props) {
     const response = await POSTtoUsersUnhandled('log-out');
     console.log('response: ', response);
     //when we set user by cookie we'll delete this
-          window.location.reload();
+    window.location.reload();
 
   }
 
@@ -85,7 +85,8 @@ function NavBar(props) {
                     width: '130px',
                     borderRadius: '20px',
                     fontSize: '20px',
-                    left: '20px'
+                    left: '20px',
+                    backgroundColor:'#00c2cb'
                   }}
                   onClick={() => handleLogout()}
                 >

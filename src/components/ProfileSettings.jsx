@@ -51,14 +51,14 @@ async function getUser(){
 }
 
   return (
-    <div>
+  
       <div
         className="profileSettings"
         id="profileSettings"
       >
-        <Container className="Form" id="Form" >
+        <Container className="Form" id="Form"  >
         <Form onSubmit={(event) => Update(event)} >
-        <Row >
+        <Row>
         <Col md={3}> 
                 <FormGroup>
                   <Label for="fullName">Full name:</Label>
@@ -148,7 +148,7 @@ async function getUser(){
         </Form>
         </Container>
       </div>
-    </div>
+    
   );
 }
 

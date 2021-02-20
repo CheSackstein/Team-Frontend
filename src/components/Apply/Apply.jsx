@@ -24,6 +24,7 @@ import {
   POSTtoProviders
 } from '../../lib/FetchShortcuts';
 import { useForm } from "react-hook-form";
+import { data } from 'jquery';
 
 
 export default function Apply(props) {
@@ -53,7 +54,7 @@ export default function Apply(props) {
   const [availableServices, setAvailableServices] = useState({});
 
   function onAddService(event) {
-    event.preventDefault();
+   
     const  availableServices= {
 service: serviceName,
 duration: duration,
@@ -61,28 +62,30 @@ price: price
     };
     setAvailableServices(availableServices)
   }
-  async function onApply(event) {
 
-    event.preventDefault();
-    const formData = {
-      // fullName: fullName,
-      phone: phone,
-      email: email,
-      password: password,
-      companyName: company,
-      description: description,
-      address: address,
-      type: type,
-      category: category,
-      openingHrs: openingHrs,
-      closingHrs: closingHrs,
-      weekends: daysOff,
-      numberOfStaff: numStaff,
-      availableServices: availableServices
-    };
+  async function submit(data) {
 
-    const provider = await POSTtoProviders("become-provider", formData);
-
+  
+    // const formData = {
+    //   fullName: fullName,
+    //   phone: phone,
+    //   email: email,
+    //   password: password,
+    //   companyName: company,
+    //   description: description,
+    //   address: address,
+    //   type: type,
+    //   category: category,
+    //   openingHrs: openingHrs,
+    //   closingHrs: closingHrs,
+    //   weekends: daysOff,
+    //   numberOfStaff: numStaff,
+    //   availableServices: availableServices
+    // };
+    console.log(data)
+  }
+    // const provider = await POSTtoProviders("become-provider", formData);}
+  
     // if(provider.errors){
     //   // display errors
     //   console.log(provider.errors);
@@ -95,8 +98,7 @@ price: price
     //   // use the user object
     //   console.log('PROVIDER:',provider);
     // }
-   
-  }
+
 
   // const handleChange = (e) => {
   //   setValue("AntdInput", e.target.value);
@@ -111,29 +113,32 @@ price: price
 
 
   return (
-    <div className="Apply" id="Apply" onSubmit={handleSubmit(onSubmit)}>
-      <Form
+    <div className="Apply" id="Apply"  >
+      <form id='form' className='form'
        className='mx-5 rounded px-3 py-1'
-        style={{ backgroundColor: 'rgb(222,222,222)' }}
+        onSubmit={handleSubmit(submit)}
       >
         <FormGroup>
           <Row form>
             <Col md={4}>
               <FormGroup>
-                <Label for="fullName">Full name:</Label>
+                <Label >Full name:</Label>
+                <Form>
                 <Input
                   // type="text"
-                  name="fullName"
+                  name="fullname"
                   // id="fullName"
                   // placeholder="Full Name"
-                  ref={register}
+                  ref={register({ required: true })}
                  // onChange={(e) => setFullName(e.target.value)}
                 />
+                </Form>
               </FormGroup>
             </Col>
             <Col md={4}>
               <FormGroup>
                 <Label for="description"> Short description of company:</Label>
+                <Form>
                 <Input
                  ref={register}
                   type="textarea"
@@ -143,14 +148,16 @@ price: price
                 
                   // onChange={(e) => setDescription(e.target.value)}
                 />
+                </Form>
               </FormGroup>
             </Col>
           </Row>
 
           <Row form>
             <Col md={2}>
-              <FormGroup>
+            
                 <Label for="phone">Cell:</Label>
+                <Form>
                 <Input
                  ref={register}
                   type="number"
@@ -159,11 +166,13 @@ price: price
                   placeholder="Cell phone number"
                   // onChange={(e) => setPhone(e.target.value)}
                 />
-              </FormGroup>
+                </Form>
+
             </Col>
             <Col md={2}>
-              <FormGroup>
+            
                 <Label for="exampleEmail">Email</Label>
+                <Form>
                 <Input
                  ref={register}
                   type="email"
@@ -172,13 +181,15 @@ price: price
                   placeholder="sample@email.com"
                   // onChange={(e) => setEmail(e.target.value)}
                 />
-              </FormGroup>
+                </Form>
+            
             </Col>
             <Col md={4}>
               <FormGroup tag="fieldset">
                 <legend>Business Category:</legend>
                 <FormGroup check>
                   <Label check>
+                  <Form>
                     <Input
                      ref={register}
                       type="radio"
@@ -186,19 +197,22 @@ price: price
                       value="beauty"
                       defaultChecked
                       onChange={(e) => setCategory(e.target.value)}
-                    />{' '}
+                    />
+                    </Form>{' '}
                     Beauty
                   </Label>
                 </FormGroup>
                 <FormGroup check>
                   <Label check>
+                  <Form>
                     <Input
                       ref={register}
                       type="radio"
                       name="radio1"
                       value="health"
                       onChange={(e) => setCategory(e.target.value)}
-                    />{' '}
+                    />
+                    </Form>{' '}
                     Health
                   </Label>
                 </FormGroup>
@@ -211,6 +225,7 @@ price: price
                 <Label for="examplePassword" password>
                   Password
                 </Label>
+                <Form>
                 <Input
                  ref={register}
                   type="password"
@@ -219,6 +234,7 @@ price: price
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                </Form>
               </FormGroup>
             </Col>
 
@@ -227,7 +243,7 @@ price: price
                 <Label for="type"> Service Type:</Label>
                 <br />
                 {category === 'beauty' && (
-                  <Input
+                 <Form> <Input
                   ref={register}
                     type="select"
                     name="text"
@@ -241,9 +257,11 @@ price: price
                     <option value="massage">Massage</option>
                     <option value="other">Other</option>
                   </Input>
+                  </Form>
                 )}
 
                 {category === 'health' && (
+                  <Form>
                   <Input
                   ref={register}
                     type="select"
@@ -256,6 +274,7 @@ price: price
                     <option value="dentist">Dentist </option>
                     <option value="other">Other</option>
                   </Input>
+                  </Form>
                 )}
               </FormGroup>
             </Col>
@@ -268,6 +287,7 @@ price: price
                     <Col md={5}>
                       <FormGroup>
                         <Label for="Service">Service:</Label>
+                        <Form>
                         <Input
                          ref={register}
                           type="text"
@@ -276,11 +296,13 @@ price: price
                           placeholder="Manicure, haircut"
                           onChange={(e) => setServiceName(e.target.value)}
                         />
+                        </Form>
                       </FormGroup>
                     </Col>
                     <Col md={3}>
                       <FormGroup>
                         <Label for="Price">Price:</Label>
+                        <Form>
                         <Input
                          ref={register}
                           type="text"
@@ -289,12 +311,14 @@ price: price
                           placeholder="Price"
                           onChange={(e) => setPrice(e.target.value)}
                         />
+                        </Form>
                       </FormGroup>
                     </Col>
 
                     <Col md={3}>
                       <FormGroup>
                         <Label for="exampleSelect">Duration</Label>
+                        <Form>
                         <Input
                          ref={register}
                           type="select"
@@ -310,6 +334,7 @@ price: price
                           <option>90 mins</option>
                           <option>2 hours</option>
                         </Input>
+                        </Form>
                       </FormGroup>
                     </Col>
 
@@ -490,11 +515,12 @@ price: price
           <Input
            type="submit"
             color="secondary"
+
           >
             Save Changes
           </Input>
         </FormGroup>
-      </Form>
+      </form>
     </div>
   );
 }
