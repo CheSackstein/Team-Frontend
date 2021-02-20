@@ -12,26 +12,13 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
-.App {
-    background-image: url('../src/components/2.png');
-    background-position: fixed;
-    background-size: cover;
-    height: 1000px;
-}
 
-.bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    /* Preserve aspet ratio */
-    min-width: 100%;
-    min-height: 100%;
-}
 
 .App-header {
     background-color: #282c34;

@@ -1,6 +1,15 @@
+<<<<<<< HEAD:src/components/Apply/Apply.css
+.Apply {
+  background-image: url("/src/components/BookIt3.png");
+=======
 .apply {
   background-image: url("/src/components/2.png");
+>>>>>>> 3bc753a20a57563a883ad2b7f05771a692939135:src/components/Apply/Apply.module.css
   background-size: cover;
   height: 1000px;
   margin-right: 0%;
+}
+
+#form {
+  background-color:#00c2cb;
 }
