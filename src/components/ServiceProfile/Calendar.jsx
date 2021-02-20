@@ -2,10 +2,12 @@ import { Button } from 'reactstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import serviceProfile from './serviceProfile.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { POSTtoProviders } from '../lib/FetchShortcuts';
+import { POSTtoProviders } from '../../lib/FetchShortcuts';
 import Swal from 'sweetalert2';
+import { UserContext } from '../../lib/UserContext';
+
 
 export default function Calendar(props) {
   const { openingHrs, closingHrs, availableServices, _id } = props.provider;
@@ -15,6 +17,8 @@ export default function Calendar(props) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedHour, setSelectedHour] = useState(null);
   const [selectedService, setSelectedService] = useState('');
+  const {user} = useContext(UserContext);
+  
   for (let i = start; i < close; i++) {
     times.push(
       <option key={i} value={i}>
@@ -51,18 +55,32 @@ export default function Calendar(props) {
   }
 
   function handleSubmit() {
-    var minutes = selectedHour - Math.floor(selectedHour);
-    if (minutes) {
-      minutes = 30;
-    }
-    let appointment = selectedDate.setHours(selectedHour, minutes);
-    let data = { spid: _id, date: appointment, service: selectedService }
-    //POSTtoProviders('/make-appointment', data )
-    Swal.fire(
-      'Request saved',
-      'Your appointment has been scheduled',
-      'success'
-    );
+    if (user) {
+      var minutes = selectedHour - Math.floor(selectedHour);
+      if (minutes) {
+        minutes = 30;
+      }
+      let appointment = selectedDate.setHours(selectedHour, minutes);
+      let data = {
+        spid: _id,
+        date: new Date(appointment),
+        service: selectedService,
+        client: user.fullName
+      };
+      console.log(data);
+      //POSTtoProviders('/make-appointment', data )
+      Swal.fire(
+        'Request saved',
+        'Your appointment has been scheduled',
+        'success'
+      );
+    } else {
+       Swal.fire(
+         'Not signed in',
+         'You must log in to schedule an appointment',
+         'error'
+       );
+   }
 
     
   }
@@ -89,7 +107,7 @@ export default function Calendar(props) {
         >
           <option
             disabled
-            selected
+            defaultValue
             key={uuidv4()}
             value=""
             className={serviceProfile.service}
@@ -137,7 +155,7 @@ export default function Calendar(props) {
           <Button
             className={serviceProfile.bookNow}
             id="bookNow"
-            onClick={() => handleSubmit(selectedDate)}
+            onClick={() => handleSubmit()}
           >
             Book Now
           </Button>

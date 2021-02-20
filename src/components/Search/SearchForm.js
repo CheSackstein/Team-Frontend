@@ -6,6 +6,7 @@ export default function SearchForm(props) {
   const { register, handleSubmit } = useForm();
   const [category, setCategory] = useState('');
   const [type, setType] = useState('');
+  const [compress, setCompress] = useState(false)
 
   const handleCategory = (e) => {
     const value = e.target.value;
@@ -19,6 +20,7 @@ export default function SearchForm(props) {
   };
 
   const onSubmit = (data) => {
+    setCompress(true)
     props.search(data);
   };
 
@@ -29,7 +31,7 @@ export default function SearchForm(props) {
           className={searchPage.formWrapper}
           onSubmit={handleSubmit(onSubmit)}
         >
-          <label htmlFor="category">Please select a category:</label>
+          <label htmlFor="category">Please select a category:*</label>
           <select
             name="category"
             ref={register}
@@ -41,10 +43,11 @@ export default function SearchForm(props) {
             <option value="BEAUTY">Beauty</option>
             <option value="HEALTH">Health and Wellness</option>
           </select>
+          {!compress && <br />}
           {category === 'BEAUTY' && (
             <>
               <span>
-                <label htmlFor="type">What are you looking for?</label>
+                <label htmlFor="type">What are you looking for?*</label>
                 <select
                   name="type"
                   onChange={(e) => handleType(e)}
@@ -72,6 +75,7 @@ export default function SearchForm(props) {
                     placeholder="Tell us what to look for"
                   />
                   <span>
+                    {!compress && <br />}
                     <button variant="success" type="submit">
                       {type !== 'other' ? `Find me a ${type}` : 'Search'}
                     </button>
@@ -107,6 +111,7 @@ export default function SearchForm(props) {
                     placeholder="find by name"
                   />
                   <span>
+                    {!compress && <br />}
                     <button variant="success" type="submit">
                       {type !== 'other' ? `Find me a ${type}` : 'Search'}
                     </button>

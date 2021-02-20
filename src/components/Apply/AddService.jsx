@@ -1,8 +1,5 @@
 import React from "react";
-import App from "../App";
 import { useState } from "react";
-import NavBar from "./NavBar";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import {
   Button,
   Form,
@@ -11,16 +8,8 @@ import {
   Row,
   Col,
   FormGroup,
-  FormText,
 } from "reactstrap";
-import "./Apply/Apply.css";
-import { POSTtoUsers,
-  PUTtoUsers,
-  GETFromUsers,
-  GETFromProviders,
-  PUTtoProviders,
-  POSTtoProviders} from '../lib/FetchShortcuts';
-
+import { POSTtoProviders} from '../../lib/FetchShortcuts';
 
 function AddService(props) {
   const [provider, setProvider] = useState("");
@@ -33,9 +22,9 @@ function AddService(props) {
   function onAddService(event) {
     event.preventDefault();
     const formData = {
-service: serviceName,
-duration: duration,
-price: price
+      service: serviceName,
+      duration: duration,
+      price: price
     };
 
   
@@ -65,15 +54,15 @@ price: price
  
   const submitValueApply = () => {
     const frmdetails = {
- serviceName: serviceName,
- duration:duration,
- price:price
+      serviceName: serviceName,
+      duration:duration,
+      price:price
     };
     console.log(frmdetails);
   };
 
   return (
-    <div className="AddService" id="AddService">
+    <div className="AddService">
       <Form onSubmit={(event) => onAddService(event)}>
           <Row form>
             <Col md={5}>
@@ -82,7 +71,6 @@ price: price
                 <Input
                   type="text"
                   name="Service"
-                  id="Service"
                   placeholder="Manicure, haircut"
                   onChange={(e) => setServiceName(e.target.value)}
                 />
@@ -95,7 +83,6 @@ price: price
                 <Input
                   type="text"
                   name="Price"
-                  id="Price"
                   placeholder="Price"
                   onChange={(e) => setPrice(e.target.value)}
                 />
@@ -105,7 +92,7 @@ price: price
             <Col md={3}>
               <FormGroup>
                 <Label for="exampleSelect">Duration</Label>
-                <Input type="select" name="select" id="exampleSelect" onChange={(e) => setDuration(e.target.value)}>
+                <Input type="select" name="select" onChange={(e) => setDuration(e.target.value)}>
                   <option>15 mins</option>
                   <option>30 mins</option>
                   <option>45 mins</option>

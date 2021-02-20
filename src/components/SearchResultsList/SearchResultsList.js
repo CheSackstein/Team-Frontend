@@ -1,5 +1,5 @@
-import search from './search.module.css';
-import SearchResult from './SearchResult';
+import search from './searchResultsList.module.css';
+import SearchResult from '../SearchResult/SearchResult';
 
 export default function SearchList(props) {
 

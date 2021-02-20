@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Login from './Login';
-import SignUp from './Signup';
+import Login from '../Login';
+import SignUp from '../Signup';
 import {
   Collapse,
   Container,
@@ -16,10 +16,11 @@ import {
 } from 'reactstrap';
 import { FontAwesome } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa';
-import './ProfileSettings.css';
-import { POSTtoUsersUnhandled } from '../lib/FetchShortcuts';
+//import './ProfileSettings.css';
+import navBar from "./navBar.module.css";
+import { POSTtoUsersUnhandled } from '../../lib/FetchShortcuts';
 
-function NavBar(props) {
+function NavBar(props) { 
   const {user, passUser} = props
   const [isAdmin, setIsAdmin] = useState(false);
   
@@ -34,6 +35,7 @@ function NavBar(props) {
 
   return (
     <div>
+<<<<<<< HEAD:src/components/NavBar.jsx
       <Navbar
         style={{
           fontFamily: 'Cormorant Garamond Light',
@@ -45,31 +47,32 @@ function NavBar(props) {
         expand="md"
       light
       >
+=======
+      <Navbar className={navBar.bar} expand="md" light>
+>>>>>>> 3bc753a20a57563a883ad2b7f05771a692939135:src/components/navBar/NavBar.jsx
         <NavbarBrand href="/Home" style={{ fontSize: '34px' }}>
           BookIt
         </NavbarBrand>
         <NavbarToggler />
         {user && user.type !== 'provider' && (
           <div>
-            <NavLink style={{ color: 'grey' }} href="/Apply">
+            <NavLink className={navBar.txt} href="/Apply">
               Register a Company
             </NavLink>
           </div>
         )}
         <Collapse navbar>
-          {user && (
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink href="/search">Find a Service</NavLink>
+                <NavLink className={navBar.txt} href="/search">Find a Service</NavLink>
               </NavItem>
             </Nav>
-          )}
           {isAdmin && <div></div>}
           <Nav className="mr-auto" navbar></Nav>
           {!user && (
             <>
               <Login passUser={(user) => passUser(user)} />
-              <span className="navBar-button">
+              <span className={navBar.buttonSpan}>
                 <SignUp passUser={(user) => passUser(user)} />
               </span>
             </>
@@ -77,9 +80,10 @@ function NavBar(props) {
 
           {user && (
             <>
-              <span className="navBar-button">
-                <Button
+              <span className={navBar.buttonSpan}>
+                <button
                   variant="info"
+<<<<<<< HEAD:src/components/NavBar.jsx
                   style={{
                     height: '70px',
                     width: '130px',
@@ -88,14 +92,17 @@ function NavBar(props) {
                     left: '20px',
                     backgroundColor:'#00c2cb'
                   }}
+=======
+                  className={navBar.button}
+>>>>>>> 3bc753a20a57563a883ad2b7f05771a692939135:src/components/navBar/NavBar.jsx
                   onClick={() => handleLogout()}
                 >
                   Logout
-                </Button>
+                </button>
               </span>
-              <NavLink href="/ProfileSettings" style={{ color: 'grey' }}>
+              <NavLink href="/ProfileSettings" className={navBar.txt}>
                 {' '}
-                <FaUser style={{ color: 'grey', right: '0%' }} /> Profile
+                <FaUser className={navBar.txt} /> Profile
               </NavLink>
             </>
           )}
