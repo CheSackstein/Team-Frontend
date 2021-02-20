@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import SearchForm from './SearchForm'
 import SearchList from '../SearchResultsList/SearchResultsList';
-import {  POSTtoProvidersUnhandled } from '../../lib/FetchShortcuts';
+import {  POSTtoProvidersUnhandled, GETFromProviders } from '../../lib/FetchShortcuts';
 import { BeautyProviders } from "../../lib/mockProviders";
 import Swal from "sweetalert2";
 
