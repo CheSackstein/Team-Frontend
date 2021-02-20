@@ -15,25 +15,25 @@ export default function SearchPage(props) {
     if (data.companyName) {
       queryParams = `?type=${data.type}&category=${data.category}&search=${data.companyName}`;
     } else queryParams = `?type=${data.type}&category=${data.category}`;
-    // try {
-    //   let res = await POSTtoProvidersUnhandled(
-    //     `available-services${queryParams}`,
-    //     data
-    //   );
+    try {
+      let res = await GETFromProviders(
+         `available-services${queryParams}`,
+        data, 
+      );
 
-    //   console.log('res: ', res);
-    //   if (res.ok) {
-    //     let results = await res.json()
-    //     setResultsList(results);
-    //   } else {
-    //     let err = await res.json()
-    //     console.log('err: ', err);
-    //     Swal.fire("A problem ocurred", "Please try again later", "error");
-    //   }
-    // } catch(e){
-    //   console.log('e: ', e);
-    //   Swal.fire('A problem ocurred', 'Please try again later', 'error');
-    // }
+      console.log('res: ', res);
+      if (res.ok) {
+        let results = await res.json()
+        setResultsList(results);
+      } else {
+        let err = await res.json()
+        console.log('err: ', err);
+        Swal.fire("A problem ocurred", "Please try again later", "error");
+      }
+    } catch(e){
+      console.log('e: ', e);
+      Swal.fire('A problem ocurred', 'Please try again later', 'error');
+    }
     setResultsList(BeautyProviders);
   };
 

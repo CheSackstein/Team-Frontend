@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import AddService from './AddService';
 import styles from './Apply.module.css';
+import { useForm } from "react-hook-form";
 import {
   Button,
   Form,
@@ -15,6 +16,7 @@ import {
 import { POSTtoProviders } from '../../lib/FetchShortcuts';
 
 export default function Apply() {
+  const { register, handleSubmit, watch, errors } = useForm();
 const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [company, setCompany] = useState('');
@@ -22,13 +24,13 @@ const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [type, setType] = useState('');
   const [category, setCategory] = useState('beauty');
-  const [fullName, setFullName] = useState('');
+  // const [fullName, setFullName] = useState('');
   const [lName, setlName] = useState('');
   const [phone, setPhone] = useState('');
   const [openingHrs, setOpeningHrs] = useState('09');
   const [closingHrs, setClosingHrs] = useState('17');
   const [Hrs, setHrs] = useState('');
-  const [errors, setErrors] = useState("");
+  // const [errors, setErrors] = useState("");
   const [ profilePictureURL, setProfilePictureUrl ] = useState("");
   const [ bannerURL, setBannerUrl ] = useState("");
   const [ daysOff, setDaysOff ] = useState("");
@@ -38,9 +40,8 @@ const [email, setEmail] = useState('');
   const [serviceName, setServiceName] = useState("");
   const [availableServices, setAvailableServices] = useState({});
 
-  
   function onAddService(event) {
-    event.preventDefault();
+   
     const  availableServices= {
 service: serviceName,
 duration: duration,
@@ -48,28 +49,30 @@ price: price
     };
     setAvailableServices(availableServices)
   }
-  async function onApply(event) {
 
-    event.preventDefault();
-    const formData = {
-      fullName: fullName,
-      phone: phone,
-      email: email,
-      password: password,
-      companyName: company,
-      description: description,
-      address: address,
-      type: type,
-      category: category,
-      openingHrs: openingHrs,
-      closingHrs: closingHrs,
-      weekends: daysOff,
-      numberOfStaff: numStaff,
-      availableServices: availableServices
-    };
+  async function submit(data) {
 
-    const provider = await POSTtoProviders("become-provider", formData);
-
+  
+    // const formData = {
+    //   fullName: fullName,
+    //   phone: phone,
+    //   email: email,
+    //   password: password,
+    //   companyName: company,
+    //   description: description,
+    //   address: address,
+    //   type: type,
+    //   category: category,
+    //   openingHrs: openingHrs,
+    //   closingHrs: closingHrs,
+    //   weekends: daysOff,
+    //   numberOfStaff: numStaff,
+    //   availableServices: availableServices
+    // };
+    console.log(data)
+  }
+    // const provider = await POSTtoProviders("become-provider", formData);}
+  
     // if(provider.errors){
     //   // display errors
     //   console.log(provider.errors);
@@ -82,93 +85,120 @@ price: price
     //   // use the user object
     //   console.log('PROVIDER:',provider);
     // }
-   
-  }
+
+
+  // const handleChange = (e) => {
+  //   setValue("AntdInput", e.target.value);
+
+  // }
+  
+  // React.useEffect(() => {
+  //   register("AntdInput"); // custom register Antd input
+  // }, [register]);
+ 
+
 
 
   return (
-    <div className={styles.apply} id="Apply">
-      <Form
-        onSubmit={(event) => onApply(event)}
-        className="mx-5 rounded px-3 py-1"
-        style={{ backgroundColor: 'rgb(222,222,222)' }}
-      >
+    <div className="Apply" id="Apply"  >
+      <form id='form' className='form'
+       className='mx-5 rounded px-3 py-1'
+        onSubmit={handleSubmit(submit)}>
         <FormGroup>
           <Row form>
             <Col md={4}>
               <FormGroup>
-                <Label for="fullName">Full name:</Label>
+                <Label >Full name:</Label>
+                <Form>
                 <Input
-                  type="text"
-                  name="fullName"
-                  id="fullName"
-                  placeholder="Full Name"
-                  onChange={(e) => setFullName(e.target.value)}
+                  // type="text"
+                  name="fullname"
+                  // id="fullName"
+                  // placeholder="Full Name"
+                  ref={register({ required: true })}
+                 // onChange={(e) => setFullName(e.target.value)}
                 />
+                </Form>
               </FormGroup>
             </Col>
             <Col md={4}>
               <FormGroup>
                 <Label for="description"> Short description of company:</Label>
+                <Form>
                 <Input
+                 ref={register}
                   type="textarea"
                   name="text"
                   id="description"
                   placeholder="A little about your company ..."
-                  onChange={(e) => setDescription(e.target.value)}
+                
+                  // onChange={(e) => setDescription(e.target.value)}
                 />
+                </Form>
               </FormGroup>
             </Col>
           </Row>
 
           <Row form>
             <Col md={2}>
-              <FormGroup>
+            
                 <Label for="phone">Cell:</Label>
+                <Form>
                 <Input
+                 ref={register}
                   type="number"
                   name="cellPhone"
                   id="cellPhone"
                   placeholder="Cell phone number"
-                  onChange={(e) => setPhone(e.target.value)}
+                  // onChange={(e) => setPhone(e.target.value)}
                 />
-              </FormGroup>
+                </Form>
+
             </Col>
             <Col md={2}>
-              <FormGroup>
+            
                 <Label for="exampleEmail">Email</Label>
+                <Form>
                 <Input
+                 ref={register}
                   type="email"
                   name="email"
                   id="exampleEmail"
                   placeholder="sample@email.com"
-                  onChange={(e) => setEmail(e.target.value)}
+                  // onChange={(e) => setEmail(e.target.value)}
                 />
-              </FormGroup>
+                </Form>
+            
             </Col>
             <Col md={4}>
               <FormGroup tag="fieldset">
                 <legend>Business Category:</legend>
                 <FormGroup check>
                   <Label check>
+                  <Form>
                     <Input
+                     ref={register}
                       type="radio"
                       name="radio1"
                       value="beauty"
                       defaultChecked
                       onChange={(e) => setCategory(e.target.value)}
-                    />{' '}
+                    />
+                    </Form>{' '}
                     Beauty
                   </Label>
                 </FormGroup>
                 <FormGroup check>
                   <Label check>
+                  <Form>
                     <Input
+                      ref={register}
                       type="radio"
                       name="radio1"
                       value="health"
                       onChange={(e) => setCategory(e.target.value)}
-                    />{' '}
+                    />
+                    </Form>{' '}
                     Health
                   </Label>
                 </FormGroup>
@@ -181,13 +211,16 @@ price: price
                 <Label for="examplePassword" password>
                   Password
                 </Label>
+                <Form>
                 <Input
+                 ref={register}
                   type="password"
                   name="password"
                   id="examplePassword"
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                </Form>
               </FormGroup>
             </Col>
 
@@ -196,7 +229,8 @@ price: price
                 <Label for="type"> Service Type:</Label>
                 <br />
                 {category === 'beauty' && (
-                  <Input
+                 <Form> <Input
+                  ref={register}
                     type="select"
                     name="text"
                     id="type"
@@ -209,10 +243,13 @@ price: price
                     <option value="massage">Massage</option>
                     <option value="other">Other</option>
                   </Input>
+                  </Form>
                 )}
 
                 {category === 'health' && (
+                  <Form>
                   <Input
+                  ref={register}
                     type="select"
                     name="text"
                     id="type"
@@ -223,6 +260,7 @@ price: price
                     <option value="dentist">Dentist </option>
                     <option value="other">Other</option>
                   </Input>
+                  </Form>
                 )}
               </FormGroup>
             </Col>
@@ -235,32 +273,40 @@ price: price
                     <Col md={5}>
                       <FormGroup>
                         <Label for="Service">Service:</Label>
+                        <Form>
                         <Input
+                         ref={register}
                           type="text"
                           name="Service"
                           id="Service"
                           placeholder="Manicure, haircut"
                           onChange={(e) => setServiceName(e.target.value)}
                         />
+                        </Form>
                       </FormGroup>
                     </Col>
                     <Col md={3}>
                       <FormGroup>
                         <Label for="Price">Price:</Label>
+                        <Form>
                         <Input
+                         ref={register}
                           type="text"
                           name="Price"
                           id="Price"
                           placeholder="Price"
                           onChange={(e) => setPrice(e.target.value)}
                         />
+                        </Form>
                       </FormGroup>
                     </Col>
 
                     <Col md={3}>
                       <FormGroup>
                         <Label for="exampleSelect">Duration</Label>
+                        <Form>
                         <Input
+                         ref={register}
                           type="select"
                           name="select"
                           id="exampleSelect"
@@ -274,10 +320,12 @@ price: price
                           <option>90 mins</option>
                           <option>2 hours</option>
                         </Input>
+                        </Form>
                       </FormGroup>
                     </Col>
 
                     <Button
+                     ref={register}
                       type="Primary"
                       color="secondary"
                       onSubmit={(event) => onAddService(event)}
@@ -294,6 +342,7 @@ price: price
               <FormGroup>
                 <Label for="address">Address:</Label>
                 <Input
+                 ref={register}
                   type="textarea"
                   name="text"
                   id="address"
@@ -306,6 +355,7 @@ price: price
               <FormGroup>
                 <Label for="exampleBanner">Banner url:</Label>
                 <Input
+                 ref={register}
                   type="banner"
                   name="banner"
                   id="exampleBanner"
@@ -320,6 +370,7 @@ price: price
               <FormGroup>
                 <Label for="exampleCompany">Company Name:</Label>
                 <Input
+                 ref={register}
                   type="company"
                   name="company"
                   id="exampleCompnay"
@@ -332,6 +383,7 @@ price: price
               <FormGroup>
                 <Label for="examplePicture">Picture url:</Label>
                 <Input
+                 ref={register}
                   type="picture"
                   name="picture"
                   id="examplePicture"
@@ -346,6 +398,7 @@ price: price
               <FormGroup>
                 <Label for="openingTimes">Opening Times</Label>
                 <Input
+                 ref={register}
                   type="select"
                   name="select"
                   id="openingTimes"
@@ -378,6 +431,7 @@ price: price
               <FormGroup>
                 <Label for="closingTimes">Closing Times</Label>
                 <Input
+                 ref={register}
                   type="select"
                   name="select"
                   id="closingTimes"
@@ -410,6 +464,7 @@ price: price
               <FormGroup>
                 <Label for="daysOff">Days Off:</Label>
                 <Input
+                 ref={register}
                   type="select"
                   name="select"
                   id="daysOff"
@@ -433,6 +488,7 @@ price: price
               <FormGroup>
                 <Label for="exampleStaff">Number of Staff:</Label>
                 <Input
+                 ref={register}
                   type="number"
                   name="staff"
                   id="staff"
@@ -442,15 +498,15 @@ price: price
               </FormGroup>
             </Col>
           </Row>
-          <Button
-            type="Primary"
+          <Input
+           type="submit"
             color="secondary"
-            onSubmit={(event) => onApply(event)}
+
           >
             Save Changes
-          </Button>
+          </Input>
         </FormGroup>
-      </Form>
+      </form>
     </div>
   );
 }

@@ -1,6 +1,11 @@
+
 .apply {
-  background-image: url("/src/components/2.png");
+  background-image: url("../BookIt3.png");
   background-size: cover;
   height: 1000px;
   margin-right: 0%;
+}
+
+#form {
+  background-color:#00c2cb;
 }
