@@ -50,23 +50,11 @@ async function getUser(){
 }
 
   return (
-<<<<<<< HEAD:src/components/ProfileSettings.jsx
-  
-      <div
-        className="profileSettings"
-        id="profileSettings"
-      >
-        <Container className="Form" id="Form"  >
-        <Form onSubmit={(event) => Update(event)} >
-        <Row>
-        <Col md={3}> 
-=======
       <div className={styles.profileSettings} id="profileSettings">
         <Container className={styles.Form} id="Form">
           <Form onSubmit={(event) => Update(event)}>
             <Row>
               <Col md={3}>
->>>>>>> 3bc753a20a57563a883ad2b7f05771a692939135:src/components/ProfileSettings/ProfileSettings.jsx
                 <FormGroup>
                   <Label for="fullName">Full name:</Label>
                   <Input
@@ -150,11 +138,7 @@ async function getUser(){
           </Form>
         </Container>
       </div>
-<<<<<<< HEAD:src/components/ProfileSettings.jsx
-    
-=======
   
->>>>>>> 3bc753a20a57563a883ad2b7f05771a692939135:src/components/ProfileSettings/ProfileSettings.jsx
   );
 }
 

@@ -35,21 +35,7 @@ function NavBar(props) {
 
   return (
     <div>
-<<<<<<< HEAD:src/components/NavBar.jsx
-      <Navbar
-        style={{
-          fontFamily: 'Cormorant Garamond Light',
-          fontSize: '20px',
-          borderColor: 'Black',
-          borderRadius: '5px',
-          color:'Red'
-        }}
-        expand="md"
-      light
-      >
-=======
       <Navbar className={navBar.bar} expand="md" light>
->>>>>>> 3bc753a20a57563a883ad2b7f05771a692939135:src/components/navBar/NavBar.jsx
         <NavbarBrand href="/Home" style={{ fontSize: '34px' }}>
           BookIt
         </NavbarBrand>
@@ -83,18 +69,7 @@ function NavBar(props) {
               <span className={navBar.buttonSpan}>
                 <button
                   variant="info"
-<<<<<<< HEAD:src/components/NavBar.jsx
-                  style={{
-                    height: '70px',
-                    width: '130px',
-                    borderRadius: '20px',
-                    fontSize: '20px',
-                    left: '20px',
-                    backgroundColor:'#00c2cb'
-                  }}
-=======
                   className={navBar.button}
->>>>>>> 3bc753a20a57563a883ad2b7f05771a692939135:src/components/navBar/NavBar.jsx
                   onClick={() => handleLogout()}
                 >
                   Logout

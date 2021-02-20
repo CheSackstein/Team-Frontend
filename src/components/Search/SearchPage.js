@@ -1,14 +1,8 @@
 import {useState} from 'react'
 import SearchForm from './SearchForm'
-<<<<<<< HEAD:src/components/SearchPage.js
-import SearchList from './SearchResultsList';
-import { BaseURL, GETFromProviders, POSTtoProvidersUnhandled } from '../lib/FetchShortcuts';
-import { BeautyProviders } from "../lib/mockProviders";
-=======
 import SearchList from '../SearchResultsList/SearchResultsList';
 import {  POSTtoProvidersUnhandled } from '../../lib/FetchShortcuts';
 import { BeautyProviders } from "../../lib/mockProviders";
->>>>>>> 3bc753a20a57563a883ad2b7f05771a692939135:src/components/Search/SearchPage.js
 import Swal from "sweetalert2";
 
 

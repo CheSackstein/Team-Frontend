@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import AddService from './AddService';
 import styles from './Apply.module.css';
+import { useForm } from "react-hook-form";
 import {
   Button,
   Form,
@@ -12,30 +13,11 @@ import {
   FormGroup,
   FormText,
 } from 'reactstrap';
-<<<<<<< HEAD
-import "./Apply.css"
-import {
-  POSTtoUsers,
-  PUTtoUsers,
-  GETFromUsers,
-  GETFromProviders,
-  PUTtoProviders,
-  POSTtoProviders
-} from '../../lib/FetchShortcuts';
-import { useForm } from "react-hook-form";
-import { data } from 'jquery';
-
-
-export default function Apply(props) {
-  const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = data => console.log(data);
-  const [email, setEmail] = useState('');
-=======
 import { POSTtoProviders } from '../../lib/FetchShortcuts';
 
 export default function Apply() {
+  const { register, handleSubmit, watch, errors } = useForm();
 const [email, setEmail] = useState('');
->>>>>>> 3bc753a20a57563a883ad2b7f05771a692939135
   const [password, setPassword] = useState('');
   const [company, setCompany] = useState('');
   const [description, setDescription] = useState('');
@@ -118,19 +100,10 @@ price: price
 
 
   return (
-<<<<<<< HEAD
     <div className="Apply" id="Apply"  >
       <form id='form' className='form'
        className='mx-5 rounded px-3 py-1'
-        onSubmit={handleSubmit(submit)}
-=======
-    <div className={styles.apply} id="Apply">
-      <Form
-        onSubmit={(event) => onApply(event)}
-        className="mx-5 rounded px-3 py-1"
-        style={{ backgroundColor: 'rgb(222,222,222)' }}
->>>>>>> 3bc753a20a57563a883ad2b7f05771a692939135
-      >
+        onSubmit={handleSubmit(submit)}>
         <FormGroup>
           <Row form>
             <Col md={4}>
