@@ -67,7 +67,6 @@ export default function Calendar(props) {
         service: selectedService,
         client: user.fullName
       };
-      console.log(data);
       //POSTtoProviders('/make-appointment', data )
       Swal.fire(
         'Request saved',
