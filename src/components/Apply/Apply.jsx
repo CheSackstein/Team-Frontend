@@ -13,8 +13,7 @@ import {
   FormGroup,
   FormText,
 } from 'reactstrap';
-import { POSTtoProviders } from '../../lib/FetchShortcuts';
-
+import apply from './Apply.module.css'
 export default function Apply() {
   const { register, handleSubmit, watch, errors } = useForm();
 const [email, setEmail] = useState('');
@@ -100,7 +99,7 @@ price: price
 
 
   return (
-    <div className="Apply" id="Apply"  >
+    <div className="apply.Apply" id="Apply"  >
       <form id='form' className='form'
        className='mx-5 rounded px-3 py-1'
         onSubmit={handleSubmit(submit)}>
@@ -109,7 +108,6 @@ price: price
             <Col md={4}>
               <FormGroup>
                 <Label >Full name:</Label>
-                <Form>
                 <Input
                   // type="text"
                   name="fullname"
@@ -118,7 +116,7 @@ price: price
                   ref={register({ required: true })}
                  // onChange={(e) => setFullName(e.target.value)}
                 />
-                </Form>
+              
               </FormGroup>
             </Col>
             <Col md={4}>
@@ -205,7 +203,7 @@ price: price
               </FormGroup>
             </Col>
           </Row>
-          <Row center>
+          <Row >
             <Col md={4}>
               <FormGroup>
                 <Label for="examplePassword" password>
