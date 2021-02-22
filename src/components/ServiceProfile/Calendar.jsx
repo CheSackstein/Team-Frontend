@@ -7,7 +7,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { POSTtoProviders } from '../../lib/FetchShortcuts';
 import Swal from 'sweetalert2';
 import { UserContext } from '../../lib/UserContext';
-
+import Login from "../Login";
+import SignUp from "../Signup";
 
 export default function Calendar(props) {
   const { openingHrs, closingHrs, availableServices, _id } = props.provider;
@@ -90,12 +91,12 @@ export default function Calendar(props) {
         <b>Book an appointment now:</b>
       </h3>
       <p>
-        <i>First, select a service</i>
+        <i>Pick your date and service</i>
       </p>
       <hr />
       <div>
         <span className="h-5">
-          <b>Select a service:</b>
+          <b>Select a service:*</b>
         </span>
         <select
           name="service"
@@ -116,10 +117,9 @@ export default function Calendar(props) {
           {list}
         </select>
       </div>
-      {selectedService !== '' && (
         <div>
           <span className="h-5">
-            <b>Select a day:</b>{' '}
+            <b>Select a day:*</b>{' '}
           </span>
           <DatePicker
             className="rounded py-1"
@@ -130,12 +130,9 @@ export default function Calendar(props) {
             isClearable
           />
         </div>
-      )}
-
-      {selectedDate && (
         <div className="mt-1">
           <span className="h-5">
-            <b>Select an hour:</b>{' '}
+            <b>Select an hour:*</b>{' '}
           </span>{' '}
           <select
             name="hour"
@@ -144,13 +141,12 @@ export default function Calendar(props) {
             onChange={(e) => setSelectedHour(e.target.value)}
           >
             {times}
-          </select>
+        </select>
+        <hr />
+        <br/>
         </div>
-      )}
-
-      {selectedDate && selectedHour && (
+      {user ? (
         <div>
-          <br />
           <Button
             className={serviceProfile.bookNow}
             id="bookNow"
@@ -158,6 +154,18 @@ export default function Calendar(props) {
           >
             Book Now
           </Button>
+        </div>
+      ) : (
+        <div>
+          <p>
+            <b className='my-1'>You must be logged in to complete this process.</b>
+          </p>
+         <div className='d-flex'>
+            <Login />
+            <span className='ml-2'>
+              <SignUp />
+            </span>
+         </div>
         </div>
       )}
     </div>
