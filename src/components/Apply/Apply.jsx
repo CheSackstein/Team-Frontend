@@ -87,7 +87,7 @@ function Apply() {
 
   return (
     
-    <div className="Apply" id="Apply">
+    <div id="Apply" className={styles.Apply}>
       <form
         id="form"
         className="form"

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useContext } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import {
   Button,
@@ -22,6 +22,8 @@ import {
   POSTtoProviders,
 } from "../../lib/FetchShortcuts";
 import { data } from "jquery";
+import { UserContext } from "../../lib/UserContext";
+
 
 function ProfileSettings(props) {
   // const [email, setEmail] = useState("");
@@ -31,7 +33,10 @@ function ProfileSettings(props) {
   // const [fullName, setFullName] = useState("");
   // const [phone, setPhone] = useState("");
   // const [ errors, setErrors ] = useState("");
+
+  
   async function Submit(event) {
+    console.log('event: ', event);
     // const updatedUser = {
     //   fullName: fullName,
     //   email: email,
