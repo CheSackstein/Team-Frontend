@@ -3,31 +3,33 @@ import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Button, Form, Input, Label, Row, Col, FormGroup, Container } from "reactstrap";
 import styles from './ProfileSettings.module.css';
+import { useForm } from "react-hook-form";
 import { POSTtoUsers,
   PUTtoUsers,
   GETFromUsers,
   GETFromProviders,
   PUTtoProviders,
   POSTtoProviders} from '../../lib/FetchShortcuts'
+import { data } from "jquery";
 
 function ProfileSettings(props) {
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [fullName, setFullName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [ errors, setErrors ] = useState("");
-  async function Update(event) {
-    event.preventDefault();
-    const updatedUser = {
-      fullName: fullName,
-      email: email,
-      phone: phone,
-      password: password,
-      currentPassword: currentPassword
-    };
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  const { register, handleSubmit, watch, errors } = useForm();
+  // const [currentPassword, setCurrentPassword] = useState("");
+  // const [fullName, setFullName] = useState("");
+  // const [phone, setPhone] = useState("");
+  // const [ errors, setErrors ] = useState("");
+  async function Submit(event) {
+    // const updatedUser = {
+    //   fullName: fullName,
+    //   email: email,
+    //   phone: phone,
+    //   password: password,
+    //   currentPassword: currentPassword
+    // };
+    const updatedUser = data;
     const user = await PUTtoUsers('update-settings',updatedUser);
 
 
@@ -43,100 +45,63 @@ function ProfileSettings(props) {
     //   // use the user object
     //   console.log('USER:',user);
     // }
+    // console.log(data)
   }
-
-async function getUser(){
-  let response = await GETFromUsers()
-}
 
   return (
       <div className={styles.profileSettings} id="profileSettings">
-        <Container className={styles.Form} id="Form">
-          <Form onSubmit={(event) => Update(event)}>
-            <Row>
-              <Col md={3}>
-                <FormGroup>
-                  <Label for="fullName">Full name:</Label>
-                  <Input
+        {/* <Container className={styles.Form} id="Form"> */}
+          <form onSubmit={handleSubmit(Submit)}>
+                  <label for="fullName">Full name:</label>
+                  <input
                     type="text"
                     name="fullName"
                     id="fullName"
                     placeholder="Full Name"
-                    onChange={(e) => setFullName(e.target.value)}
+                    ref={register}
                   />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row form>
-              <Col md={3}>
-                <FormGroup>
-                  <Label for="phone">Cell:</Label>
-                  <Input
+                  <label for="phone">Cell:</label>
+                  <input
                     type="text"
                     name="cellPhone"
                     id="cellPhone"
                     placeholder="Cell phone number"
-                    onChange={(e) => setPhone(e.target.value)}
+                    ref={register}
+                   
                   />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={3}>
-                <FormGroup>
-                  <Label for="exampleEmail">Email</Label>
-                  <Input
+                  <label for="Email">Email</label>
+                  <input
                     type="email"
                     name="email"
-                    id="exampleEmail"
+                    id="Email"
                     placeholder="Email"
-                    onChange={(e) => setEmail(e.target.value)}
+                    ref={register}
                   />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={3}>
-                <FormGroup>
-                  <Label for="examplePassword">Password</Label>
-                  <Input
+                  <label for="Password">Password</label>
+                  <input
                     type="password"
                     name="password"
-                    id="examplePassword"
+                    id="Password"
                     placeholder="Password"
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-
-            <Row>
-              <Col md={3}>
-                <FormGroup>
-                  <Label for="currentPassword">Current Password:</Label>
-                  <Input
+                    ref={register}
+                    />
+                  <label for="currentPassword">Current Password:</label>
+                  <input
                     type="currentPassword"
                     name="currentPassword"
                     id="currentPassword"
                     placeholder="Password"
-                    onChange={(e) => setCurrentPassword(e.target.value)}
+                    ref={register}
                   />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Button
-                type="Primary"
+              <input
+                type="submit"
                 color="secondary"
-                onSubmit={(event) => Update(event)}
                 className={styles.changeBtn}
                 id="changeBtn"
+                value="Save Changes"
               >
-                Save Changes
-              </Button>
-            </Row>
-          </Form>
-        </Container>
+              </input>
+              </form>
       </div>
   
   );
