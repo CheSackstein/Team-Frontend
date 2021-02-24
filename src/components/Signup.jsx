@@ -69,17 +69,15 @@ function SignUp() {
           onClick={toggleSign}
           className="Signup"
           style={{
-            height: "70px",
-            width: "130px",
-            borderRadius: "20px",
-            fontSize: "20px",
-            left: "20px"
+            borderRadius: '6px',
+            fontSize: '20px',
+            left: '20px'
           }}
         >
           Sign up
         </Button>
         <Modal isOpen={modalSign} toggle={toggleSign}>
-          <ModalHeader toggle={toggleSign} style={{ color: "Black" }}>
+          <ModalHeader toggle={toggleSign} style={{ color: 'Black' }}>
             Sign up
           </ModalHeader>
           <ModalBody>
@@ -93,7 +91,7 @@ function SignUp() {
                   placeholder="Full Name"
                   onChange={(e) => setFullname(e.target.value)}
                 />
-                <span className='alert-danger'>{errors.fullName}</span>
+                <span className="alert-danger">{errors.fullName}</span>
               </FormGroup>
               <FormGroup>
                 <Label for="phone">Cell:</Label>
@@ -139,9 +137,7 @@ function SignUp() {
                 />
                 {errors.confirmPassword}
               </FormGroup>
-              <Button
-                type="primary"
-                color="primary">
+              <Button type="primary" color="primary">
                 Sign up
               </Button>
             </Form>
