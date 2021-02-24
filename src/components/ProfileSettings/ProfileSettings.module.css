@@ -1,8 +1,7 @@
 .profileSettings {
-    background-color: #00c2cb;
+    background-image:url('../BookIt3.png');
     background-size: cover;
-    height: 500px;
-    
+    height: 100vh;
     justify-content: center;
 
 }

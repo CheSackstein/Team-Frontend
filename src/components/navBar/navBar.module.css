@@ -14,7 +14,8 @@
     font-family: Cormorant Garamond Light; 
     font-size: 20px; 
     border-color: Black;
-    border-radius: 5px
+    border-radius: 5px;
+    background-color: #00c2cb;
 }
 
 .txt {
