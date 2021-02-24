@@ -16,9 +16,8 @@ function App() {
   const [isFirstLoaded, setIsFirstLoaded] = useState(false);
 
   useEffect(() => {
-    let userBrought = localStorage.getItem('user');
-  // let userBrought = JSON.parse(localStorage.getItem('user'))
-  //let item = JSON.parse(userBrought);
+   // let userBrought = localStorage.getItem('user');
+  let userBrought = JSON.parse(localStorage.getItem('user'))
   console.log('userBrought: ', userBrought);
   setUser(userBrought);  
 }, [])
@@ -48,22 +47,6 @@ function App() {
                 ></Route>
                 <Route path="/err500" component={Err500} />
                 <Route component={Err404} />
-                <Route>
-                  <ul>
-                    <li>
-                      <Link to="/search">Search</Link>
-                    </li>
-                    <li>
-                      <Link to="/ProfileSettings">ProfileSettings</Link>
-                    </li>
-                    <li>
-                      <Link to="/Apply">Apply</Link>
-                    </li>
-                    <li>
-                      <Link to="/">Home</Link>
-                    </li>
-                  </ul>
-                </Route>
               </Switch>
             </Router>
           </div>
