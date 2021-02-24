@@ -58,9 +58,7 @@ function Login(props) {
           onClick={toggleLog}
           className="Login"
           style={{
-            height: "70px",
-            width: "130px",
-            borderRadius: "20px",
+            borderRadius: "6px",
             fontSize: "20px",
             left: "20px",
           }}

@@ -24,6 +24,13 @@ export default function SearchForm(props) {
     props.search(data);
   };
 
+  const assessEnableButton = () => {
+    if (category !== '' && type !== '') {
+     return ''
+    }
+    return 'disabled'
+  }
+
   return (
     <>
       <div>
@@ -44,82 +51,67 @@ export default function SearchForm(props) {
             <option value="HEALTH">Health and Wellness</option>
           </select>
           {!compress && <br />}
-          {category === 'BEAUTY' && (
-            <>
-              <span>
-                <label htmlFor="type">What are you looking for?*</label>
-                <select
-                  name="type"
-                  onChange={(e) => handleType(e)}
-                  ref={register}
-                >
-                  <option disabled selected value="">
-                    select one
-                  </option>
-                  <option value="salon">Salon</option>
-                  <option value="barber">Barber Shop</option>
-                  <option value="nail salon">Nail Salon</option>
-                  <option value="massage">Massage</option>
-                  <option value="other">Other</option>
-                </select>
-              </span>
-              {type !== '' && (
-                <p>
-                  <label htmlFor="companyName">
-                    Do you know who you're looking for?
-                  </label>
-                  <input
-                    ref={register}
-                    type="text"
-                    name="companyName"
-                    placeholder="Tell us what to look for"
-                  />
-                  <span>
-                    {!compress && <br />}
-                    <button variant="success" type="submit">
-                      {type !== 'other' ? `Find me a ${type}` : 'Search'}
-                    </button>
-                  </span>
-                </p>
-              )}
-            </>
+          {category === '' && (
+            <span>
+              <label htmlFor="type">What are you looking for?*</label>
+              <select
+                name="type"
+                onChange={(e) => handleType(e)}
+                ref={register}
+              >
+                <option disabled selected value="">
+                  First select a category
+                </option>
+              </select>
+            </span>
           )}
 
-          {category === 'HEALTH' && (
-            <>
-              <span>
-                <label htmlFor="type">What are you looking for?</label>
-                <select
-                  name="type"
-                  ref={register}
-                  onChange={(e) => handleType(e)}
-                >
-                  <option value="">select one</option>
-                  <option value="chiropractor">Chiropractor</option>
-                  <option value="dentist">Dentist </option>
-                  <option value="other">Other</option>
-                </select>
-              </span>
-              {type !== '' && (
-                <p>
-                  <label htmlFor="companyName">
-                    Do you know who you're looking for?
-                  </label>
-                  <input
-                    type="text"
-                    name="companyName"
-                    placeholder="find by name"
-                  />
-                  <span>
-                    {!compress && <br />}
-                    <button variant="success" type="submit">
-                      {type !== 'other' ? `Find me a ${type}` : 'Search'}
-                    </button>
-                  </span>
-                </p>
-              )}
-            </>
+          {category === 'BEAUTY' && (
+            <span>
+              <label htmlFor="type">What are you looking for?*</label>
+              <select
+                name="type"
+                onChange={(e) => handleType(e)}
+                ref={register}
+              >
+                <option disabled selected value="">
+                  select one
+                </option>
+                <option value="salon">Salon</option>
+                <option value="barber">Barber Shop</option>
+                <option value="nail salon">Nail Salon</option>
+                <option value="massage">Massage</option>
+                <option value="other">Other</option>
+              </select>
+            </span>
           )}
+          {category === 'HEALTH' && (
+            <span>
+              <label htmlFor="type">What are you looking for?</label>
+              <select
+                name="type"
+                ref={register}
+                onChange={(e) => handleType(e)}
+              >
+                <option value="">select one</option>
+                <option value="chiropractor">Chiropractor</option>
+                <option value="dentist">Dentist </option>
+                <option value="other">Other</option>
+              </select>
+            </span>
+          )}
+          <p>
+            <label htmlFor="companyName">
+              Do you know who you're looking for?
+            </label>
+            <input type="text" name="companyName" placeholder="find by name" />
+            <span>
+              {!compress && <br />}
+              <button type="submit" disabled={assessEnableButton()}>
+                {type !== 'other' && type!== '' ? `Find me a ${type}` : 'Search'}
+              </button>
+            </span>
+          </p>
         </form>
       </div>
     </>

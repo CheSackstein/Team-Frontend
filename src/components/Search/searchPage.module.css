@@ -31,3 +31,8 @@
     background-color: rgb(89, 73, 59);
     border: 1px solid black;
 }
+
+.formWrapper button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
