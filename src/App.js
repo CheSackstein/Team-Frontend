@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from './App.module.css';
 import Home from "../src/components/Home/Home";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "./components/navBar/NavBar";
 import SearchPage from "./components/Search/SearchPage";
 import Apply from "../src/components/Apply/Apply";
@@ -19,10 +19,12 @@ function App() {
    // let userBrought = localStorage.getItem('user');
   let userBrought = JSON.parse(localStorage.getItem('user'))
   console.log('userBrought: ', userBrought);
-  setUser(userBrought);  
+    setUser(userBrought);  
+    setIsFirstLoaded(true)
 }, [])
 
   return (
+    isFirstLoaded && (
     <UserContext.Provider
       value={{
         user: user,
@@ -51,6 +53,7 @@ function App() {
             </Router>
           </div>
     </UserContext.Provider> 
+    )
   );
 }
 

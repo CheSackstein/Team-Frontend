@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   Button,
   Modal,
@@ -11,20 +11,21 @@ import {
 } from "reactstrap";
 import { Link, useHistory } from "react-router-dom";
 import { POSTtoUsers } from '../lib/FetchShortcuts'
+import { UserContext } from "../lib/UserContext";
 
 function SignUp() {
-  const [user, setUser] = useState("");
+  //const [user, setUser] = useState('');
   const [modalLog, setModalLog] = useState(false);
-  const [fullName, setFullname] = useState("");
-  const [email, setEmail] = useState("Hi");
-  const [cell, setCell] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-  const toggleLog = () => setModalLog(!modalLog);
+  const [fullName, setFullname] = useState('');
+  const [email, setEmail] = useState('Hi');
+  const [cell, setCell] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const [modalSign, setModalSign] = useState(false);
   const history = useHistory();
   const toggleSign = () => setModalSign(!modalSign);
   const [errors, setErrors] = useState({});
+  const {user, setUser} = useContext(UserContext)
 
   function onSignUp(event) {
     event.preventDefault();
@@ -33,33 +34,28 @@ function SignUp() {
       email: email,
       phone: cell,
       password: password,
-      confirmPassword: passwordConfirm,
+      confirmPassword: passwordConfirm
     };
 
     Register(newUser);
   }
 
-
   async function Register(frmData) {
-    const user = await POSTtoUsers('sign-up',frmData);
+    const user = await POSTtoUsers('sign-up', frmData);
 
-    if(user.errors){
+    if (user.errors) {
       // display errors
       console.log(user.errors);
-      const errs = {}
-      for(let err of user.errors){
+      const errs = {};
+      for (let err of user.errors) {
         errs[err.param] = err.msg;
       }
       setErrors(errs);
     } else {
       localStorage.setItem('user', user);
-      window.location.reload()
-      // use the user object
-      //props.passUser(user)  
+      window.location.reload();
     }
   }
-
-
 
   return (
     <div>
