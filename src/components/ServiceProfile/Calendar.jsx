@@ -15,8 +15,8 @@ export default function Calendar(props) {
   const times = [];
   let start = parseInt(openingHrs);
   let close = parseInt(closingHrs);
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedHour, setSelectedHour] = useState(null);
+  const [selectedDate, setSelectedDate] = useState('');
+  const [selectedHour, setSelectedHour] = useState('');
   const [selectedService, setSelectedService] = useState('');
   const {user} = useContext(UserContext);
   
@@ -48,7 +48,6 @@ export default function Calendar(props) {
 
   function handleDate(date) {
     setSelectedDate(date);
-    setSelectedHour(start);
   }
 
   function handleService(e) {
@@ -81,8 +80,14 @@ export default function Calendar(props) {
          'error'
        );
    }
+  }
 
-    
+  let assessDisabled = () => {
+    if (selectedService === '' || selectedDate === ''||selectedHour === '' ) {
+      return "disable"
+    } else {
+      return ''
+    }
   }
 
   return (
@@ -96,61 +101,65 @@ export default function Calendar(props) {
       <hr />
       <div>
         <span className="h-5">
+          <b>Select a day:*</b>{' '}
+        </span>
+        <DatePicker
+          className="rounded py-1"
+          selected={selectedDate}
+          onChange={(date) => handleDate(date)}
+          minDate={new Date()}
+          filterDate={(date) => date.getDay() !== 6 && date.getDay() !== 5}
+          isClearable
+          defaultValue=''
+        />
+      </div>
+      <div className="mt-1">
+        <span className="h-5">
+          <b>Select an hour:*</b>
+        </span>
+        <select
+          name="hour"
+          id="hour"
+          className="rounded py-1"
+          onChange={(e) => setSelectedHour(e.target.value)}
+        >
+          <option disabled selected value="">
+            select one
+          </option>
+          {times}
+        </select>
+      </div>
+      <div>
+        <span className="h-5">
           <b>Select a service:*</b>
         </span>
         <select
           name="service"
           id="service"
-          className="rounded ml-1 mb-2 py-1"
+          className="rounded mt-1 ml-1 mb-2 py-1"
           value={selectedService}
           onChange={(e) => handleService(e)}
         >
           <option
             disabled
-            defaultValue
             key={uuidv4()}
             value=""
             className={serviceProfile.service}
           >
-            choose one
+            select one
           </option>
           {list}
         </select>
       </div>
-        <div>
-          <span className="h-5">
-            <b>Select a day:*</b>{' '}
-          </span>
-          <DatePicker
-            className="rounded py-1"
-            selected={selectedDate}
-            onChange={(date) => handleDate(date)}
-            minDate={new Date()}
-            filterDate={(date) => date.getDay() !== 6 && date.getDay() !== 5}
-            isClearable
-          />
-        </div>
-        <div className="mt-1">
-          <span className="h-5">
-            <b>Select an hour:*</b>{' '}
-          </span>{' '}
-          <select
-            name="hour"
-            id="hour"
-            className="rounded py-1"
-            onChange={(e) => setSelectedHour(e.target.value)}
-          >
-            {times}
-        </select>
-        <hr />
-        <br/>
-        </div>
+      <hr />
+      <br />
       {user ? (
         <div>
           <Button
             className={serviceProfile.bookNow}
             id="bookNow"
             onClick={() => handleSubmit()}
+            disabled={assessDisabled()}
           >
             Book Now
           </Button>
@@ -158,14 +167,16 @@ export default function Calendar(props) {
       ) : (
         <div>
           <p>
-            <b className='my-1'>You must be logged in to complete this process.</b>
+            <b className="my-1">
+              You must be logged in to complete this process.
+            </b>
           </p>
-         <div className='d-flex'>
+          <div className="d-flex">
             <Login />
-            <span className='ml-2'>
+            <span className="ml-2">
               <SignUp />
             </span>
-         </div>
+          </div>
         </div>
       )}
     </div>
