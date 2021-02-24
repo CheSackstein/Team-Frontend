@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useContext } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Button, Form, Input, Label, Row, Col, FormGroup, Container } from "reactstrap";
 import styles from './ProfileSettings.module.css';
@@ -11,17 +11,19 @@ import { POSTtoUsers,
   PUTtoProviders,
   POSTtoProviders} from '../../lib/FetchShortcuts'
 import { data } from "jquery";
+import { UserContext } from "../../lib/UserContext";
+
 
 function ProfileSettings(props) {
 
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  const { register, handleSubmit, watch, errors } = useForm();
-  // const [currentPassword, setCurrentPassword] = useState("");
-  // const [fullName, setFullName] = useState("");
-  // const [phone, setPhone] = useState("");
+  const { user, setUser } = useContext(UserContext);
+  
+  const { register, handleSubmit, watch, errors } = useForm({defaultValues: user});
   // const [ errors, setErrors ] = useState("");
+
+  
   async function Submit(event) {
+    console.log('event: ', event);
     // const updatedUser = {
     //   fullName: fullName,
     //   email: email,
@@ -29,8 +31,8 @@ function ProfileSettings(props) {
     //   password: password,
     //   currentPassword: currentPassword
     // };
-    const updatedUser = data;
-    const user = await PUTtoUsers('update-settings',updatedUser);
+    const updatedUser = event;
+    const newUser = await PUTtoUsers('update-settings',updatedUser);
 
 
     // if(user.errors){
@@ -49,61 +51,59 @@ function ProfileSettings(props) {
   }
 
   return (
-      <div className={styles.profileSettings} id="profileSettings">
-        {/* <Container className={styles.Form} id="Form"> */}
-          <form onSubmit={handleSubmit(Submit)}>
-                  <label for="fullName">Full name:</label>
-                  <input
-                    type="text"
-                    name="fullName"
-                    id="fullName"
-                    placeholder="Full Name"
-                    ref={register}
-                  />
-                  <label for="phone">Cell:</label>
-                  <input
-                    type="text"
-                    name="cellPhone"
-                    id="cellPhone"
-                    placeholder="Cell phone number"
-                    ref={register}
-                   
-                  />
-                  <label for="Email">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="Email"
-                    placeholder="Email"
-                    ref={register}
-                  />
-                  <label for="Password">Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    id="Password"
-                    placeholder="Password"
-                    ref={register}
-                    />
-                  <label for="currentPassword">Current Password:</label>
-                  <input
-                    type="currentPassword"
-                    name="currentPassword"
-                    id="currentPassword"
-                    placeholder="Password"
-                    ref={register}
-                  />
-              <input
-                type="submit"
-                color="secondary"
-                className={styles.changeBtn}
-                id="changeBtn"
-                value="Save Changes"
-              >
-              </input>
-              </form>
-      </div>
-  
+    <div className={styles.profileSettings} id="profileSettings">
+      {/* <Container className={styles.Form} id="Form"> */}
+      <form onSubmit={handleSubmit(Submit)}>
+        <label for="fullName">Full name:</label>
+        <input
+          type="text"
+          name="fullName"
+          id="fullName"
+          placeholder="Full Name"
+          ref={register}
+        />
+        <label for="phone">Cell:</label>
+        <input
+          type="text"
+          name="phone"
+          id="phone"
+          placeholder="Cell phone number"
+          ref={register}
+        />
+        <label for="Email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="Email"
+          placeholder="Email"
+          ref={register}
+        />
+        <label for="currentPassword">Current Password:</label>
+        <input
+          type="currentPassword"
+          name="currentPassword"
+          id="currentPassword"
+          placeholder="Password"
+          ref={register}
+        />
+        <label for="Password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="Password"
+          placeholder="Password"
+          ref={register}
+        />
+
+        <input
+          type="submit"
+          color="secondary"
+          className={styles.changeBtn}
+          id="changeBtn"
+          value="Save Changes"
+        ></input>
+      </form>
+    </div>
   );
 }
 
