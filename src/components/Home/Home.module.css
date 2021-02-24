@@ -1,5 +1,19 @@
-.Home{
+/* .Home{
     background-image: url('../../background.png');
+    /* background-attachment: fixed;
+    background-position: center; */
+    /* display:flex;
+    background-repeat: no-repeat;
+justify-content: center;
+height:1400px;
+width:3000px; */
+  
+.Home {
+    background-image: url('../../background.png');
+    /* background-repeat: no-repeat; */
     background-size: cover;
-    min-height: 100vh;
+   
+    height: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
